@@ -48,6 +48,13 @@
   }
 }
 
+
+@mixin extra-large-desktop-or-smaller {
+  @media (max-width: 2300px) {
+    @content;
+  }
+}
+
 /* -- or larger -- */
 
 @mixin small-phone-or-larger {

@@ -1,13 +1,21 @@
 .ticker-link {
+  background-color: rgba(black, 0.1);
+  border: 1px solid transparent;
+  border-radius: 10px;
   display: inline-block;
-  margin: 20px;
+  margin: 10px;
+  overflow: hidden;
   padding: 20px;
   text-decoration: none;
   white-space: nowrap;
-  width: calc(100% - 80px);
+  width: calc(33.33% - 62px);
 
   &:hover {
-    box-shadow: $shadow3;
+    border-color: $themeColor;
+    
+    .ticker-index {
+      color: $themeColor;
+    }
   }
   
   .ticker-index,
@@ -42,14 +50,62 @@
   }
 }
 
-@include laptop-or-larger {
+@include extra-large-desktop-or-smaller {
   .ticker-link {
-    width: calc(50% - 80px);
+    .ticker-index {
+      font-size: 2em;
+      height: 50px;
+      line-height: 50px;
+      margin: 75px auto;
+    }
+    
+    .ticker-icon {
+      height: 200px;  
+      width: 200px;
+    }
+  
+    .ticker-symbol {
+      font-size: 6em;
+      height: 100px;
+      line-height: 100px;
+      margin: 50px auto;
+      margin-left: 20px;    
+    }
   }
 }
 
-@include extra-large-desktop-or-larger {
+@include laptop-or-smaller {
   .ticker-link {
-    width: calc(33.33% - 80px);
+    width: calc(50% - 62px);
+  }
+}
+
+@include tablet-or-smaller {
+  .ticker-link {
+    width: calc(100% - 62px);
+  }
+}
+
+@include phone-or-smaller {
+  .ticker-link {
+    .ticker-index {
+      font-size: 1.5em;
+      height: 50px;
+      line-height: 50px;
+      margin: 50px auto;
+    }
+    
+    .ticker-icon {
+      height: 150px;  
+      width: 150px;
+    }
+  
+    .ticker-symbol {
+      font-size: 4em;
+      height: 150px;
+      line-height: 150px;
+      margin: 0px auto;
+      margin-left: 20px;    
+    }
   }
 }
