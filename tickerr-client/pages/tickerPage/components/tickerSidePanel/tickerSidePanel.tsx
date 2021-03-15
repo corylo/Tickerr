@@ -38,7 +38,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
           />
           <TickerSidePanelField 
             className={CurrencyUtility.getChangeClass(ticker.change.day)} 
-            value={`${ticker.change.day}%`} 
+            value={`${ticker.change.day.toFixed(2)}%`} 
             label="Day" 
           />
         </div>

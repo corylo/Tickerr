@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { TickerChange } from "../tickerChange/tickerChange";
 import { TickerPrice } from "../tickerPrice/tickerPrice";
 
 import { ITicker } from "../../../tickerr-models/ticker";
@@ -19,7 +20,8 @@ export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) =>
       <img className="ticker-icon" src={`/img/icons/color/${ticker.symbol}.svg`} />
       <div className="ticker-symbol-and-price">
         <h1 className="ticker-symbol bangers-font">{ticker.symbol}</h1>
-        <TickerPrice value={ticker.price} change={ticker.change.day} />
+        <TickerPrice value={ticker.price} />
+        <TickerChange change={ticker.change.day} />
       </div>
     </Link>
   )
