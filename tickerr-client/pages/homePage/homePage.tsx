@@ -17,7 +17,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
 
   const getTickerLinks = (): JSX.Element[] => tickers
     .map((ticker: ITicker, index: number) => <TickerLink key={ticker.id} index={index + 1} ticker={ticker} />);
-
+  console.log(tickers)
   return(
     <Page id="tickerr-home-page" status={status}>      
       <div id="tickerr-home-page-ticker-links">
