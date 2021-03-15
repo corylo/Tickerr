@@ -25,7 +25,10 @@ export const TickerUtility: ITickerUtility = {
       change: {
         day: geckoTicker.price_change_percentage_24h
       },
+      name: geckoTicker.name,
       price: geckoTicker.current_price,      
+      supply: geckoTicker.circulating_supply,
+      symbol: geckoTicker.symbol,
       volume: geckoTicker.total_volume
     }
   },

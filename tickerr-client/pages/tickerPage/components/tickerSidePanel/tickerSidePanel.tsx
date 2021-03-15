@@ -38,12 +38,20 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
       <div id="ticker-side-panel-details-wrapper">
         <div id="ticker-side-panel-details" className="scroll-bar">
           <TickerSidePanelField 
+            value={ticker.name}
+            label="Name" 
+          />
+          <TickerSidePanelField 
             value={CurrencyUtility.formatUSD(ticker.cap)} 
             label="Market Cap" 
           />
           <TickerSidePanelField 
             value={CurrencyUtility.formatUSD(ticker.volume)} 
             label="Day Volume" 
+          />
+          <TickerSidePanelField 
+            value={CurrencyUtility.formatNumber(ticker.supply, 0, 2)} 
+            label="Circulating Supply" 
           />
           <TickerSidePanelField 
             className={CurrencyUtility.getChangeClass(ticker.change.day)} 

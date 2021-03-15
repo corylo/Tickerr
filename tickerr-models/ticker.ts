@@ -9,6 +9,7 @@ export interface ITicker {
   geckoID: string;
   name: string;
   price: number;
+  supply: number;
   symbol: string;
   volume: number;
 }
@@ -21,6 +22,7 @@ export const tickerConverter: any = {
       geckoID: ticker.geckoID,
       name: ticker.name,
       price: ticker.price,
+      supply: ticker.supply,
       symbol: ticker.symbol,
       volume: ticker.volume
     }
@@ -38,6 +40,7 @@ export const tickerConverter: any = {
       geckoID: data.geckoID,
       name: data.name,
       price: data.price,
+      supply: data.supply,
       symbol: data.symbol,      
       volume: data.volume
     }
