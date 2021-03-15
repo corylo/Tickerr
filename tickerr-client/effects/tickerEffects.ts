@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import firebase from "firebase/app";
+import _sortBy from "lodash.sortby";
 
 import { db } from "../firebase";
 
@@ -24,7 +25,11 @@ export const useTickerSummaryEffect = (): IUseTickerSummaryEffect => {
         .withConverter(tickerSummaryConverter)
         .onSnapshot((doc: firebase.firestore.QueryDocumentSnapshot) => { 
           try {
-            setSummary(doc.data() as ITickerSummary);
+            const data: ITickerSummary = doc.data() as ITickerSummary;
+
+            data.top = _sortBy(data.top, "cap").reverse();
+            
+            setSummary(data);
   
             if(status !== RequestStatus.Success) {
               setStatus(RequestStatus.Success);

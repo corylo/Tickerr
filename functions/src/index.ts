@@ -28,7 +28,7 @@ exports.updateTickersJob = pubsub.schedule("every 1 minutes")
 
       await batch.commit();
 
-      await db.collection("tickers")
+      await db.collection("summary")
         .doc("crypto")
         .update({ top: updatedTickers });
 
