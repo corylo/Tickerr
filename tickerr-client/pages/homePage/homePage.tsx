@@ -7,12 +7,15 @@ import { TickerLink } from "../../components/tickerLink/tickerLink";
 import { useTickerSummaryEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
+import { useUpdatePageTitleEffect } from "../../effects/appEffects";
 
 interface HomePageProps {
   
 }
 
 export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
+  useUpdatePageTitleEffect("Tickerr");
+
   const { summary, status } = useTickerSummaryEffect();
 
   const getTickerLinks = (): JSX.Element => {

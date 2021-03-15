@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 import { useRouteMatch } from "react-router";
 import classNames from "classnames";
 
@@ -11,7 +11,8 @@ import { tickerStateReducer } from "./reducers/tickerStateReducer";
 
 import { TickerStateContext } from "./contexts/tickerStateContext";
 
-import { useTickerEffect } from "../../effects/tickerEffects";
+import { useUpdatePageTitleEffect } from "../../effects/appEffects";
+import { useTickerEffect, useUpdateUrlSymbolEffect } from "../../effects/tickerEffects";
 
 import { CurrencyUtility } from "../../utilities/currencyUtility";
 
@@ -30,19 +31,9 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   const dispatch = (type: TickerStateAction, payload?: any): void => dispatchToTickerState({ type, payload });
 
-  const match: any = useRouteMatch();
+  useUpdatePageTitleEffect(`Tickerr | ${urlSymbol.toUpperCase()}`);
 
-  useEffect(() => {
-    if(
-      match && 
-      match.params && 
-      match.params.symbol && 
-      match.params.symbol.length > 1 && 
-      match.params.symbol.length < 20
-    ) {      
-      dispatch(TickerStateAction.SetUrlSymbol, match.params.symbol);
-    }
-  }, []);
+  useUpdateUrlSymbolEffect(useRouteMatch(), dispatch);
 
   useTickerEffect(urlSymbol, dispatch);
 

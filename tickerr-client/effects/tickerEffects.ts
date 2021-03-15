@@ -10,6 +10,20 @@ import { ITickerSummary, tickerSummaryConverter } from "../../tickerr-models/tic
 import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
 
+export const useUpdateUrlSymbolEffect = (match: any, dispatch: (type: TickerStateAction, payload?: any) => void): void => {
+  useEffect(() => {
+    if(
+      match && 
+      match.params && 
+      match.params.symbol && 
+      match.params.symbol.length > 1 && 
+      match.params.symbol.length < 20
+    ) {      
+      dispatch(TickerStateAction.SetUrlSymbol, match.params.symbol);
+    }
+  }, []);
+}
+
 interface IUseTickerSummaryEffect {
   summary: ITickerSummary;
   status: RequestStatus;
