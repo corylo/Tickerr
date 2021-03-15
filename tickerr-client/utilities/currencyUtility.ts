@@ -6,7 +6,8 @@ export const CurrencyUtility: ICurrencyUtility = {
   formatUSD: (value: number): string => {
     const formatter: Intl.NumberFormat = Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: "USD"
+      currency: "USD",
+      maximumSignificantDigits: 12
     });
 
     return formatter.format(value);

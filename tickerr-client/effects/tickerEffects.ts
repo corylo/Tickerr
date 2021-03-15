@@ -7,7 +7,7 @@ import { ITicker, tickerConverter } from "../models/ticker";
 
 import { RequestStatus } from "../enums/requestStatus";
 
-export interface IUseTickerListEffect {
+interface IUseTickerListEffect {
   tickers: ITicker[];
   status: RequestStatus;
 }
@@ -17,7 +17,8 @@ export const useTickerListEffect = (): IUseTickerListEffect => {
     [status, setStatus] = useState<RequestStatus>(RequestStatus.Loading);
 
     useEffect(() => {
-      const unsubscribeToTickers = db.collection("tickers")        
+      const unsubscribeToTickers = db.collection("tickers")   
+        .orderBy("cap", "desc")     
         .withConverter(tickerConverter)
         .onSnapshot((snap: firebase.firestore.QuerySnapshot) => { 
           try {
@@ -47,4 +48,54 @@ export const useTickerListEffect = (): IUseTickerListEffect => {
         }
     }, []);
   return { tickers, status };
+}
+
+interface IUseTickerEffect {
+  ticker: ITicker;
+  status: RequestStatus;
+}
+
+export const useTickerEffect = (symbol: string): IUseTickerEffect => {
+  const [ticker, setTicker] = useState<ITicker>(null),
+    [status, setStatus] = useState<RequestStatus>(RequestStatus.Loading);
+
+    useEffect(() => {
+      if(symbol !== "") {
+        const unsubscribeToTickers = db.collection("tickers")        
+          .where("symbol", "==", symbol)
+          .withConverter(tickerConverter)
+          .onSnapshot((snap: firebase.firestore.QuerySnapshot) => { 
+            try {
+              if(snap.docs.length === 1) {
+                let tickers: ITicker[] = [];
+
+                snap.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => 
+                  tickers.push(doc.data() as ITicker));
+      
+                setTicker(tickers[0]);
+      
+                if(status !== RequestStatus.Success) {
+                  setStatus(RequestStatus.Success);
+                }
+              } else {
+                throw new Error(`Incorrect result size. Expected: [1]. Actual: [${snap.docs.length}]`)
+              }
+            } catch (err) {
+              console.error("useTickerEffect:", err.message);
+                  
+              setStatus(RequestStatus.Error);
+            }
+          }, (err: firebase.firestore.FirestoreError) => {
+            console.error("useTickerEffect:", err.message);
+            
+            setStatus(RequestStatus.Error);
+          });
+            
+        return () => {
+          unsubscribeToTickers();
+        }
+      }
+    }, [symbol]);
+
+  return { ticker, status };
 }

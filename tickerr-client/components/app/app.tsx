@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 
 import { HomePage } from "../../pages/homePage/homePage";
+import { TickerPage } from "../../pages/tickerPage/tickerPage";
 
 import { Navbar } from "../navbar/navbar";
 
@@ -14,6 +15,9 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
       <Switch>
         <Route exact path="/">
           <HomePage />
+        </Route>
+        <Route exact path="/:symbol">
+          <TickerPage />
         </Route>
       </Switch>
     </div>

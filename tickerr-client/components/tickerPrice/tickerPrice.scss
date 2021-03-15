@@ -1,0 +1,13 @@
+.ticker-price {
+  font-size: 2em;
+  height: 30px;
+  line-height: 30px;
+
+  &.green {
+    color: $green;
+  }
+  
+  &.red {
+    color: $red;
+  }
+}

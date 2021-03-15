@@ -1,0 +1,159 @@
+#tickerr-ticker-page {
+  #ticker-stats {
+    height: 100vh;
+    width: 100vw;
+
+    &.green {
+      background-color: rgba($green, 0.2);
+    }
+
+    &.red {
+      background-color: rgba($red, 0.2);
+    }
+
+    .ticker-price {
+      @include centered;
+      font-size: 40em;
+
+      &.length-of-5,
+      &.length-of-6 {
+        font-size: 30em;
+      }
+
+      &.length-of-7,
+      &.length-of-8 {
+        font-size: 25em;
+      }
+
+      &.length-of-9,
+      &.length-of-10 {
+        font-size: 20em;
+      }
+    }
+  }
+}
+
+@include desktop-or-smaller {
+  #tickerr-ticker-page {
+    #ticker-stats {
+      .ticker-price {
+        font-size: 35em;
+  
+        &.length-of-5,
+        &.length-of-6 {
+          font-size: 25em;
+        }
+  
+        &.length-of-7,
+        &.length-of-8 {
+          font-size: 20em;
+        }
+  
+        &.length-of-9,
+        &.length-of-10 {
+          font-size: 15em;
+        }
+      }
+    }
+  }
+}
+
+@include laptop-or-smaller {
+  #tickerr-ticker-page {
+    #ticker-stats {
+      .ticker-price {
+        font-size: 30em;
+  
+        &.length-of-5,
+        &.length-of-6 {
+          font-size: 20em;
+        }
+  
+        &.length-of-7,
+        &.length-of-8 {
+          font-size: 15em;
+        }
+  
+        &.length-of-9,
+        &.length-of-10 {
+          font-size: 10em;
+        }
+      }
+    }
+  }
+}
+
+@include tablet-or-smaller {
+  #tickerr-ticker-page {
+    #ticker-stats {
+      .ticker-price {
+        font-size: 25em;
+  
+        &.length-of-5,
+        &.length-of-6 {
+          font-size: 15em;
+        }
+  
+        &.length-of-7,
+        &.length-of-8 {
+          font-size: 10em;
+        }
+  
+        &.length-of-9,
+        &.length-of-10 {
+          font-size: 5em;
+        }
+      }
+    }
+  }
+}
+
+@include small-tablet-or-smaller {
+  #tickerr-ticker-page {
+    #ticker-stats {
+      .ticker-price {
+        font-size: 15em;
+  
+        &.length-of-5,
+        &.length-of-6 {
+          font-size: 10em;
+        }
+  
+        &.length-of-7,
+        &.length-of-8 {
+          font-size: 8em;
+        }
+  
+        &.length-of-9,
+        &.length-of-10 {
+          font-size: 5em;
+        }
+      }
+    }
+  }
+}
+
+@include phone-or-smaller {
+  #tickerr-ticker-page {
+    #ticker-stats {
+      .ticker-price {
+        font-size: 10em;
+  
+        &.length-of-5,
+        &.length-of-6 {
+          font-size: 6em;
+        }
+  
+        &.length-of-7,
+        &.length-of-8 {
+          font-size: 4em;
+        }
+  
+        &.length-of-9,
+        &.length-of-10 {
+          font-size: 3em;
+        }
+      }
+    }
+  }
+}
