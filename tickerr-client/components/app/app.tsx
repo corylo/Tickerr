@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router";
 
 import { HomePage } from "../../pages/homePage/homePage";
+import { PrivacyPage } from "../../pages/privacyPage/privacyPage";
+import { TermsPage } from "../../pages/termsPage/termsPage";
 import { TickerPage } from "../../pages/tickerPage/tickerPage";
 
 import { Navbar } from "../navbar/navbar";
@@ -22,6 +24,12 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
         </Route>
         <Route exact path="/:symbol">
           <TickerPage />
+        </Route>
+        <Route exact path="/legal/privacy">
+          <PrivacyPage />
+        </Route>
+        <Route exact path="/legal/terms">
+          <TermsPage />
         </Route>
         <Route render={() => <Redirect to="/" />} />
       </Switch>

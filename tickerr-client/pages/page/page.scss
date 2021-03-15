@@ -23,4 +23,14 @@
       font-weight: lighter;
     }
   }
+
+  .tickerr-legal-policy {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: $shadow3;
+    margin: 70px auto;
+    margin-bottom: 20px;
+    max-width: 1200px;
+    width: calc(100% - 40px);
+  }
 }
