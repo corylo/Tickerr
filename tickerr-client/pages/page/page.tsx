@@ -12,7 +12,6 @@ interface PageProps {
 }
 
 export const Page: React.FC<PageProps> = (props: PageProps) => {
-  console.log(props.status)
   const getPageContent = (): JSX.Element => {
     if(
       props.status !== RequestStatus.Loading &&

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, useLocation } from "react-router";
+import { Redirect, Route, Switch, useLocation } from "react-router";
 
 import { HomePage } from "../../pages/homePage/homePage";
 import { TickerPage } from "../../pages/tickerPage/tickerPage";
@@ -10,7 +10,7 @@ interface AppProps {}
 
 export const App: React.FC<AppProps> = (props: AppProps) => {
   const location: any = useLocation();
-  
+
   useEffect(() => window.scrollTo(0, 0), [location.pathname]);
   
   return (
@@ -23,6 +23,7 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
         <Route exact path="/:symbol">
           <TickerPage />
         </Route>
+        <Route render={() => <Redirect to="/" />} />
       </Switch>
     </div>
   )
