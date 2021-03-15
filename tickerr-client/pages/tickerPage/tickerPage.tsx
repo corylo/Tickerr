@@ -59,6 +59,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
           <div id="ticker-stats-price-wrapper">
             <TickerPrice value={ticker.price} change={ticker.change.day} />
           </div>
+          <img id="ticker-stats-background-icon" src={`/img/icons/white/${ticker.symbol}.svg`} />
         </div>
       )
     }
