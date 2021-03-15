@@ -1,0 +1,14 @@
+.tickerr-page {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+
+  .tickerr-page-content {
+    animation: fadeIn 250ms ease-in;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+}

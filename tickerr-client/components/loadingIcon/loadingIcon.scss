@@ -1,0 +1,23 @@
+.loading-icon-wrapper {
+  backface-visibility: hidden;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .loading-icon {
+    animation: heartBeat 1.5s ease-in-out infinite;
+
+    &.white {
+      i {
+        color: white;
+      }
+    }
+
+    i {
+      color: $themeColor;
+      font-size: 2em;
+      text-shadow: 0px 0px 8px rgba($themeColor, 0.5);
+    }
+  }
+}

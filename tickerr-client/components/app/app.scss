@@ -1,0 +1,35 @@
+@import "animations.scss";
+@import "colors.scss";
+@import "format.scss";
+@import "responsive.scss";
+
+@import "../../pages/page/page.scss";
+@import "../../pages/homePage/homePage.scss";
+
+@import "../loadingIcon/loadingIcon.scss";
+@import "../navbar/navbar.scss";
+@import "../tickerrBrand/tickerrBrand.scss";
+@import "../tickerLink/tickerLink.scss";
+
+html,
+body {
+  background-color: gray(40);
+  margin: 0px;
+  min-height: 100vh;
+  padding: 0px;
+  width: 100%;
+
+  &::-webkit-scrollbar-track {
+    background-color: gray(40);
+  }
+
+  &::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollBarColor;
+    border-radius: 10px;
+  }
+}

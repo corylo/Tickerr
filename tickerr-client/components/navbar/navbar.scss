@@ -1,0 +1,16 @@
+#tickerr-navbar {  
+  animation: fadeInDown 0.4s ease-in;
+  background: linear-gradient(to bottom, gray(40), transparent);
+  height: 50px;
+  left: 0px;
+  padding: 10px;
+  pointer-events: none;
+  position: fixed;
+  top: 0px;
+  width: calc(100vw - 20px);
+  z-index: 10000;
+
+  .tickerr-brand {
+    display: inline-block;
+  }
+}
