@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { TickerChange } from "../tickerChange/tickerChange";
 import { TickerPrice } from "../tickerPrice/tickerPrice";
 
+import { AnalyticsUtility } from "../../utilities/analyticsUtility";
+
 import { ITicker } from "../../../tickerr-models/ticker";
 
 interface TickerLinkProps {
@@ -14,8 +16,12 @@ interface TickerLinkProps {
 export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) => {
   const { ticker } = props;
 
+  const handleOnClick = (): void => {
+    AnalyticsUtility.log("ticker_link_click", ticker);
+  }
+
   return(
-    <Link to={`/${ticker.symbol}`} className="ticker-link">
+    <Link to={`/${ticker.symbol}`} className="ticker-link" onClick={handleOnClick}>
       <h1 className="ticker-index passion-one-font">{props.index}</h1>
       <img className="ticker-icon" src={`/img/icons/color/${ticker.symbol}.svg`} />
       <img className="ticker-background-icon" src={`/img/icons/white/${ticker.symbol}.svg`} />
