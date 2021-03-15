@@ -5,20 +5,22 @@ import { ITickerChange } from "./tickerChange";
 export interface ITicker {
   id: string;
   cap: number;
+  change: ITickerChange;
   name: string;
   price: number;
   symbol: string;
-  change: ITickerChange;
+  volume: number;
 }
 
 export const tickerConverter: firebase.firestore.FirestoreDataConverter<ITicker> = {
   toFirestore(ticker: ITicker): firebase.firestore.DocumentData {
     return {
       cap: ticker.cap,
+      change: ticker.change,
       name: ticker.name,
       price: ticker.price,
       symbol: ticker.symbol,
-      change: ticker.change
+      volume: ticker.volume
     }
   },
   fromFirestore(
@@ -30,10 +32,11 @@ export const tickerConverter: firebase.firestore.FirestoreDataConverter<ITicker>
     return {
       id: snapshot.id,
       cap: data.cap,
+      change: data.change,
       name: data.name,
       price: data.price,
-      symbol: data.symbol,
-      change: data.change
+      symbol: data.symbol,      
+      volume: data.volume
     }
   }
 }

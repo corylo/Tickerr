@@ -5,15 +5,15 @@ import { CurrencyUtility } from "../../utilities/currencyUtility";
 
 interface TickerPriceProps {
   value: number;
-  green: boolean;
+  change: number;
 }
 
 export const TickerPrice: React.FC<TickerPriceProps> = (props: TickerPriceProps) => {
   const getClasses = (): string => {
     return classNames(
       "ticker-price", 
-      "bangers-font",       
-      props.green ? "green" : "red", 
+      "passion-one-font",       
+      CurrencyUtility.getChangeClass(props.change), 
       `length-of-${props.value.toString().length}`
     );
   }

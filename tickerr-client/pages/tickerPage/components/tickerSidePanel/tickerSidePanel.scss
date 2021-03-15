@@ -1,0 +1,105 @@
+#ticker-side-panel {
+  height: calc(100vh - 140px);
+  left: 0px;
+  padding: 70px 20px;
+  pointer-events: none;
+  position: fixed;
+  top: 0px;
+  width: 360px;
+  z-index: 2;
+
+  #ticker-icon-and-symbol {    
+    background-color: transparent;
+    border: none;
+    display: block;
+    outline: none;
+    padding: 0px;
+    pointer-events: all;
+    position: absolute;
+    z-index: 2;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      
+      .ticker-icon {
+        box-shadow: $shadow2;
+      }
+
+      .ticker-symbol {
+        text-shadow: 0px 0px 8px rgba(white, 0.5);
+      }
+    }
+
+    .ticker-icon,
+    .ticker-symbol {
+      display: inline-block;
+      vertical-align: top;
+    }
+    
+    .ticker-icon {
+      border-radius: 80px;
+      height: 80px;
+      width: 80px;
+    }
+
+    .ticker-symbol {
+      color: gray(240);
+      font-size: 4em;
+      height: 80px;
+      line-height: 80px;
+      margin-left: 20px;
+      text-transform: uppercase;
+    }
+  }
+
+  #ticker-side-panel-details-wrapper {
+    border-right: 1px solid rgba(gray(180), 0.25);
+    height: 100%;
+    left: 0px;
+    pointer-events: all;
+    position: absolute;
+    top: 0px;
+    transform: translateX(-100%);
+    transition: all 0.25s;
+    width: 100%;
+    z-index: 1;
+
+    #ticker-side-panel-details {
+      height: calc(100% - 190px);
+      margin-top: 150px;
+      overflow: auto;
+      padding: 20px;
+
+      .ticker-side-panel-field {
+        &:nth-of-type(n + 2) {
+          margin-top: 20px;
+        }
+
+        &.green {
+          .ticker-side-panel-field-value {
+            color: $green;
+          }
+        }
+
+        &.red {
+          .ticker-side-panel-field-value {
+            color: $red;
+          }
+        }
+
+        .ticker-side-panel-field-value {
+          color: white;
+          font-size: 2em;
+        }
+
+        .ticker-side-panel-field-label {
+          color: gray(230);
+          font-size: 1.25em;
+          font-weight: lighter;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

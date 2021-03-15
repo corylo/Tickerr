@@ -8,12 +8,14 @@
   overflow: hidden;
   padding: 20px;
   text-decoration: none;
+  transition: transform 0.25s;
   white-space: nowrap;
   width: calc(33.33% - 62px);
 
   &:hover,
   &:focus {
     border-color: $themeColor;
+    transform: translateY(-10px);
     
     .ticker-index {
       color: $themeColor;
