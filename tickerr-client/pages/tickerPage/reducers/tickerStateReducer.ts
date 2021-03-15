@@ -7,6 +7,14 @@ import { TickerStateAction } from "../enums/tickerStateAction";
 export const tickerStateReducer = (state: ITickerState, action: IAction): ITickerState => {
   switch(action.type) {
     case TickerStateAction.SetStatus:
+      if(action.payload.errorMessage) {
+        return {
+          ...state,
+          status: RequestStatus.Error,
+          errorMessage: action.payload.errorMessage
+        }
+      }
+
       return {
         ...state,
         status: action.payload

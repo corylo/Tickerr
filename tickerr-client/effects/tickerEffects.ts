@@ -88,7 +88,7 @@ export const useTickerEffect = (symbol: string, dispatch: (type: TickerStateActi
           } catch (err) {
             console.error("useTickerEffect:", err.message);
 
-            dispatch(TickerStateAction.SetStatus, RequestStatus.Error);
+            dispatch(TickerStateAction.SetStatus, { errorMessage: "Whoops! This ticker does not exist yet. Please check back again soon." });
           }
         }, (err: firebase.firestore.FirestoreError) => {
           console.error("useTickerEffect:", err.message);

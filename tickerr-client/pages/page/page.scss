@@ -11,4 +11,16 @@
     position: relative;
     z-index: 2;
   }
+
+  .tickerr-page-message {
+    @include centered;
+    animation: fadeInCentered 250ms ease-in;
+    z-index: 2;
+
+    h1 {
+      color: gray(240);
+      font-size: 2em;
+      font-weight: lighter;
+    }
+  }
 }

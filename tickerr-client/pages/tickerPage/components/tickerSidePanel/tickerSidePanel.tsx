@@ -4,10 +4,10 @@ import { TickerSidePanelField } from "./tickerSidePanelField";
 
 import { TickerStateContext } from "../../contexts/tickerStateContext";
 
+import { AnalyticsUtility } from "../../../../utilities/analyticsUtility";
 import { CurrencyUtility } from "../../../../utilities/currencyUtility";
 
 import { TickerStateAction } from "../../enums/tickerStateAction";
-import { AnalyticsUtility } from "../../../../utilities/analyticsUtility";
 
 interface TickerSidePanelProps {
   

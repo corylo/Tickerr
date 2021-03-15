@@ -27,7 +27,7 @@ interface TickerPageProps {
 export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) => {
   const [tickerState, dispatchToTickerState] = useReducer(tickerStateReducer, defaultTickerState());
 
-  const { ticker, status, sidePanelToggled, urlSymbol } = tickerState;
+  const { errorMessage, status, sidePanelToggled, ticker, urlSymbol } = tickerState;
 
   const dispatch = (type: TickerStateAction, payload?: any): void => dispatchToTickerState({ type, payload });
 
@@ -58,7 +58,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   return(
     <TickerStateContext.Provider value={{ tickerState, dispatchToTickerState }}>
-      <Page id="tickerr-ticker-page" status={status}>      
+      <Page id="tickerr-ticker-page" status={status} errorMessage={errorMessage}>      
         {getTickerStats()}
       </Page>
     </TickerStateContext.Provider>

@@ -8,9 +8,11 @@ interface PageProps {
   id?: string;
   children: JSX.Element | JSX.Element[];
   status?: RequestStatus;
+  errorMessage?: string;
 }
 
 export const Page: React.FC<PageProps> = (props: PageProps) => {
+  console.log(props.status)
   const getPageContent = (): JSX.Element => {
     if(
       props.status !== RequestStatus.Loading &&
@@ -32,10 +34,23 @@ export const Page: React.FC<PageProps> = (props: PageProps) => {
     }
   }
 
+  const getPageMessage = (): JSX.Element => {
+    if(props.status === RequestStatus.Error) {
+      const message: string = props.errorMessage || "Whoops! We ran into an issue loading the page. Please refresh and try again.";
+
+      return (
+        <div className="tickerr-page-message">
+          <h1 className="passion-one-font">{message}</h1>
+        </div>
+      )
+    }
+  }
+
   return (
     <div id={props.id} className="tickerr-page">
       {getPageContent()}
       {getLoading()}
+      {getPageMessage()}
     </div>
   )
 }
