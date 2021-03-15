@@ -4,42 +4,38 @@ import firebase from "firebase/app";
 import { db } from "../firebase";
 
 import { ITicker, tickerConverter } from "../../tickerr-models/ticker";
+import { ITickerSummary, tickerSummaryConverter } from "../../tickerr-models/tickerSummary";
 
 import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
 
-interface IUseTickerListEffect {
-  tickers: ITicker[];
+interface IUseTickerSummaryEffect {
+  summary: ITickerSummary;
   status: RequestStatus;
 }
 
-export const useTickerListEffect = (): IUseTickerListEffect => {
-  const [tickers, setTickers] = useState<ITicker[]>([]),
+export const useTickerSummaryEffect = (): IUseTickerSummaryEffect => {
+  const [summary, setSummary] = useState<ITickerSummary>(null),
     [status, setStatus] = useState<RequestStatus>(RequestStatus.Loading);
 
     useEffect(() => {
-      const unsubscribeToTickers = db.collection("tickers")   
-        .orderBy("cap", "desc")     
-        .withConverter(tickerConverter)
-        .onSnapshot((snap: firebase.firestore.QuerySnapshot) => { 
+      const unsubscribeToTickers = db.collection("summary")   
+        .doc("crypto")
+        .withConverter(tickerSummaryConverter)
+        .onSnapshot((doc: firebase.firestore.QueryDocumentSnapshot) => { 
           try {
-            let updatedTickers: ITicker[] = [];
-  
-            snap.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => 
-              updatedTickers.push(doc.data() as ITicker));
-  
-            setTickers(updatedTickers);
+            setSummary(doc.data() as ITickerSummary);
   
             if(status !== RequestStatus.Success) {
               setStatus(RequestStatus.Success);
             }
           } catch (err) {
-            console.error("useTickerListEffect:", err.message);
+            console.error("useTickerSummaryEffect:", err.message);
                 
             setStatus(RequestStatus.Error);
           }
         }, (err: firebase.firestore.FirestoreError) => {
-          console.error("useTickerListEffect:", err.message);
+          console.error("useTickerSummaryEffect:", err.message);
           
           setStatus(RequestStatus.Error);
         });
@@ -48,7 +44,8 @@ export const useTickerListEffect = (): IUseTickerListEffect => {
           unsubscribeToTickers();
         }
     }, []);
-  return { tickers, status };
+    
+  return { summary, status };
 }
 
 export const useTickerEffect = (symbol: string, dispatch: (type: TickerStateAction, payload?: any) => void): void => {  

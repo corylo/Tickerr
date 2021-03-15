@@ -28,6 +28,10 @@ exports.updateTickersJob = pubsub.schedule("every 1 minutes")
 
       await batch.commit();
 
+      await db.collection("tickers")
+        .doc("crypto")
+        .update({ top: updatedTickers });
+
       logger.log(`Successfully updated ${updatedTickers.length} tickers.`);
     } catch (err) {
       console.error(err);
