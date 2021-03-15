@@ -41,7 +41,9 @@
   .ticker-icon {
     height: 300px;
     margin-left: 20px;    
+    position: relative;
     width: 300px;
+    z-index: 2;
   }
 
   .ticker-background-icon {
