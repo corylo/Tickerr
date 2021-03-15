@@ -10,8 +10,7 @@ export const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     <div id="tickerr-navbar">      
       <TickerrBrand />
       <div id="tickerr-navbar-links">
-        <Link to="/legal/privacy" className="passion-one-font">Privacy</Link>
-        <Link to="/legal/terms" className="passion-one-font">Terms</Link>
+        <Link to="/legal" className="passion-one-font">Legal</Link>
       </div>
     </div>
   )

@@ -22,19 +22,23 @@
     top: 0px;
 
     a {
+      border-radius: 6px;
       color: $themeColor;
       cursor: pointer;
       display: inline-block;
       height: 50px;
       line-height: 50px;
       margin: 0px 10px;
+      outline: none;
+      padding: 0px 20px;
       text-decoration: none;
       text-transform: uppercase;
       vertical-align: top;
 
       &:hover,
       &:focus {
-        text-shadow: 0px 0px 8px rgba($themeColor, 0.5);
+        background-color: rgba($themeColor, 0.5);
+        color: white;
       }
     }
   }
