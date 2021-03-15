@@ -6,7 +6,7 @@ import { TickerLink } from "../../components/tickerLink/tickerLink";
 
 import { useTickerListEffect } from "../../effects/tickerEffects";
 
-import { ITicker } from "../../models/ticker";
+import { ITicker } from "../../../tickerr-models/ticker";
 
 interface HomePageProps {
   

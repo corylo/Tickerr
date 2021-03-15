@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { TickerPrice } from "../tickerPrice/tickerPrice";
 
-import { ITicker } from "../../models/ticker";
+import { ITicker } from "../../../tickerr-models/ticker";
 
 interface TickerLinkProps {
   index: number;

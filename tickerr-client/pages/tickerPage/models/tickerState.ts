@@ -1,4 +1,4 @@
-import { ITicker } from "../../../models/ticker";
+import { ITicker } from "../../../../tickerr-models/ticker";
 
 import { RequestStatus } from "../../../enums/requestStatus";
 

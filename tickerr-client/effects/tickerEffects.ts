@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 
 import { db } from "../firebase";
 
-import { ITicker, tickerConverter } from "../models/ticker";
+import { ITicker, tickerConverter } from "../../tickerr-models/ticker";
 
 import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";

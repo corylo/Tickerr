@@ -7,5 +7,5 @@
     "target": "es6"
   },
   "compileOnSave": true,
-  "include": ["tickerr-client"]
+  "include": ["tickerr-client", "tickerr-models"]
 }

@@ -13,10 +13,11 @@ import { TickerStateContext } from "./contexts/tickerStateContext";
 
 import { useTickerEffect } from "../../effects/tickerEffects";
 
+import { CurrencyUtility } from "../../utilities/currencyUtility";
+
 import { defaultTickerState } from "./models/tickerState";
 
 import { TickerStateAction } from "./enums/tickerStateAction";
-import { CurrencyUtility } from "../../utilities/currencyUtility";
 
 interface TickerPageProps {
   
