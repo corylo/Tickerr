@@ -17,34 +17,11 @@
       #ticker-side-panel-details-wrapper {
         transform: translateX(0%);
       }
-      
-      #ticker-stats-price-wrapper {
-        margin-left: 400px;
-        width: calc(100vw - 400px);
-
-        .ticker-price {
-          font-size: 25vw;
-  
-          &.length-of-5,
-          &.length-of-6 {
-            font-size: 20vw;
-          }
-  
-          &.length-of-7,
-          &.length-of-8 {
-            font-size: 15vw;
-          }
-  
-          &.length-of-9,
-          &.length-of-10 {
-            font-size: 12vw;
-          }
-        }
-      }
     }
 
     #ticker-stats-price-wrapper {
       height: 100vh;
+      overflow: hidden;
       position: relative;
       transition: all 0.25s;
       width: 100vw;
@@ -71,6 +48,38 @@
         &.length-of-9,
         &.length-of-10 {
           font-size: 18vw;
+        }
+      }
+    }
+  }
+}
+
+@include tablet-or-larger {  
+  #tickerr-ticker-page {
+    #ticker-stats { 
+      &.side-panel-toggled {
+        #ticker-stats-price-wrapper {
+          margin-left: 400px;
+          width: calc(100vw - 400px);
+  
+          .ticker-price {
+            font-size: 25vw;
+    
+            &.length-of-5,
+            &.length-of-6 {
+              font-size: 20vw;
+            }
+    
+            &.length-of-7,
+            &.length-of-8 {
+              font-size: 15vw;
+            }
+    
+            &.length-of-9,
+            &.length-of-10 {
+              font-size: 12vw;
+            }
+          }
         }
       }
     }

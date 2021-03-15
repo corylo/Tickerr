@@ -5,6 +5,7 @@
   pointer-events: none;
   position: fixed;
   top: 0px;
+  transition: width 0.25s;
   width: 360px;
   z-index: 2;
 
@@ -101,5 +102,20 @@
         }
       }
     }
+  }
+}
+
+@include tablet-or-smaller {  
+  #ticker-side-panel {
+    #ticker-side-panel-details-wrapper {
+      background-color: rgba(black, 0.5);
+      border-right: none;
+    }
+  }
+}
+
+@include phone-or-smaller { 
+  #ticker-side-panel {
+    width: 100%;    
   }
 }
