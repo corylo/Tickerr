@@ -11,7 +11,8 @@ export const CurrencyUtility: ICurrencyUtility = {
     const formatter: Intl.NumberFormat = Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
-      maximumSignificantDigits: 12
+      minimumFractionDigits: value < 10 ? 2 : 0,
+      maximumFractionDigits: 4
     });
 
     return formatter.format(value);
