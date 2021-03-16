@@ -4,6 +4,7 @@ export const useUpdatePageTitleEffect = (title: string): void => {
   useEffect(() => {
     if(document.title !== title) {
       document.title = title;
+      document.querySelector("meta[name=\"og:title\"]").setAttribute("content", title);
     }
   }, [title]);
 }
