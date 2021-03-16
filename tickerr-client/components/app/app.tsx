@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router";
+import { useScrollToTopEffect, useUpdatePageOGUrlEffect } from "../../effects/appEffects";
 
 import { HomePage } from "../../pages/homePage/homePage";
 import { CookiesPage } from "../../pages/legalPage/cookiesPage";
@@ -15,7 +16,9 @@ interface AppProps {}
 export const App: React.FC<AppProps> = (props: AppProps) => {
   const location: any = useLocation();
 
-  useEffect(() => window.scrollTo(0, 0), [location.pathname]);
+  useScrollToTopEffect(location);
+
+  useUpdatePageOGUrlEffect(location);
   
   return (
     <div id="tickerr-app">
