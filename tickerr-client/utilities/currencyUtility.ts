@@ -6,11 +6,7 @@ interface ICurrencyUtility {
 
 export const CurrencyUtility: ICurrencyUtility = {
   getChangeClass: (value: number): string => {
-    if(value !== undefined) {
-      return value >= 0 ? "green" : "red";
-    }
-
-    return null;
+    return value >= 0 ? "green" : "red";
   },
   formatNumber: (value: number, min?: number, max?: number): string => {
     return Intl.NumberFormat(navigator.language, {
