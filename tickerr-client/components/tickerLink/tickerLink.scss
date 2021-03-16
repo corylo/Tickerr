@@ -149,3 +149,38 @@
     }
   }
 }
+
+@include medium-phone-or-smaller {
+  .ticker-link {
+    .ticker-index {
+      margin: 25px auto;
+    }
+
+    .ticker-icon {
+      height: 100px;  
+      width: 100px;
+    }
+  
+    .ticker-symbol-and-price {        
+      margin: 15px auto;
+      margin-left: 20px;
+      height: 70px;
+  
+      .ticker-symbol {
+        font-size: 3.5em;
+        height: 50px;
+        line-height: 50px;
+      }
+
+      .ticker-price {
+        font-size: 1.25em;
+        height: 20px;
+        line-height: 20px;
+      }
+
+      .ticker-change {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
