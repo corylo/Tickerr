@@ -34,6 +34,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   return(
     <Page id="tickerr-home-page" status={status}>      
       {getTickerLinks()}
+      <h1 id="tickerr-username">Made with ❤️ by vvaffleman</h1>
     </Page>
   )
 }
