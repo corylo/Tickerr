@@ -27,28 +27,9 @@
       width: 100vw;
       z-index: 2;
 
-      .ticker-price {
+      .animated-ticker-price {
         @include centered;
-        font-size: 30vw;
-        height: auto;
-        line-height: normal;
         position: absolute;
-        transition: font-size 0.25s;
-
-        &.length-of-5,
-        &.length-of-6 {
-          font-size: 25vw;
-        }
-
-        &.length-of-7,
-        &.length-of-8 {
-          font-size: 20vw;
-        }
-
-        &.length-of-9,
-        &.length-of-10 {
-          font-size: 18vw;
-        }
       }
     }
 
@@ -69,25 +50,6 @@
         #ticker-stats-price-wrapper {
           margin-left: 400px;
           width: calc(100vw - 400px);
-  
-          .ticker-price {
-            font-size: 25vw;
-    
-            &.length-of-5,
-            &.length-of-6 {
-              font-size: 20vw;
-            }
-    
-            &.length-of-7,
-            &.length-of-8 {
-              font-size: 15vw;
-            }
-    
-            &.length-of-9,
-            &.length-of-10 {
-              font-size: 12vw;
-            }
-          }
         }
       }
     }

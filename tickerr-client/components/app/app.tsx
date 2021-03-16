@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router";
 import { useScrollToTopEffect, useUpdatePageOGUrlEffect } from "../../effects/appEffects";
 

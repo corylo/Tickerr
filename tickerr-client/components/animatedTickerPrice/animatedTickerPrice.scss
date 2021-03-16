@@ -1,0 +1,58 @@
+.animated-ticker-price {
+  white-space: nowrap;
+  
+  &.green {
+    .animated-ticker-price-digit {
+      .animated-ticker-price-digit-non-numeric,
+      .animated-ticker-price-digit-scroller > .animated-ticker-price-digit-scroller-number {
+        color: $green;
+      }
+    }
+  }
+  
+  &.red {
+    .animated-ticker-price-digit {
+      .animated-ticker-price-digit-non-numeric,
+      .animated-ticker-price-digit-scroller > .animated-ticker-price-digit-scroller-number {
+        color: $red;
+      }
+    }
+  }
+
+  .animated-ticker-price-digit {
+    display: inline-block;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+    transition: width 0.25s;
+    width: 50px;
+    
+    .animated-ticker-price-digit-scroller {
+      left: 0px;
+      position: absolute;
+      top: 0px;
+      transition: transform 0.25s, width 0.25s;
+
+      .animated-ticker-price-digit-scroller-number {
+        color: white;
+        font-size: 6em;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        transition: width 0.25s;
+        width: 50px;
+      }
+    }
+
+    .animated-ticker-price-digit-non-numeric {
+      color: white;
+      font-size: 6em;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      transition: width 0.25s;
+      width: 50px;
+    }
+  }
+}

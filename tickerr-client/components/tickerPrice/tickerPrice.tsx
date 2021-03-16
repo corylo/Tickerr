@@ -13,7 +13,7 @@ export const TickerPrice: React.FC<TickerPriceProps> = (props: TickerPriceProps)
     return classNames(
       "ticker-price", 
       "passion-one-font",       
-      props.change ? CurrencyUtility.getChangeClass(props.change) : null, 
+      CurrencyUtility.getChangeClass(props.change), 
       `length-of-${props.value.toString().length}`
     );
   }

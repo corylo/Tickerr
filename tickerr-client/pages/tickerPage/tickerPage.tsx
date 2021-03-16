@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import { Page } from "../page/page";
 
+import { AnimatedTickerPrice } from "../../components/animatedTickerPrice/animatedTickerPrice";
 import { TickerPrice } from "../../components/tickerPrice/tickerPrice";
 import { TickerSidePanel } from "./components/tickerSidePanel/tickerSidePanel";
 
@@ -55,8 +56,12 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
       return (
         <div id="ticker-stats" className={classes}>
           <TickerSidePanel />
-          <div id="ticker-stats-price-wrapper">
-            <TickerPrice value={ticker.price} change={ticker.change.day} />
+          <div id="ticker-stats-price-wrapper">            
+            <AnimatedTickerPrice 
+              value={ticker.price} 
+              change={ticker.change.day} 
+              sidePanelToggled={sidePanelToggled} 
+            />
           </div>
           <img id="ticker-stats-background-icon" src={`/img/icons/white/${ticker.symbol}.svg`} />
         </div>
