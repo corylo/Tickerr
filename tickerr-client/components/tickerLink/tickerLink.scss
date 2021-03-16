@@ -152,6 +152,9 @@
 
 @include medium-phone-or-smaller {
   .ticker-link {
+    margin: 5px 0px;
+    width: calc(100% - 42px);
+
     .ticker-index {
       margin: 25px auto;
     }
