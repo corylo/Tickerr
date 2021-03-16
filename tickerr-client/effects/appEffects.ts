@@ -15,6 +15,7 @@ export const useUpdatePageTitleEffect = (title: string): void => {
     if(document.title !== title) {
       document.title = title;
       document.querySelector("meta[property=\"og:title\"]").setAttribute("content", title);
+      document.querySelector("meta[name=\"twitter:title\"]").setAttribute("content", title);
     }
   }, [title]);
 }
