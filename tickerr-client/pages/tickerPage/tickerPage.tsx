@@ -31,7 +31,15 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   const dispatch = (type: TickerStateAction, payload?: any): void => dispatchToTickerState({ type, payload });
 
-  useUpdatePageTitleEffect(`Tickerr | ${urlSymbol.toUpperCase()}`);
+  const getPageTitle = (): string => {
+    if(ticker) {
+      return `Tickerr | ${urlSymbol.toUpperCase()} | ${CurrencyUtility.formatUSD(ticker.price)}`;
+    }
+
+    return document.title;
+  }
+
+  useUpdatePageTitleEffect(getPageTitle());
 
   useUpdateUrlSymbolEffect(useRouteMatch(), dispatch);
 
