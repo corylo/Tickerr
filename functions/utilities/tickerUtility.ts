@@ -1,17 +1,24 @@
 import { IGeckoTicker } from "../../tickerr-models/geckoTicker";
+import { IGeckoTickerChartPoint } from "../../tickerr-models/geckoTickerChartPoint";
 import { ITicker } from "../../tickerr-models/ticker";
+import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
 
 interface ITickerUtility {
   findGeckoTicker: (ticker: ITicker, geckoTickers: IGeckoTicker[]) => IGeckoTicker;
-  getGeckoUrl: (tickers: ITicker[]) => string;
+  getGeckoChartUrl: (id: string) => string;
+  getGeckoUrl: (tickers: ITicker[]) => string;  
   mapTickersFromCollection: (snap: FirebaseFirestore.QuerySnapshot<FirebaseFirestore.DocumentData>) => ITicker[];
   mapTicker: (ticker: ITicker, geckoTicker: IGeckoTicker) => ITicker;
+  mapTickerChart: (points: IGeckoTickerChartPoint[]) => ITickerChartPoint[];
   updateTickers: (tickers: ITicker[], geckoTickers: IGeckoTicker[]) => ITicker[];
 }
 
 export const TickerUtility: ITickerUtility = {
   findGeckoTicker: (ticker: ITicker, geckoTickers: IGeckoTicker[]): IGeckoTicker => {
     return geckoTickers.find((geckoTicker: IGeckoTicker) => geckoTicker.id === ticker.geckoID);
+  },
+  getGeckoChartUrl: (id: string): string => {
+    return `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1`;
   },
   getGeckoUrl: (tickers: ITicker[]): string => {
     const ids: string = tickers.map((ticker: ITicker) => ticker.geckoID).join(",");
@@ -31,6 +38,14 @@ export const TickerUtility: ITickerUtility = {
       symbol: geckoTicker.symbol,
       volume: geckoTicker.total_volume
     }
+  },
+  mapTickerChart: (points: IGeckoTickerChartPoint[]): ITickerChartPoint[] => {
+    return points
+      .filter((price: IGeckoTickerChartPoint, index: number) => index === 0 || index % 2 === 0 || index === points.length - 1)
+      .map((price: IGeckoTickerChartPoint) => ({
+        price: price[1],
+        timestamp: price[0]
+      }));
   },
   mapTickersFromCollection: (snap: FirebaseFirestore.QuerySnapshot<FirebaseFirestore.DocumentData>): ITicker[] => {
     const tickers: ITicker[] = [];

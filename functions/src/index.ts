@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { db } from "../firebase";
 
+import { TickerService } from "../services/tickerService";
+
 import { TickerUtility } from "../utilities/tickerUtility";
 
 import { ITicker, tickerConverter } from "../../tickerr-models/ticker";
@@ -18,8 +20,11 @@ exports.updateTickersJob = pubsub.schedule("every 1 minutes")
 
       const tickers: ITicker[] = TickerUtility.mapTickersFromCollection(snap);
 
-      const res: any = await axios.get(TickerUtility.getGeckoUrl(tickers)),
-        updatedTickers: ITicker[] = TickerUtility.updateTickers(tickers, res.data);
+      const res: any = await axios.get(TickerUtility.getGeckoUrl(tickers));
+
+      let updatedTickers: ITicker[] = TickerUtility.updateTickers(tickers, res.data);
+
+      updatedTickers = await TickerService.fetchCharts(updatedTickers);
       
       const batch: FirebaseFirestore.WriteBatch = db.batch();
 

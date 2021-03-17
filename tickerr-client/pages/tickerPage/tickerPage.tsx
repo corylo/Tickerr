@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import { Page } from "../page/page";
 
+import { TickerChart } from "./components/tickerChart/tickerChart";
 import { TickerPrice } from "../../components/tickerPrice/tickerPrice";
 import { TickerSidePanel } from "./components/tickerSidePanel/tickerSidePanel";
 
@@ -59,6 +60,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
             <TickerPrice value={ticker.price} change={ticker.change.day} />
           </div>
           <img id="ticker-stats-background-icon" src={`/img/icons/white/${ticker.symbol}.svg`} />
+          <TickerChart ticker={ticker} />
         </div>
       )
     }
