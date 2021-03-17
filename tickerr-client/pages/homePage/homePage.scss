@@ -1,7 +1,17 @@
 #tickerr-home-page {
+  .nord_vpn-affiliate-ad {
+    &:nth-of-type(1) {
+      margin-bottom: 10px;
+      margin-top: 70px;
+    }
+
+    &:nth-of-type(2) {
+      margin-bottom: 70px;
+    }
+  }
+
   #tickerr-home-page-ticker-links {
     margin: auto;
-    margin-top: 70px;
     padding: 10px;
     padding-top: 0px;
     width: calc(100% - 20px);
@@ -11,5 +21,28 @@
     color: gray(200);
     padding: 20px;
     text-align: center;
+  }
+}
+
+@include tablet-or-smaller {
+  #tickerr-home-page {
+    .nord_vpn-affiliate-ad {
+      img {
+        border-radius: 4px;
+        height: auto;
+        width: calc(100% - 40px);
+      }
+    }
+  }
+}
+
+@include medium-phone-or-smaller {
+  #tickerr-home-page {
+    .nord_vpn-affiliate-ad {
+      img {
+        height: auto;
+        width: calc(100% - 20px);
+      }
+    }
   }
 }

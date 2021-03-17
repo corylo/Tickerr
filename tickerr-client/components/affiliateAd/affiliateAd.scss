@@ -1,0 +1,14 @@
+.affiliate-ad {
+  text-align: center;
+  
+  .affiliate-ad-link {
+    display: inline-block;
+
+    img {
+      border-radius: 10px;
+      box-shadow: $shadow3;
+      display: inline-block;
+      margin: auto;
+    }
+  }
+}

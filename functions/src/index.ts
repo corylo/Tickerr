@@ -59,13 +59,9 @@ exports.updateTickerChartsJob = pubsub.schedule("every 3 minutes")
       const batch: FirebaseFirestore.WriteBatch = db.batch();
 
       updatedTickers.forEach((ticker: ITicker) =>
-        batch.update(db.collection("tickers").doc(ticker.id).withConverter(tickerConverter), ticker));
+        batch.update(db.collection("tickers").doc(ticker.id).withConverter(tickerConverter), { chart: ticker.chart }));
 
       await batch.commit();
-
-      await db.collection("summary")
-        .doc("crypto")
-        .update({ top: updatedTickers });
 
       logger.log(`Successfully updated charts for ${updatedTickers.length} tickers.`);
     } catch (err) {

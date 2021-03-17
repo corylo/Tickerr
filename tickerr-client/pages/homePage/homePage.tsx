@@ -2,12 +2,13 @@ import React from "react";
 
 import { Page } from "../page/page";
 
+import { NordVpnLongBannerAd } from "../../components/affiliateAd/nordVpnLongBannerAd";
 import { TickerLink } from "../../components/tickerLink/tickerLink";
 
+import { useUpdatePageTitleEffect } from "../../effects/appEffects";
 import { useTickerSummaryEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
-import { useUpdatePageTitleEffect } from "../../effects/appEffects";
 
 interface HomePageProps {
   
@@ -32,8 +33,10 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   }
   
   return(
-    <Page id="tickerr-home-page" status={status}>      
-      {getTickerLinks()}
+    <Page id="tickerr-home-page" status={status}>   
+      <NordVpnLongBannerAd />
+      {getTickerLinks()}  
+      <NordVpnLongBannerAd />
       <h1 id="tickerr-username">Made with ❤️ by vvaffleman</h1>
     </Page>
   )
