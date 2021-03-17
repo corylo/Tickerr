@@ -3,7 +3,7 @@
 
 #tickerr-ticker-page {
   .affiliate-ad {
-    bottom: 20px;
+    bottom: 10px;
     left: 50%;
     position: absolute;    
     transform: translateX(-50%);
@@ -105,22 +105,7 @@
 @include tablet-or-smaller {
   #tickerr-ticker-page {
     .affiliate-ad {
-      bottom: 10px;
       width: calc(100% - 20px);
-      
-      img {
-        border-radius: 4px;
-        height: auto;
-        width: 100%;
-      }
-    }
-  }
-}
-
-@include medium-phone-or-smaller {
-  #tickerr-ticker-page {
-    .affiliate-ad {
-      
     }
   }
 }

@@ -41,8 +41,20 @@
   }
 }
 
+@include tablet-or-smaller {
+  .affiliate-ad {
+    .affiliate-ad-link {
+      img {
+        border-radius: 4px;
+        height: auto;
+        width: 100%;
+      }
+    }
+  }
+}
+
 @include small-tablet-or-smaller {
-  #tickerr-ticker-page {
+  .affiliate-ad {
     .affiliate-ad-close-button {
       display: none;
     }

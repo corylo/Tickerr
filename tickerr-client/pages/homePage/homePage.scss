@@ -28,20 +28,7 @@
   #tickerr-home-page {
     .nord_vpn-affiliate-ad {
       img {
-        border-radius: 4px;
-        height: auto;
         width: calc(100% - 40px);
-      }
-    }
-  }
-}
-
-@include medium-phone-or-smaller {
-  #tickerr-home-page {
-    .nord_vpn-affiliate-ad {
-      img {
-        height: auto;
-        width: calc(100% - 20px);
       }
     }
   }
