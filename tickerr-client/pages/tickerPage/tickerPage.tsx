@@ -34,7 +34,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   const getPageTitle = (): string => {
     if(ticker) {
-      return `Tickerr | ${urlSymbol.toUpperCase()} | ${CurrencyUtility.formatUSD(ticker.price)}`;
+      return `${CurrencyUtility.formatUSD(ticker.price)} (${urlSymbol.toUpperCase()}) | Tickerr`;
     }
 
     return document.title;
