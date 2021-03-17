@@ -2,6 +2,13 @@
 @import "./components/tickerSidePanel/tickerSidePanel.scss";
 
 #tickerr-ticker-page {
+  .affiliate-ad {
+    bottom: 20px;
+    left: 50%;
+    position: absolute;    
+    transform: translateX(-50%);
+  }
+
   #ticker-stats {
     height: 100vh;
     width: 100vw;
@@ -91,6 +98,29 @@
           }
         }
       }
+    }
+  }
+}
+
+@include tablet-or-smaller {
+  #tickerr-ticker-page {
+    .affiliate-ad {
+      bottom: 10px;
+      width: calc(100% - 20px);
+      
+      img {
+        border-radius: 4px;
+        height: auto;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@include medium-phone-or-smaller {
+  #tickerr-ticker-page {
+    .affiliate-ad {
+      
     }
   }
 }

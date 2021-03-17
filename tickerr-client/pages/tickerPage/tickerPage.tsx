@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import { Page } from "../page/page";
 
+import { NordVpnLongBannerAd } from "../../components/affiliateAd/nordVpnLongBannerAd";
 import { TickerChart } from "./components/tickerChart/tickerChart";
 import { TickerPrice } from "../../components/tickerPrice/tickerPrice";
 import { TickerSidePanel } from "./components/tickerSidePanel/tickerSidePanel";
@@ -17,10 +18,10 @@ import { useTickerEffect, useUpdateUrlSymbolEffect } from "../../effects/tickerE
 
 import { CurrencyUtility } from "../../utilities/currencyUtility";
 
+import { ITickerChartPoint } from "../../../tickerr-models/tickerChartPoint";
 import { defaultTickerState } from "./models/tickerState";
 
 import { TickerStateAction } from "./enums/tickerStateAction";
-import { ITickerChartPoint } from "../../../tickerr-models/tickerChartPoint";
 
 interface TickerPageProps {
   
@@ -75,6 +76,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
     <TickerStateContext.Provider value={{ tickerState, dispatchToTickerState }}>
       <Page id="tickerr-ticker-page" status={status} errorMessage={errorMessage}>      
         {getTickerStats()}
+        <NordVpnLongBannerAd closeable />
       </Page>
     </TickerStateContext.Provider>
   )
