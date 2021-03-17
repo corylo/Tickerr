@@ -1,17 +1,22 @@
 import Chart from "chart.js";
 
+import { ChartOptionsUtility } from "./chartOptionsUtility";
+
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
 
 import { Color } from "../enums/colors";
 
 interface IChartUtility {
-  draw: (id: string, points: ITickerChartPoint[], change: number) => void;
+  draw: (id: string, points: ITickerChartPoint[], change: number) => Chart;
   getMin: (points: ITickerChartPoint[]) => number;
   getMax: (points: ITickerChartPoint[]) => number;
+  getPrices: (points: ITickerChartPoint[]) => number[];
+  getTimestamps: (points: ITickerChartPoint[]) => number[];
+  update: (chart: Chart, points: ITickerChartPoint[], change: number) => void;
 }
 
 export const ChartUtility: IChartUtility = {
-  draw: (id: string, points: ITickerChartPoint[], change: number): void => {
+  draw: (id: string, points: ITickerChartPoint[], change: number): Chart => {
     const canvas: HTMLCanvasElement | null = document.getElementById(id) as HTMLCanvasElement | null;
 
     if(canvas !== null) {
@@ -28,46 +33,17 @@ export const ChartUtility: IChartUtility = {
 
       context.stroke();
 
-      new Chart(context, {
+      return new Chart(context, {
         type: "line",
         data: {
           datasets: [{
-            data: points.map((point: ITickerChartPoint) => point.price),
-            borderColor: `rgba(${color}, 0.5)`,
-            fill: `rgba(${color}, 0.5)`,            
-            pointRadius: 0
+            data: ChartUtility.getPrices(points),
+            ...ChartOptionsUtility.getDatasetOptions(color)
           }],
-          labels: points.map((point: ITickerChartPoint) => point.timestamp)
+          labels: ChartUtility.getTimestamps(points)
         },
-        options: {
-          maintainAspectRatio: false,
-          responsive: true,
-          scales: {
-            xAxes: [{
-              display: false,
-              gridLines: {
-                display:false
-              }
-            }],
-            yAxes: [{
-              display: false,
-              gridLines: {
-                display:false
-              },
-              ticks: {
-                suggestedMin: min * 0.98,
-                suggestedMax: max * 1.02
-              }
-            }]
-          },
-          legend: {
-            display: false
-          },
-          title: {
-            display: false
-          }
-        }
-      })
+        options: ChartOptionsUtility.getOptions(min, max)
+      });
     }
   },
   getMin: (points: ITickerChartPoint[]): number => {
@@ -75,5 +51,23 @@ export const ChartUtility: IChartUtility = {
   },
   getMax: (points: ITickerChartPoint[]): number => {
     return Math.max.apply(Math, points.map((point: ITickerChartPoint) => point.price));
+  },
+  getPrices: (points: ITickerChartPoint[]): number[] => {
+    return points.map((point: ITickerChartPoint) => point.price);
+  },
+  getTimestamps: (points: ITickerChartPoint[]): number[] => {
+    return points.map((point: ITickerChartPoint) => point.timestamp);
+  },
+  update: (chart: Chart, points: ITickerChartPoint[], change: number): void => {
+    const color: Color = change >= 0 ? Color.Green : Color.Red;
+    
+    chart.data.datasets[0].data = ChartUtility.getPrices(points);
+    chart.data.datasets[0].borderColor = `rgba(${color}, 0.5)`;
+    chart.data.datasets[0].fill = `rgba(${color}, 0.5)`;     
+    chart.data.datasets[0].pointRadius = 0;
+
+    chart.data.labels = ChartUtility.getTimestamps(points);
+
+    chart.update();
   }
 }

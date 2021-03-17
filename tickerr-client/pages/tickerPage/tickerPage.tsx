@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useMemo, useReducer } from "react";
 import { useRouteMatch } from "react-router";
 import classNames from "classnames";
 
@@ -20,6 +20,7 @@ import { CurrencyUtility } from "../../utilities/currencyUtility";
 import { defaultTickerState } from "./models/tickerState";
 
 import { TickerStateAction } from "./enums/tickerStateAction";
+import { ITickerChartPoint } from "../../../tickerr-models/tickerChartPoint";
 
 interface TickerPageProps {
   
@@ -46,6 +47,10 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   useTickerEffect(urlSymbol, dispatch);
 
+  const chart: ITickerChartPoint[] = ticker ? ticker.chart : [];
+
+  const memoizedTickerChart = useMemo(() => <TickerChart ticker={ticker} />, [chart]);
+
   const getTickerStats = (): JSX.Element => {
     if(ticker) {
       const classes: string = classNames(
@@ -60,7 +65,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
             <TickerPrice value={ticker.price} change={ticker.change.day} />
           </div>
           <img id="ticker-stats-background-icon" src={`/img/icons/white/${ticker.symbol}.svg`} />
-          <TickerChart ticker={ticker} />
+          {memoizedTickerChart}
         </div>
       )
     }

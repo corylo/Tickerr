@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ChartUtility } from "../../../../utilities/chartUtility";
 
@@ -11,10 +11,16 @@ interface TickerChartProps {
 export const TickerChart: React.FC<TickerChartProps> = (props: TickerChartProps) => {
   const id: string = "ticker-chart";
 
-  useEffect(() => {
-    ChartUtility.draw(id, props.ticker.chart, props.ticker.change.day);
+  const [chart, setChart] = useState<Chart>(null)
 
-    const handleResize = (): void => ChartUtility.draw(id, props.ticker.chart, props.ticker.change.day);
+  useEffect(() => {
+    setChart(ChartUtility.draw(id, props.ticker.chart, props.ticker.change.day));
+  }, []);
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      ChartUtility.draw(id, props.ticker.chart, props.ticker.change.day);
+    };
 
     window.addEventListener("resize", handleResize);
 
@@ -23,9 +29,21 @@ export const TickerChart: React.FC<TickerChartProps> = (props: TickerChartProps)
     }
   }, []);
 
+  useEffect(() => {
+    if(chart) {
+      const update = (): void => ChartUtility.update(chart, props.ticker.chart, props.ticker.change.day);
+
+      update();
+
+      window.addEventListener("resize", update);
+  
+      return () => {      
+        window.removeEventListener("resize", update);
+      }
+    }
+  }, [chart, props.ticker.chart]);
+
   return(
-    <canvas id={id}>
-      
-    </canvas>
+    <canvas id={id}/>
   )
 }
