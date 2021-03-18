@@ -22,7 +22,7 @@ exports.updateTickersJob = pubsub.schedule("every 1 minutes")
 
       const res: any = await axios.get(TickerUtility.getGeckoUrl(tickers));
 
-      const updatedTickers: ITicker[] = TickerUtility.updateTickers(tickers, res.data);
+      let updatedTickers: ITicker[] = TickerUtility.updateTickers(tickers, res.data);
 
       const batch: FirebaseFirestore.WriteBatch = db.batch();
 
@@ -30,6 +30,8 @@ exports.updateTickersJob = pubsub.schedule("every 1 minutes")
         batch.update(db.collection("tickers").doc(ticker.id).withConverter(tickerConverter), ticker));
 
       await batch.commit();
+
+      updatedTickers = TickerUtility.removeCharts(updatedTickers);
 
       await db.collection("summary")
         .doc("crypto")

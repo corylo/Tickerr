@@ -11,6 +11,7 @@ interface ITickerUtility {
   mapTicker: (ticker: ITicker, geckoTicker: IGeckoTicker) => ITicker;
   mapTickerChart: (points: IGeckoTickerChartPoint[]) => ITickerChartPoint[];
   updateTickers: (tickers: ITicker[], geckoTickers: IGeckoTicker[]) => ITicker[];
+  removeCharts: (tickers: ITicker[]) => ITicker[];
 }
 
 export const TickerUtility: ITickerUtility = {
@@ -57,5 +58,12 @@ export const TickerUtility: ITickerUtility = {
   updateTickers: (tickers: ITicker[], geckoTickers: IGeckoTicker[]): ITicker[] => {
     return tickers.map((ticker: ITicker) => 
       TickerUtility.mapTicker(ticker, TickerUtility.findGeckoTicker(ticker, geckoTickers)))
+  },
+  removeCharts: (tickers: ITicker[]): ITicker[] => {
+    return tickers.map((ticker: ITicker) => {
+      ticker.chart = [];
+
+      return ticker;
+    });
   }
 }
