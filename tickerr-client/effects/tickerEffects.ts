@@ -41,7 +41,7 @@ export const useTickerSummaryEffect = (): IUseTickerSummaryEffect => {
           try {
             const data: ITickerSummary = doc.data() as ITickerSummary;
 
-            data.top = _sortBy(data.top, "cap").reverse();
+            data.top = _sortBy(data.top, "rank");
             
             setSummary(data);
   

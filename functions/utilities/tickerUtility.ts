@@ -35,6 +35,7 @@ export const TickerUtility: ITickerUtility = {
       },
       name: geckoTicker.name,
       price: geckoTicker.current_price,      
+      rank: geckoTicker.market_cap_rank,
       supply: geckoTicker.circulating_supply,
       symbol: geckoTicker.symbol,
       volume: geckoTicker.total_volume
