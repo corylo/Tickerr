@@ -16,6 +16,7 @@ export interface ITicker {
   rank: number;
   supply: number;
   symbol: string;
+  tracked: boolean;
   volume: number;
 }
 
@@ -32,6 +33,7 @@ export const tickerConverter: any = {
       rank: ticker.rank,
       supply: ticker.supply,
       symbol: ticker.symbol,
+      tracked: ticker.tracked,
       volume: ticker.volume
     }
   },
@@ -53,6 +55,7 @@ export const tickerConverter: any = {
       rank: data.rank,
       supply: data.supply,
       symbol: data.symbol,      
+      tracked: data.tracked,
       volume: data.volume
     }
   }

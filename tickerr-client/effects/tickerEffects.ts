@@ -39,7 +39,7 @@ export const useTickersEffect = (appState: IAppState, limit: number): IUseTicker
         const fetch = async () => {
           try {
             const tickers: ITicker[] = await TickerService.fetchTickers(appState.settings.currency, limit);
-
+            
             setTickers(tickers);
 
             setStatus(RequestStatus.Success);

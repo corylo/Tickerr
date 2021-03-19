@@ -40,6 +40,10 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
       <div id="ticker-side-panel-details-wrapper">
         <div id="ticker-side-panel-details" className="scroll-bar">
           <TickerSidePanelField 
+            value={ticker.rank.toString()}
+            label="Rank" 
+          />
+          <TickerSidePanelField 
             value={ticker.name}
             label="Name" 
           />
