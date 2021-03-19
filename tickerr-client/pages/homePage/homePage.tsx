@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { Page } from "../page/page";
 
-import { NordVpnLongBannerAd } from "../../components/affiliateAd/nordVpnLongBannerAd";
+import { NVpnClickinator } from "../../components/clickinator/nVpnClickinator";
 import { TickerLink } from "../../components/tickerLink/tickerLink";
 
 import { AppContext } from "../../components/app/contexts/appContext";
@@ -36,9 +36,9 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   
   return(
     <Page id="tickerr-home-page" status={status}>   
-      <NordVpnLongBannerAd />
+      <NVpnClickinator />
       {getTickerLinks()}  
-      <NordVpnLongBannerAd />
+      <NVpnClickinator />
       <h1 id="tickerr-username">Made with ❤️ by vvaffleman</h1>
     </Page>
   )

@@ -1,16 +1,16 @@
-.affiliate-ad {
+.clickinator {
   position: relative;
   text-align: center;
   white-space: nowrap;
-  z-index: 1000;
+  z-index: 9;
   
-  .affiliate-ad-link,
-  .affiliate-ad-close-button {
+  .clickinator-link,
+  .clickinator-close-button {
     display: inline-block;
     vertical-align: top;
   }
 
-  .affiliate-ad-link {
+  .clickinator-link {
     img {
       border-radius: 10px;
       box-shadow: $shadow3;
@@ -19,7 +19,7 @@
     }
   }
 
-  .affiliate-ad-close-button {
+  .clickinator-close-button {
     background-color: rgba(white, 0.1);
     border: 1px solid rgba(white, 0.6);
     border-radius: 40px;
@@ -42,8 +42,8 @@
 }
 
 @include tablet-or-smaller {
-  .affiliate-ad {
-    .affiliate-ad-link {
+  .clickinator {
+    .clickinator-link {
       img {
         border-radius: 4px;
         height: auto;
@@ -54,8 +54,8 @@
 }
 
 @include small-tablet-or-smaller {
-  .affiliate-ad {
-    .affiliate-ad-close-button {
+  .clickinator {
+    .clickinator-close-button {
       display: none;
     }
   }

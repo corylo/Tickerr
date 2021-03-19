@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-interface AffiliateAdProps {
+interface ClickinatorProps {
   id?: string;
   className?: string;
   src: string;
@@ -9,13 +9,13 @@ interface AffiliateAdProps {
   closeable?: boolean;
 }
 
-export const AffiliateAd: React.FC<AffiliateAdProps> = (props: AffiliateAdProps) => {  
+export const Clickinator: React.FC<ClickinatorProps> = (props: ClickinatorProps) => {  
   const [closed, setClosed] = useState<boolean>(false);
 
   const getCloseButton = (): JSX.Element => {
     if(props.closeable) {
       return (
-        <button type="button" className="affiliate-ad-close-button" onClick={() => setClosed(true)}>
+        <button type="button" className="clickinator-close-button" onClick={() => setClosed(true)}>
           <i className="fal fa-times" />
         </button>
       )
@@ -24,8 +24,8 @@ export const AffiliateAd: React.FC<AffiliateAdProps> = (props: AffiliateAdProps)
 
   if(!closed) {
     return(
-      <div id={props.id} className={classNames("affiliate-ad", props.className)}>
-        <a className="affiliate-ad-link" href={props.url}>
+      <div id={props.id} className={classNames("clickinator", props.className)}>
+        <a className="clickinator-link" href={props.url}>
           <img src={props.src} />
         </a>
         {getCloseButton()}

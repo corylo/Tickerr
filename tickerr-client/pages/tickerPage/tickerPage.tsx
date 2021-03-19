@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import { Page } from "../page/page";
 
-import { NordVpnLongBannerAd } from "../../components/affiliateAd/nordVpnLongBannerAd";
+import { NVpnClickinator } from "../../components/clickinator/nVpnClickinator";
 import { TickerChart } from "./components/tickerChart/tickerChart";
 import { TickerPrice } from "../../components/tickerPrice/tickerPrice";
 import { TickerSidePanel } from "./components/tickerSidePanel/tickerSidePanel";
@@ -79,7 +79,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
     <TickerStateContext.Provider value={{ tickerState, dispatchToTickerState }}>
       <Page id="tickerr-ticker-page" status={status} errorMessage={errorMessage}>      
         {getTickerStats()}
-        <NordVpnLongBannerAd closeable />
+        <NVpnClickinator closeable />
       </Page>
     </TickerStateContext.Provider>
   )
