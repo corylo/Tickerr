@@ -403,5 +403,9 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
   {
     "symbol": "pax",
     "geckoID": "paxos-standard"
+  },
+  {
+    "symbol": "vtho",
+    "geckoID": "vethor-token"
   }
 ]
