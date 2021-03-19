@@ -2,13 +2,15 @@ import firebase from "firebase/app";
 
 import { ITickerChange } from "./tickerChange";
 import { ITickerChartPoint } from "./tickerChartPoint";
+import { ITickerIcon } from "./tickerIcon";
 
 export interface ITicker {
   id: string;
-  cap: number;
+  cap: number; 
   change: ITickerChange;
   chart: ITickerChartPoint[];
   geckoID: string;
+  icon: ITickerIcon;
   name: string;
   price: number;
   rank: number;
@@ -24,6 +26,7 @@ export const tickerConverter: any = {
       change: ticker.change,
       chart: ticker.chart,
       geckoID: ticker.geckoID,
+      icon: ticker.icon,
       name: ticker.name,
       price: ticker.price,
       rank: ticker.rank,
@@ -44,6 +47,7 @@ export const tickerConverter: any = {
       change: data.change,
       chart: data.chart,
       geckoID: data.geckoID,
+      icon: data.icon,
       name: data.name,
       price: data.price,
       rank: data.rank,

@@ -21,6 +21,7 @@ import { CurrencyUtility } from "../../utilities/currencyUtility";
 import { ITickerChartPoint } from "../../../tickerr-models/tickerChartPoint";
 import { defaultTickerState } from "./models/tickerState";
 
+import { Currency } from "../../enums/currency";
 import { TickerStateAction } from "./enums/tickerStateAction";
 
 interface TickerPageProps {
@@ -46,7 +47,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   useUpdateUrlSymbolEffect(useRouteMatch(), dispatch);
 
-  useTickerEffect(urlSymbol, dispatch);
+  useTickerEffect(urlSymbol, Currency.USD, dispatch);
 
   const chart: ITickerChartPoint[] = ticker ? ticker.chart : [];
 
@@ -65,7 +66,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
           <div id="ticker-stats-price-wrapper">
             <TickerPrice value={ticker.price} change={ticker.change.day} />
           </div>
-          <img id="ticker-stats-background-icon" src={`/img/icons/white/${ticker.symbol}.svg`} />
+          <img id="ticker-stats-background-icon" src={ticker.icon.white} />
           {memoizedTickerChart}
         </div>
       )

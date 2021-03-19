@@ -32,7 +32,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
         id="ticker-icon-and-symbol" 
         onClick={handleOnClick}
       >
-        <img className="ticker-icon" src={`/img/icons/color/${ticker.symbol}.svg`} />
+        <img className="ticker-icon" src={ticker.icon.color} />
         <h1 className="ticker-symbol bangers-font">{ticker.symbol}</h1>
       </button>
       <div id="ticker-side-panel-details-wrapper">

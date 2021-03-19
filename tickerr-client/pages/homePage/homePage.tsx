@@ -6,9 +6,11 @@ import { NordVpnLongBannerAd } from "../../components/affiliateAd/nordVpnLongBan
 import { TickerLink } from "../../components/tickerLink/tickerLink";
 
 import { useUpdatePageTitleEffect } from "../../effects/appEffects";
-import { useTickerSummaryEffect } from "../../effects/tickerEffects";
+import { useTickersEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
+
+import { Currency } from "../../enums/currency";
 
 interface HomePageProps {
   
@@ -17,19 +19,17 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   useUpdatePageTitleEffect("Tickerr");
 
-  const { summary, status } = useTickerSummaryEffect();
+  const { tickers, status } = useTickersEffect(Currency.USD, 30);
 
   const getTickerLinks = (): JSX.Element => {
-    if(summary) {
-      const links: JSX.Element[] = summary.top
-        .map((ticker: ITicker) => <TickerLink key={ticker.id} ticker={ticker} />);
+    const links: JSX.Element[] = tickers
+      .map((ticker: ITicker) => <TickerLink key={ticker.id} ticker={ticker} />);
 
-      return (
-        <div id="tickerr-home-page-ticker-links">
-          {links}
-        </div>
-      )
-    }
+    return (
+      <div id="tickerr-home-page-ticker-links">
+        {links}
+      </div>
+    );
   }
   
   return(

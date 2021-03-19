@@ -33,6 +33,10 @@ export const TickerUtility: ITickerUtility = {
       change: {
         day: geckoTicker.price_change_percentage_24h
       },
+      icon: {
+        color: `/img/icons/color/${geckoTicker.symbol.toLowerCase()}.svg`,
+        white: `/img/icons/white/${geckoTicker.symbol.toLowerCase()}.svg`
+      },
       name: geckoTicker.name,
       price: geckoTicker.current_price,      
       rank: geckoTicker.market_cap_rank,
