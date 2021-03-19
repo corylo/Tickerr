@@ -1,0 +1,84 @@
+.tickerr-modal-wrapper {
+  height: 100vh;
+  left: 0px;
+  pointer-events: none;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 9998;
+
+  &.priority {
+    z-index: 9999;
+  }
+
+  &.whiteout {
+    background-color: rgba(gray(40), 0.8);
+    pointer-events: all;
+  }
+
+  .tickerr-modal-content { 
+    padding: 20px;
+    pointer-events: all;    
+    width: 500px; 
+
+    .tickerr-modal-title {   
+      margin-bottom: 10px;
+      position: relative;
+
+      &.with-close-button {
+        h1 {
+          text-align: left;
+        }
+      }
+
+      .close-button {        
+        position: absolute;
+        right: 0px;
+        top: 0px;
+      }
+
+      h1 {
+        color: white;
+        font-size: 3em;
+        font-weight: lighter;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@include phone-or-smaller {
+  .tickerr-modal-wrapper {
+    &:not(.priority) {
+      position: absolute;
+    }
+    
+    .tickerr-modal-content { 
+      animation: fade-in 250ms ease-in;
+      background: linear-gradient(to bottom, rgba(gray(40), 0.8), transparent);
+      margin-top: 0px;
+      padding-top: 80px;
+      width: calc(100% - 40px);
+    }
+  }
+}
+
+@include phone-or-larger {
+  .tickerr-modal-wrapper {    
+    &:not(.transparent) {    
+      .tickerr-modal-content { 
+        background-color: gray(40);
+        border-radius: 10px;
+        box-shadow: $shadow3;
+      }
+    }
+  
+    .tickerr-modal-content { 
+      @include centered;
+      
+      animation: fade-in-centered 250ms ease-in;
+    }
+  }
+}

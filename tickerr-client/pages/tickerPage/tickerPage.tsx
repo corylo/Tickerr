@@ -1,4 +1,4 @@
-import React, { useMemo, useReducer } from "react";
+import React, { useContext, useMemo, useReducer } from "react";
 import { useRouteMatch } from "react-router";
 import classNames from "classnames";
 
@@ -11,6 +11,7 @@ import { TickerSidePanel } from "./components/tickerSidePanel/tickerSidePanel";
 
 import { tickerStateReducer } from "./reducers/tickerStateReducer";
 
+import { AppContext } from "../../components/app/contexts/appContext";
 import { TickerStateContext } from "./contexts/tickerStateContext";
 
 import { useUpdatePageTitleEffect } from "../../effects/appEffects";
@@ -21,7 +22,6 @@ import { CurrencyUtility } from "../../utilities/currencyUtility";
 import { ITickerChartPoint } from "../../../tickerr-models/tickerChartPoint";
 import { defaultTickerState } from "./models/tickerState";
 
-import { Currency } from "../../enums/currency";
 import { TickerStateAction } from "./enums/tickerStateAction";
 
 interface TickerPageProps {
@@ -29,6 +29,8 @@ interface TickerPageProps {
 }
 
 export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) => {
+  const { appState } = useContext(AppContext);
+
   const [tickerState, dispatchToTickerState] = useReducer(tickerStateReducer, defaultTickerState());
 
   const { errorMessage, status, sidePanelToggled, ticker, urlSymbol } = tickerState;
@@ -37,7 +39,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   const getPageTitle = (): string => {
     if(ticker) {
-      return `${CurrencyUtility.formatUSD(ticker.price)} (${urlSymbol.toUpperCase()}) | Tickerr`;
+      return `${CurrencyUtility.formatCurrency(ticker.price, appState.settings.currency)} (${urlSymbol.toUpperCase()}) | Tickerr`;
     }
 
     return document.title;
@@ -47,7 +49,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   useUpdateUrlSymbolEffect(useRouteMatch(), dispatch);
 
-  useTickerEffect(urlSymbol, Currency.USD, dispatch);
+  useTickerEffect(urlSymbol, appState.settings.currency, dispatch);
 
   const chart: ITickerChartPoint[] = ticker ? ticker.chart : [];
 

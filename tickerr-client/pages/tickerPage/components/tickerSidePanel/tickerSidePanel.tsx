@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import { TickerSidePanelField } from "./tickerSidePanelField";
 
+import { AppContext } from "../../../../components/app/contexts/appContext";
 import { TickerStateContext } from "../../contexts/tickerStateContext";
 
 import { AnalyticsUtility } from "../../../../utilities/analyticsUtility";
@@ -14,7 +15,8 @@ interface TickerSidePanelProps {
 }
 
 export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSidePanelProps) => {
-  const { tickerState, dispatchToTickerState } = useContext(TickerStateContext);
+  const { appState } = useContext(AppContext),
+    { tickerState, dispatchToTickerState } = useContext(TickerStateContext);
 
   const { ticker, sidePanelToggled } = tickerState;
 
@@ -42,11 +44,11 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
             label="Name" 
           />
           <TickerSidePanelField 
-            value={CurrencyUtility.formatUSD(ticker.cap)} 
+            value={CurrencyUtility.formatCurrency(ticker.cap, appState.settings.currency)} 
             label="Market Cap" 
           />
           <TickerSidePanelField 
-            value={CurrencyUtility.formatUSD(ticker.volume)} 
+            value={CurrencyUtility.formatCurrency(ticker.volume, appState.settings.currency)} 
             label="Day Volume" 
           />
           <TickerSidePanelField 

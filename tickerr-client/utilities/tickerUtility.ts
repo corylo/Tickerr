@@ -29,7 +29,7 @@ export const TickerUtility: ITickerUtility = {
   getGeckoTickerUrl: (geckoID: string, currency: Currency): string => {
     return `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${geckoID}&per_page=1&sparkline=false`;
   },
-  getGeckoTickersUrl: (currency: Currency, limit?: number): string => {    
+  getGeckoTickersUrl: (currency: Currency, limit?: number): string => {   
     return `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
   },
   mapTicker: (geckoTicker: IGeckoTicker): ITicker => {

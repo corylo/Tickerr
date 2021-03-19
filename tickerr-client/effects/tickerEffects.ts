@@ -3,11 +3,13 @@ import _sortBy from "lodash.sortby";
 
 import { TickerService } from "../services/tickerService";
 
+import { IAppState } from "../components/app/models/appState";
 import { ITicker } from "../../tickerr-models/ticker";
 
 import { Currency } from "../enums/currency";
 import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
+import { AppStatus } from "../components/app/enums/appStatus";
 
 export const useUpdateUrlSymbolEffect = (match: any, dispatch: (type: TickerStateAction, payload?: any) => void): void => {
   useEffect(() => {
@@ -28,31 +30,35 @@ interface IUseTickersEffect {
   status: RequestStatus;
 }
 
-export const useTickersEffect = (currency: Currency, limit: number): IUseTickersEffect => {
+export const useTickersEffect = (appState: IAppState, limit: number): IUseTickersEffect => {
   const [tickers, setTickers] = useState<ITicker[]>([]),
     [status, setStatus] = useState<RequestStatus>(RequestStatus.Loading);
 
     useEffect(() => {
-      const fetch = async () => {
-        console.log("fetch")
+      if(appState.status === AppStatus.SignedIn) {
+        const fetch = async () => {
+          try {
+            const tickers: ITicker[] = await TickerService.fetchTickers(appState.settings.currency, limit);
 
-        try {
-          const tickers: ITicker[] = await TickerService.fetchTickers(currency, limit);
+            setTickers(tickers);
 
-          setTickers(tickers);
+            setStatus(RequestStatus.Success);
+          } catch (err) {
+            console.error(err);
 
-          setStatus(RequestStatus.Success);
-        } catch (err) {
-          console.error(err);
+            setStatus(RequestStatus.Error);
+          }
+        }
 
-          setStatus(RequestStatus.Error);
+        fetch();
+
+        const interval: NodeJS.Timeout = setInterval(() => fetch(), 30000);
+
+        return () => {
+          clearInterval(interval);
         }
       }
-
-      fetch();
-
-      setInterval(() => fetch(), 30000);
-    }, []);
+    }, [appState.status]);
     
   return { tickers, status };
 }
@@ -76,7 +82,11 @@ export const useTickerEffect = (symbol: string, currency: Currency, dispatch: (t
 
       fetch();
 
-      setInterval(() => fetch(), 30000);
+      const interval: NodeJS.Timeout = setInterval(() => fetch(), 30000);
+
+      return () => {
+        clearInterval(interval);
+      }
     }
   }, [symbol]);
 }

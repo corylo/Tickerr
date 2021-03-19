@@ -1,7 +1,9 @@
+import { Currency } from "../enums/currency";
+
 interface ICurrencyUtility {
   getChangeClass: (value: number) => string;
   formatNumber: (value: number, min?: number, max?: number) => string;
-  formatUSD: (value: number) => string;
+  formatCurrency: (value: number, currency: Currency) => string;
 }
 
 export const CurrencyUtility: ICurrencyUtility = {
@@ -14,10 +16,10 @@ export const CurrencyUtility: ICurrencyUtility = {
       maximumFractionDigits: max !== undefined ? max : 2,
     }).format(value);
   },
-  formatUSD: (value: number): string => {
+  formatCurrency: (value: number, currency: Currency): string => {
     const formatter: Intl.NumberFormat = Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: "USD",
+      currency: currency.toUpperCase(),
       minimumFractionDigits: value % 1 !== 0 || value < 10 ? 2 : 0,
       maximumFractionDigits: 4
     });

@@ -1,0 +1,46 @@
+#tickerr-settings {
+  .tickerr-settings-section {
+    .tickerr-settings-section-contents {
+      border: 1px solid gray(90);
+      border-radius: 6px;
+      padding: 10px;
+    }
+
+    .tickerr-settings-section-label {
+      margin-top: 5px;
+
+      h1 {
+        color: white;
+        font-weight: lighter;
+        margin-left: 10px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .currency-options {
+    .tickerr-settings-section-contents {
+      padding: 5px;
+
+      .currency-option {
+        font-size: 1.5em;
+        margin: 5px;
+        padding: 10px;
+        text-transform: uppercase;
+
+        &.selected {
+          background-color: rgba($themeColor, 0.5);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .save-settings-button {
+    background-color: $themeColor;
+    color: white;
+    font-size: 2em;
+    margin-top: 20px;
+    padding: 10px 40px;
+  }
+}

@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Page } from "../page/page";
 
 import { NordVpnLongBannerAd } from "../../components/affiliateAd/nordVpnLongBannerAd";
 import { TickerLink } from "../../components/tickerLink/tickerLink";
 
+import { AppContext } from "../../components/app/contexts/appContext";
+
 import { useUpdatePageTitleEffect } from "../../effects/appEffects";
 import { useTickersEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
-
-import { Currency } from "../../enums/currency";
 
 interface HomePageProps {
   
 }
 
 export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
-  useUpdatePageTitleEffect("Tickerr");
+  const { appState } = useContext(AppContext);
 
-  const { tickers, status } = useTickersEffect(Currency.USD, 30);
+  useUpdatePageTitleEffect("Tickerr");
+  
+  const { tickers, status } = useTickersEffect(appState, 30);
 
   const getTickerLinks = (): JSX.Element => {
     const links: JSX.Element[] = tickers

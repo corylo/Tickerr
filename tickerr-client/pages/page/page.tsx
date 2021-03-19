@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { LoadingIcon } from "../../components/loadingIcon/loadingIcon";
 
+import { AppContext } from "../../components/app/contexts/appContext";
+
+import { AppStatus } from "../../components/app/enums/appStatus";
 import { RequestStatus } from "../../enums/requestStatus";
 
 interface PageProps {
@@ -12,8 +15,11 @@ interface PageProps {
 }
 
 export const Page: React.FC<PageProps> = (props: PageProps) => {
+  const { appState } = useContext(AppContext);
+  
   const getPageContent = (): JSX.Element => {
     if(
+      appState.status !== AppStatus.Loading &&
       props.status !== RequestStatus.Loading &&
       props.status !== RequestStatus.Error
     ) {      
@@ -26,7 +32,7 @@ export const Page: React.FC<PageProps> = (props: PageProps) => {
   }
 
   const getLoading = (): JSX.Element => {
-    if(props.status === RequestStatus.Loading) {
+    if(appState.status === AppStatus.Loading || props.status === RequestStatus.Loading) {
       return (
         <LoadingIcon />
       )

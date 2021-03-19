@@ -1,0 +1,27 @@
+.button {
+  background-color: rgba(white, 0.1);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  outline: none;
+  padding: 10px;
+
+  &:hover,
+  &:focus {
+    background-color: rgba($themeColor, 0.5);
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.icon-button {
+  padding: 0px;
+
+  i {
+    font-size: 2em;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+  }
+}

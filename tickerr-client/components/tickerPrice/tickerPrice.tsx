@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
+
+import { AppContext } from "../app/contexts/appContext";
 
 import { CurrencyUtility } from "../../utilities/currencyUtility";
 
@@ -9,16 +11,20 @@ interface TickerPriceProps {
 }
 
 export const TickerPrice: React.FC<TickerPriceProps> = (props: TickerPriceProps) => {
+  const { appState } = useContext(AppContext);
+
+  const formatted: string = CurrencyUtility.formatCurrency(props.value, appState.settings.currency);
+
   const getClasses = (): string => {
     return classNames(
       "ticker-price", 
       "passion-one-font",       
       props.change ? CurrencyUtility.getChangeClass(props.change) : null, 
-      `length-of-${props.value.toString().length}`
+      `length-of-${formatted.length}`
     );
   }
 
   return(
-    <h1 className={getClasses()}>{CurrencyUtility.formatUSD(props.value)}</h1>
+    <h1 className={getClasses()}>{formatted}</h1>
   )
 }
