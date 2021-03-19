@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 
 import { IconButton } from "../buttons/iconButton";
 import { TickerrBrand } from "../tickerrBrand/tickerrBrand";
@@ -19,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     <div id="tickerr-navbar">      
       <TickerrBrand />
       <div id="tickerr-navbar-items">
-        <Link to="/legal" className="tickerr-navbar-item passion-one-font">Legal</Link>
+        <a className="tickerr-navbar-item passion-one-font" href="https://legal.tickerr.tv">Legal</a>
         <IconButton 
           className="tickerr-navbar-item tickerr-navbar-button"
           icon="fad fa-cog" 
