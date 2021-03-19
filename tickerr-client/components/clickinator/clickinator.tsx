@@ -16,7 +16,7 @@ export const Clickinator: React.FC<ClickinatorProps> = (props: ClickinatorProps)
     if(props.closeable) {
       return (
         <button type="button" className="clickinator-close-button" onClick={() => setClosed(true)}>
-          <i className="fal fa-times" />
+          <i className="fad fa-times" />
         </button>
       )
     }

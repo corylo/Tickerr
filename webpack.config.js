@@ -28,14 +28,6 @@ const config = {
     new CopyPlugin({
       patterns: [
         {
-          from: "node_modules/@fortawesome/fontawesome-pro/css/all.css",
-          to: "fontawesome.css",
-        },
-        {
-          from: "node_modules/@fortawesome/fontawesome-pro/webfonts",
-          to: "webfonts",
-        },
-        {
           from: "tickerr-client/lib/fonts",
           to: "fonts",
         },
