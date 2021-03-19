@@ -28,10 +28,6 @@ const config = {
     new CopyPlugin({
       patterns: [
         {
-          from: "tickerr-client/lib/fonts",
-          to: "fonts",
-        },
-        {
           from: "tickerr-client/img",
           to: "img"
         }
