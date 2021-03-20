@@ -39,7 +39,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
       <NVpnClickinator />
       {getTickerLinks()}  
       <NVpnClickinator />
-      <h1 id="tickerr-username">Made with ❤️ by vvaffleman</h1>
+      <h1 id="tickerr-username" className="passion-one-font">Made with ❤️ by vvaffleman</h1>
     </Page>
   )
 }
