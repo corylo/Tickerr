@@ -1,4 +1,5 @@
 import axios from "axios";
+import _sortBy from "lodash.sortby";
 
 import { TickerUtility } from "../utilities/tickerUtility";
 
@@ -33,6 +34,6 @@ export const TickerService: ITickerService = {
   fetchTickers: async (currency: Currency, limit?: number): Promise<ITicker[]> => {
     const res: any = await axios.get(TickerUtility.getGeckoTickersUrl(currency, limit));
     
-    return TickerUtility.mapTickers(res.data);
+    return _sortBy(TickerUtility.mapTickers(res.data), "rank");
   }
 }
