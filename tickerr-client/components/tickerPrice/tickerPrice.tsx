@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { AppContext } from "../app/contexts/appContext";
 
 import { CurrencyUtility } from "../../utilities/currencyUtility";
+import { SettingsUtility } from "../../utilities/settingsUtility";
 
 interface TickerPriceProps {
   value: number;
@@ -18,7 +19,7 @@ export const TickerPrice: React.FC<TickerPriceProps> = (props: TickerPriceProps)
   const getClasses = (): string => {
     return classNames(
       "ticker-price", 
-      "passion-one-font",       
+      SettingsUtility.getFontClass(appState.settings.font),       
       props.change ? CurrencyUtility.getChangeClass(props.change) : null, 
       `length-of-${formatted.length}`
     );

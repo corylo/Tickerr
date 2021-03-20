@@ -1,5 +1,9 @@
 #tickerr-settings {
   .tickerr-settings-section {
+    &:nth-of-type(n + 2) {
+      margin-top: 10px;
+    }
+
     .tickerr-settings-section-contents {
       border: 1px solid gray(90);
       border-radius: 6px;
@@ -18,19 +22,34 @@
     }
   }
 
-  .currency-options {
+  .options {
     .tickerr-settings-section-contents {
       padding: 5px;
 
-      .currency-option {
+      .option {
         font-size: 1.5em;
+        height: 46px;
+        line-height: 26px;
         margin: 5px;
         padding: 10px;
         text-transform: uppercase;
+        vertical-align: top;        
 
         &.selected {
           background-color: rgba($themeColor, 0.5);
           color: white;
+        }
+
+        &.awesome {
+          font-family: "Bangers", cursive;
+        }
+
+        &.bold {
+          font-family: "Passion One", cursive;
+        }
+
+        &.clean {
+          font-family: 'Roboto Mono', monospace;
         }
       }
     }

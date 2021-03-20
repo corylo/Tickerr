@@ -14,6 +14,14 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
           currency: action.payload
         }
       }
+    case AppAction.SetFont:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          font: action.payload
+        }
+      }
     case AppAction.SetSettings:
       return {
         ...state,

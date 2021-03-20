@@ -23,11 +23,25 @@
     }
   }
   
+  &.passion-one-font {
+    .ticker-symbol-and-price {        
+      margin: 85px auto;
+      margin-left: 20px;
+  
+      .ticker-symbol {
+        height: 100px;
+        line-height: 100px;
+      }
+    }
+  }
+
   .ticker-index,
   .ticker-icon,
   .ticker-symbol-and-price {
-    display: inline-block;
+    display: inline-block; 
+    position: relative;
     vertical-align: top;
+    z-index: 2;
   }
   
   .ticker-index {
@@ -36,14 +50,13 @@
     height: 50px;
     line-height: 50px;
     margin: 125px auto;
+    z-index: 2;
   }
   
   .ticker-icon {
     height: 300px;
-    margin-left: 20px;    
-    position: relative;
+    margin-left: 20px;   
     width: 300px;
-    z-index: 2;
   }
 
   .ticker-background-icon {
@@ -85,6 +98,19 @@
 
 @include extra-large-desktop-or-smaller {
   .ticker-link {
+    &.passion-one-font {
+      .ticker-symbol-and-price {        
+        margin: 50px auto;
+        margin-left: 20px;
+    
+        .ticker-symbol {
+          font-size: 5em;
+          height: 70px;
+          line-height: 70px;
+        }
+      }
+    }
+  
     .ticker-index {
       margin: 75px auto;
     }

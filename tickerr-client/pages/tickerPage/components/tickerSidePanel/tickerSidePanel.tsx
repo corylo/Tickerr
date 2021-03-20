@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import classNames from "classnames";
 
 import { TickerSidePanelField } from "./tickerSidePanelField";
 
@@ -7,6 +8,7 @@ import { TickerStateContext } from "../../contexts/tickerStateContext";
 
 import { AnalyticsUtility } from "../../../../utilities/analyticsUtility";
 import { CurrencyUtility } from "../../../../utilities/currencyUtility";
+import { SettingsUtility } from "../../../../utilities/settingsUtility";
 
 import { TickerStateAction } from "../../enums/tickerStateAction";
 
@@ -35,7 +37,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
         onClick={handleOnClick}
       >
         <img className="ticker-icon" src={ticker.icon.color} />
-        <h1 className="ticker-symbol bangers-font">{ticker.symbol}</h1>
+        <h1 className={classNames("ticker-symbol", SettingsUtility.getFontClass(appState.settings.font))}>{ticker.symbol}</h1>
       </button>
       <div id="ticker-side-panel-details-wrapper">
         <div id="ticker-side-panel-details" className="scroll-bar">
