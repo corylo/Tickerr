@@ -147,6 +147,19 @@
 
 @include phone-or-smaller {
   .ticker-link {
+    &.passion-one-font {
+      .ticker-symbol-and-price {        
+        margin: 20px auto;
+        margin-left: 20px;
+    
+        .ticker-symbol {
+          font-size: 6em;
+          height: 80px;
+          line-height: 80px;
+        }
+      }
+    }
+  
     .ticker-index {
       font-size: 1.5em;
       height: 50px;
@@ -180,6 +193,19 @@
   .ticker-link {
     margin: 5px 0px;
     width: calc(100% - 42px);
+
+    &.passion-one-font {
+      .ticker-symbol-and-price {        
+        margin: 15px auto;
+        margin-left: 20px;
+        
+        .ticker-symbol {
+          font-size: 4em;
+          height: 50px;
+          line-height: 50px;
+        }
+      }
+    }
 
     .ticker-index {
       margin: 25px auto;
