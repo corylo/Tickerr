@@ -36,7 +36,7 @@
         vertical-align: top;        
 
         &.selected {
-          background-color: rgba($themeColor, 0.5);
+          background-color: $themeColor;
           color: white;
         }
 

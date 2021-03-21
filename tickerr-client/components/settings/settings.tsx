@@ -3,6 +3,7 @@ import classNames from "classnames";
 
 import { Button } from "../buttons/button";
 import { SettingsSection } from "./settingsSection";
+import { TermlyPreferencesButton } from "../termlyPreferenceButton/termlyPreferencesButton";
 
 import { AppContext } from "../app/contexts/appContext";
 
@@ -69,6 +70,9 @@ export const Settings: React.FC<SettingsProps> = (
       </SettingsSection>
       <SettingsSection className="currency-options options" label="Font">
         {getFontOptions()}
+      </SettingsSection>
+      <SettingsSection label="Preferences">
+        <TermlyPreferencesButton />
       </SettingsSection>
       <Button className="save-settings-button passion-one-font" handleOnClick={handleSave}>
         Save
