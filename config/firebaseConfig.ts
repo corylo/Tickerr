@@ -8,4 +8,12 @@ export const tickerrProductionAppConfig: any = {
   measurementId: "G-EKPWGQ2RBC"
 };
 
-export const tickerrDevelopmentAppConfig: any = {};
+export const tickerrDevelopmentAppConfig: any = {
+  apiKey: "AIzaSyAOa2mMbDb2nXPcJ3mVgRhvroSQgmByuBA",
+  authDomain: "tickerr-development.firebaseapp.com",
+  projectId: "tickerr-development",
+  storageBucket: "tickerr-development.appspot.com",
+  messagingSenderId: "126407027823",
+  appId: "1:126407027823:web:2e29a8677e441ed68e719a",
+  measurementId: "G-V1X0HJX484"
+};

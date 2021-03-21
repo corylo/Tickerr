@@ -8,9 +8,8 @@ const getConfig = (): any => {
   if (process.env.NODE_ENV === "production") {
     return tickerrProductionAppConfig;
   }
-
-  return tickerrProductionAppConfig;
-  // return tickerrDevelopmentAppConfig;
+  
+  return tickerrDevelopmentAppConfig;
 };
 
 firebase.initializeApp(getConfig());
