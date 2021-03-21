@@ -16,7 +16,7 @@ export const TermlyPreferencesButton: React.FC<TermlyPreferencesButtonProps> = (
   }
 
   return (
-    <Button className="termly-cookie-preference-button pt-sans" handleOnClick={handleOnClick}>      
+    <Button className="termly-cookie-preference-button passion-one-font" handleOnClick={handleOnClick}>      
       Cookies
     </Button>    
   )
