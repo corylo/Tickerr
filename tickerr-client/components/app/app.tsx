@@ -33,10 +33,10 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
 
   useUpdatePageOGUrlEffect(location);
 
-  useAuthStateChangedEffect(dispatch);
+  useAuthStateChangedEffect(appState, dispatch);
 
   useFetchUserSettingsEffect(appState, dispatch);
-  
+
   return (
     <AppContext.Provider value={{ appState, dispatchToApp }}>
       <div id="tickerr-app">

@@ -11,10 +11,12 @@ import { IUser } from "../../../../tickerr-models/user";
 import { AppAction } from "../../../enums/appAction";
 import { AppStatus } from "../enums/appStatus";
 
-export const useAuthStateChangedEffect = (dispatch: (type: AppAction, payload?: any) => void): void => {
+export const useAuthStateChangedEffect = (appState: IAppState, dispatch: (type: AppAction, payload?: any) => void): void => {
   useEffect(() => {
     auth.onAuthStateChanged(async (firebaseUser: firebase.User) => {  
-      dispatch(AppAction.SetStatus, AppStatus.Loading);
+      if(appState.status !== AppStatus.Loading) {
+        dispatch(AppAction.SetStatus, AppStatus.Loading);
+      }
       
       if(firebaseUser) {
         const user: IUser = await UserService.get(firebaseUser.uid);

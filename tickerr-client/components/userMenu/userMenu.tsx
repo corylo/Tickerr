@@ -66,7 +66,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
     }
 
     return ReactDOM.createPortal(
-      <div id="tickerr-user-menu" className={classNames({ "signed-in": appState.status === AppStatus.SignedIn, "signed-out": appState.status === AppStatus.SignedOut })}>
+      <div id="tickerr-user-menu" className={classNames("scroll-bar", { "signed-in": appState.status === AppStatus.SignedIn, "signed-out": appState.status === AppStatus.SignedOut })}>
         {getUserIcon()}
         <div id="tickerr-user-menu-content">
           {getUserFullName()}
