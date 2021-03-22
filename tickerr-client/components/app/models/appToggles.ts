@@ -1,7 +1,11 @@
 export interface IAppToggles {
+  menu: boolean;
   settings: boolean;
+  signIn: boolean;
 }
 
 export const defaultAppToggles = (): IAppToggles => ({
-  settings: false
+  menu: false,
+  settings: false,
+  signIn: false
 });

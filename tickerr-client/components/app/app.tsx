@@ -6,23 +6,25 @@ import { TickerPage } from "../../pages/tickerPage/tickerPage";
 
 import { Navbar } from "../navbar/navbar";
 import { SettingsModal } from "../settingsModal/settingsModal";
+import { SignInModal } from "../signInModal/signInModal";
+import { UserMenu } from "../userMenu/userMenu";
 
 import { AppContext } from "./contexts/appContext";
 
 import { appReducer } from "./reducers/appReducer";
 
-import { useFetchAppSettingsEffect } from "./effects/appEffects";
+import { useAuthStateChangedEffect, useFetchUserSettingsEffect } from "./effects/appEffects";
 import { useScrollToTopEffect, useUpdatePageOGUrlEffect } from "../../effects/appEffects";
 
 import { defaultAppState } from "./models/appState";
 
-import { AppAction } from "./enums/appAction";
+import { AppAction } from "../../enums/appAction";
 
 interface AppProps {}
 
 export const App: React.FC<AppProps> = (props: AppProps) => {
   const [appState, dispatchToApp] = useReducer(appReducer, defaultAppState());
-
+  
   const dispatch = (type: AppAction, payload?: any): void => dispatchToApp({ type, payload });
 
   const location: any = useLocation();
@@ -31,13 +33,17 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
 
   useUpdatePageOGUrlEffect(location);
 
-  useFetchAppSettingsEffect(dispatch);
+  useAuthStateChangedEffect(dispatch);
+
+  useFetchUserSettingsEffect(appState, dispatch);
   
   return (
     <AppContext.Provider value={{ appState, dispatchToApp }}>
       <div id="tickerr-app">
         <Navbar />
+        <SignInModal />
         <SettingsModal />
+        <UserMenu />
         <Switch>
           <Route exact path="/">
             <HomePage />

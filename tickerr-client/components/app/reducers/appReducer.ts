@@ -1,7 +1,7 @@
 import { IAppState } from "../models/appState";
 import { IAction } from "../../../models/action";
 
-import { AppAction } from "../enums/appAction";
+import { AppAction } from "../../../enums/appAction";
 import { AppStatus } from "../enums/appStatus";
 
 export const appReducer = (state: IAppState, action: IAction): IAppState => {  
@@ -43,12 +43,29 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         status: AppStatus.SignedIn,
         user: action.payload
       }
+    case AppAction.ToggleMenu:
+      return {
+        ...state,
+        toggles: {
+          ...state.toggles,
+          menu: action.payload
+        }
+      }
     case AppAction.ToggleSettings:
       return {
         ...state,
         toggles: {
           ...state.toggles,
+          menu: false,
           settings: action.payload
+        }
+      }
+    case AppAction.ToggleSignIn:
+      return {
+        ...state,
+        toggles: {
+          ...state.toggles,
+          signIn: action.payload
         }
       }
     default:

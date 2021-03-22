@@ -7,7 +7,7 @@ import { Settings } from "../settings/settings";
 
 import { AppContext } from "../app/contexts/appContext";
 
-import { AppAction } from "../app/enums/appAction";
+import { AppAction } from "../../enums/appAction";
 
 interface SettingsModalProps {  
   
@@ -20,7 +20,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = (props: SettingsModal
   
   if(appState.toggles.settings) {
     return (
-      <Modal id="drawars-user-menu-modal" whiteout priority>
+      <Modal id="tickerr-user-settings-modal" priority>
         <ModalTitle text="Settings" handleOnClose={() => dispatch(AppAction.ToggleSettings, false)} />
         <ModalBody>
           <Settings />

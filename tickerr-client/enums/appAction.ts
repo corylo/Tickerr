@@ -5,5 +5,7 @@ export enum AppAction {
   SetStatus = "Set Status",
   SetUser = "Set User",  
   SignInUser = "Sign In User",
-  ToggleSettings = "Toggle Settings"
+  ToggleMenu = "Toggle Menu",
+  ToggleSettings = "Toggle Settings",
+  ToggleSignIn = "Toggle Sign In"
 }

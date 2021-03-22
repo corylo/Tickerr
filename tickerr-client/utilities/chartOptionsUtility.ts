@@ -1,6 +1,6 @@
 import Chart from "chart.js";
 
-import { Color } from "../enums/colors";
+import { Color } from "../../tickerr-enums/colors";
 
 interface IChartOptionsUtility {
   getDatasetOptions: (color: Color) => Chart.ChartDataSets;

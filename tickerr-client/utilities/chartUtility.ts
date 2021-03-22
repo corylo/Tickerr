@@ -4,7 +4,7 @@ import { ChartOptionsUtility } from "./chartOptionsUtility";
 
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
 
-import { Color } from "../enums/colors";
+import { Color } from "../../tickerr-enums/colors";
 
 interface IChartUtility {
   draw: (id: string, points: ITickerChartPoint[], change: number) => Chart;

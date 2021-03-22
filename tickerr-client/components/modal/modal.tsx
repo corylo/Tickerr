@@ -5,15 +5,13 @@ import classNames from "classnames";
 interface ModalProps {
   id: string;
   children: any;
-  transparent?: boolean;
-  whiteout?: boolean;
+  transparent?: boolean;  
   priority?: boolean;
 }
 
 export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
   const getClasses = (): string => {
     const classes: any = { 
-      whiteout: props.whiteout,
       transparent: props.transparent,
       priority: props.priority
     };

@@ -11,6 +11,8 @@
   }
 
   .clickinator-link {
+    outline: none;
+    
     img {
       border-radius: 10px;
       box-shadow: $shadow3;

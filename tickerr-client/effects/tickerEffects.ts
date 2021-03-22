@@ -7,7 +7,7 @@ import { IAppState } from "../components/app/models/appState";
 import { ITicker } from "../../tickerr-models/ticker";
 
 import { AppStatus } from "../components/app/enums/appStatus";
-import { Currency } from "../enums/currency";
+import { Currency } from "../../tickerr-enums/currency";
 import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
 
@@ -35,7 +35,7 @@ export const useTickersEffect = (appState: IAppState, limit: number): IUseTicker
     [status, setStatus] = useState<RequestStatus>(RequestStatus.Loading);
 
     useEffect(() => {
-      if(appState.status === AppStatus.SignedIn) {
+      if(appState.status !== AppStatus.Loading) {
         const fetch = async () => {
           try {
             const tickers: ITicker[] = await TickerService.fetchTickers(appState.settings.currency, limit);

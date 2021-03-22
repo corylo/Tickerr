@@ -1,0 +1,31 @@
+#tickerr-sign-in-modal {
+  #tickerr-google-sign-in-button {
+    height: 60px;
+    margin-top: 20px;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(white, 0.2);
+    }
+
+    img, h1 {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    img {
+      height: 30px;
+      margin: 5px 0px;
+      width: 30px;
+    }
+
+    h1 {  
+      color: white;
+      font-size: 1.5em;
+      height: 40px;
+      line-height: 40px;
+      margin-left: 10px;
+    }
+  }
+}

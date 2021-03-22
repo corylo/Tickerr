@@ -6,7 +6,7 @@ import { TickerUtility } from "../utilities/tickerUtility";
 import { ITicker } from "../../tickerr-models/ticker";
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
 
-import { Currency } from "../enums/currency";
+import { Currency } from "../../tickerr-enums/currency";
 
 interface ITickerService {
   fetchChart: (symbol: string, currency: Currency) => Promise<ITickerChartPoint[]>;

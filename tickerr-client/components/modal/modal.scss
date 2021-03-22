@@ -1,7 +1,8 @@
 .tickerr-modal-wrapper {
+  background-color: rgba(gray(40), 0.8);
+  pointer-events: all;
   height: 100vh;
   left: 0px;
-  pointer-events: none;
   position: fixed;
   top: 0px;
   width: 100%;
@@ -11,14 +12,8 @@
     z-index: 9999;
   }
 
-  &.whiteout {
-    background-color: rgba(gray(40), 0.8);
-    pointer-events: all;
-  }
-
   .tickerr-modal-content { 
     padding: 20px;
-    pointer-events: all;    
     width: 500px; 
 
     .tickerr-modal-title {   
@@ -51,13 +46,14 @@
 
 @include phone-or-smaller {
   .tickerr-modal-wrapper {
+    background-color: rgba(gray(40), 0.9);
+
     &:not(.priority) {
       position: absolute;
     }
     
     .tickerr-modal-content { 
-      animation: fade-in 250ms ease-in;
-      background: linear-gradient(to bottom, rgba(gray(40), 0.8), transparent);
+      animation: fadeIn 250ms ease-in;      
       margin-top: 0px;
       padding-top: 80px;
       width: calc(100% - 40px);
@@ -78,7 +74,7 @@
     .tickerr-modal-content { 
       @include centered;
       
-      animation: fade-in-centered 250ms ease-in;
+      animation: fadeInCentered 250ms ease-in;
     }
   }
 }

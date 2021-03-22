@@ -2,11 +2,11 @@ import { IGeckoTicker } from "../../tickerr-models/geckoTicker";
 import { IGeckoTickerChartPoint } from "../../tickerr-models/geckoTickerChartPoint";
 import { ITicker } from "../../tickerr-models/ticker";
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
+import { ITickerIcon } from "../../tickerr-models/tickerIcon";
 
-import { Currency } from "../enums/currency";
+import { Currency } from "../../tickerr-enums/currency";
 
 import { geckoCoinSymbolMap, IGeckoCoinSymbolMapItem } from "../constants/gecko";
-import { ITickerIcon } from "../../tickerr-models/tickerIcon";
 
 interface ITickerUtility {
   getGeckoIDFromSymbol: (symbol: string) => string;

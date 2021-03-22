@@ -1,18 +1,18 @@
-import { defaultAppSettings, IAppSettings } from "./appSettings";
 import { defaultAppToggles, IAppToggles } from "./appToggles";
-import { ITickerrUser } from "../../../../tickerr-models/tickerrUser";
+import { IUser } from "../../../../tickerr-models/user";
+import { defaultUserSettings, IUserSettings } from "../../../../tickerr-models/userSettings";
 
 import { AppStatus } from "../enums/appStatus";
 
 export interface IAppState {
-  settings: IAppSettings;
+  settings: IUserSettings;
   status: AppStatus;
   toggles: IAppToggles;
-  user: ITickerrUser | null;
+  user: IUser | null;
 }
 
 export const defaultAppState = (): IAppState => ({
-  settings: defaultAppSettings(),
+  settings: defaultUserSettings(),
   status: AppStatus.Loading,
   toggles: defaultAppToggles(),
   user: null

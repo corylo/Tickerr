@@ -7,10 +7,10 @@ import { TermlyPreferencesButton } from "../termlyPreferenceButton/termlyPrefere
 
 import { AppContext } from "../app/contexts/appContext";
 
-import { IAppSettings } from "../app/models/appSettings";
+import { IUserSettings } from "../../../tickerr-models/userSettings";
 
-import { currencies, Currency } from "../../enums/currency";
-import { Font, fonts } from "../../enums/font";
+import { currencies, Currency } from "../../../tickerr-enums/currency";
+import { Font, fonts } from "../../../tickerr-enums/font";
 
 interface SettingsProps {
   
@@ -21,7 +21,7 @@ export const Settings: React.FC<SettingsProps> = (
 ) => {
   const { appState } = useContext(AppContext);
 
-  const [unsavedSettings, setUnsavedSettings] = useState<IAppSettings>(appState.settings);
+  const [unsavedSettings, setUnsavedSettings] = useState<IUserSettings>(appState.settings);
 
   const handleSave = (): void => {
     window.localStorage.setItem("settings", JSON.stringify(unsavedSettings));

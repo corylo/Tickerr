@@ -1,4 +1,4 @@
-import { Currency } from "../enums/currency";
+import { Currency } from "../../tickerr-enums/currency";
 
 interface ICurrencyUtility {
   getChangeClass: (value: number) => string;

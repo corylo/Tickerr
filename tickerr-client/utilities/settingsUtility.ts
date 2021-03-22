@@ -1,4 +1,4 @@
-import { Font } from "../enums/font";
+import { Font } from "../../tickerr-enums/font";
 
 interface ISettingsUtility {
   getFontClass: (font: Font) => string;
