@@ -32,7 +32,7 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
     }
 
     return (
-      <div className="tickerr-modal-content">
+      <div id={`${props.id}-content`} className="tickerr-modal-content">
         {props.children}
       </div>
     )

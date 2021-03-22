@@ -10,6 +10,8 @@ import { TermlyPreferencesButton } from "../termlyPreferenceButton/termlyPrefere
 
 import { AppContext } from "../app/contexts/appContext";
 
+import { useOnClickAwayEffect } from "../../effects/appEffects";
+
 import { AppAction } from "../../enums/appAction";
 import { AppStatus } from "../app/enums/appStatus";
 
@@ -23,6 +25,13 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
   const dispatch = (type: AppAction, payload?: any): void => dispatchToApp({ type, payload });
 
   const { toggles, user } = appState;
+
+  useOnClickAwayEffect(
+    toggles.menu, 
+    ["tickerr-user-menu", "tickerr-user-menu-button"], 
+    [toggles.menu], 
+    () => dispatch(AppAction.ToggleMenu, false)
+  );
 
   if(toggles.menu) {
     const handleSignOut = async () => {

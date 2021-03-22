@@ -10,6 +10,8 @@ import { ModalTitle } from "../../components/modal/modalTitle";
 
 import { AppContext } from "../app/contexts/appContext";
 
+import { useOnClickAwayEffect } from "../../effects/appEffects";
+
 import { AppAction } from "../../enums/appAction";
 
 interface SignInModalProps {  
@@ -20,8 +22,17 @@ export const SignInModal: React.FC<SignInModalProps> = (props: SignInModalProps)
   const { appState, dispatchToApp } = useContext(AppContext);
 
   const dispatch = (type: AppAction, payload?: any): void => dispatchToApp({ type, payload });
+
+  const { toggles } = appState;
   
-  if(appState.toggles.signIn) {
+  useOnClickAwayEffect(
+    toggles.signIn, 
+    ["tickerr-sign-in-modal-content"], 
+    [toggles.signIn], 
+    () => dispatch(AppAction.ToggleSignIn, false)
+  );
+
+  if(toggles.signIn) {
     const handleSignInWithGoogle = async () => {
       const provider: firebase.auth.GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
   
