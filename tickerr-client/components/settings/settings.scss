@@ -32,12 +32,38 @@
         line-height: 26px;
         margin: 5px;
         padding: 10px;
-        text-transform: uppercase;
         vertical-align: top;        
 
         &.selected {
           background-color: $themeColor;
           color: white;
+        }
+      }
+    }
+  }
+
+  .currency-options {
+    .tickerr-settings-section-contents {
+      .option {        
+        text-transform: uppercase;
+        width: calc(16.666% - 10px);
+      }
+    }
+  }
+
+  .font-options {
+    .tickerr-settings-section-contents {
+      padding: 10px;
+
+      .option {
+        border-radius: 0px;
+        display: block;
+        margin: 0px;
+        text-align: left;
+        width: 100%;
+
+        &:nth-of-type(n + 2) {
+          border-top: 1px solid gray(90);
         }
 
         &.awesome {
@@ -61,5 +87,25 @@
     font-size: 2em;
     margin-top: 20px;
     padding: 10px 40px;
+  }
+}
+
+@include medium-phone-or-smaller {
+  #tickerr-settings {
+    .currency-options {
+      .tickerr-settings-section-contents {
+        .option {        
+          width: calc(50% - 10px);
+        }
+      }
+    }
+  
+    .font-options {
+      .tickerr-settings-section-contents {
+        .option {
+          font-size: 1em;
+        }
+      }
+    }
   }
 }

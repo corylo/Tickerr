@@ -3,14 +3,20 @@ import classNames from "classnames";
 
 import { Button } from "../buttons/button";
 import { SettingsSection } from "./settingsSection";
-import { TermlyPreferencesButton } from "../termlyPreferenceButton/termlyPreferencesButton";
 
 import { AppContext } from "../app/contexts/appContext";
 
+import { CurrencyUtility } from "../../utilities/currencyUtility";
+
+import { UserService } from "../../services/userService";
+
 import { IUserSettings } from "../../../tickerr-models/userSettings";
 
+import { AppAction } from "../../enums/appAction";
+import { AppStatus } from "../app/enums/appStatus";
 import { currencies, Currency } from "../../../tickerr-enums/currency";
 import { Font, fonts } from "../../../tickerr-enums/font";
+import { RequestStatus } from "../../enums/requestStatus";
 
 interface SettingsProps {
   
@@ -19,14 +25,34 @@ interface SettingsProps {
 export const Settings: React.FC<SettingsProps> = (
   props: SettingsProps
 ) => {
-  const { appState } = useContext(AppContext);
+  const { appState, dispatchToApp } = useContext(AppContext);
 
-  const [unsavedSettings, setUnsavedSettings] = useState<IUserSettings>(appState.settings);
+  const dispatch = (type: AppAction, payload?: any): void => dispatchToApp({ type, payload });
+  
+  const { settings, status, user } = appState;
 
-  const handleSave = (): void => {
-    window.localStorage.setItem("settings", JSON.stringify(unsavedSettings));
+  const [unsavedSettings, setUnsavedSettings] = useState<IUserSettings>(settings);
 
-    setTimeout(() => location.reload(), 10);
+  const handleSave = async () => {
+    try {
+      dispatch(AppAction.SetSettingsStatus, RequestStatus.Loading);
+      
+      if(status === AppStatus.SignedIn) {
+        await UserService.update(user.uid, { settings: unsavedSettings });
+      } else {
+        window.localStorage.setItem("settings", JSON.stringify(unsavedSettings));
+      }
+      
+      if(unsavedSettings.currency !== appState.settings.currency) {
+        location.reload();
+      } else {
+        dispatch(AppAction.SetSettings, unsavedSettings);
+      }
+    } catch (err) {
+      console.error(err);
+      
+      dispatch(AppAction.SetSettingsStatus, RequestStatus.Error);
+    }
   }
 
   const getFontOptions = (): JSX.Element[] => {
@@ -40,7 +66,7 @@ export const Settings: React.FC<SettingsProps> = (
 
       return (
         <Button key={font} className={classes} handleOnClick={() => setFont(font)}>
-          {font}
+          The current price is {CurrencyUtility.formatCurrency(123456, settings.currency)}
         </Button>
       )
     });
@@ -68,11 +94,8 @@ export const Settings: React.FC<SettingsProps> = (
       <SettingsSection className="currency-options options" label="Currency">
         {getCurrencyOptions()}
       </SettingsSection>
-      <SettingsSection className="currency-options options" label="Font">
+      <SettingsSection className="font-options options" label="Font">
         {getFontOptions()}
-      </SettingsSection>
-      <SettingsSection label="Preferences">
-        <TermlyPreferencesButton />
       </SettingsSection>
       <Button className="save-settings-button passion-one-font" handleOnClick={handleSave}>
         Save

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import firebase from "firebase/app";
 
-import { auth, db } from "../../../firebase";
+import { auth } from "../../../firebase";
 
-import { UserUtility } from "../../../utilities/userUtility";
+import { UserService } from "../../../services/userService";
 
 import { IAppState } from "../models/appState";
-import { userConverter } from "../../../../tickerr-models/user";
+import { IUser } from "../../../../tickerr-models/user";
 
 import { AppAction } from "../../../enums/appAction";
 import { AppStatus } from "../enums/appStatus";
@@ -17,20 +17,12 @@ export const useAuthStateChangedEffect = (dispatch: (type: AppAction, payload?: 
       dispatch(AppAction.SetStatus, AppStatus.Loading);
       
       if(firebaseUser) {
-        const doc: firebase.firestore.DocumentData = await db
-          .collection("users")
-          .doc(firebaseUser.uid)
-          .withConverter(userConverter)
-          .get();
+        const user: IUser = await UserService.get(firebaseUser.uid);
 
-        if(doc.exists) {
-          dispatch(AppAction.SignInUser, doc.data());
+        if(user) {
+          dispatch(AppAction.SignInUser, user);
         } else {
-          await db
-            .collection("users")     
-            .doc(firebaseUser.uid)       
-            .withConverter(userConverter)
-            .set(UserUtility.mapUser(firebaseUser));
+          await UserService.create(firebaseUser);
 
           location.reload();
         }
@@ -43,10 +35,12 @@ export const useAuthStateChangedEffect = (dispatch: (type: AppAction, payload?: 
 
 export const useFetchUserSettingsEffect = (appState: IAppState, dispatch: (type: AppAction, payload?: any) => void): void => {
   useEffect(() => {
-    const settings: string | null = localStorage.getItem("settings");
+    if(appState.status === AppStatus.SignedOut) {
+      const settings: string | null = localStorage.getItem("settings");
 
-    if(settings !== null) {
-      dispatch(AppAction.SetSettings, JSON.parse(settings));
+      if(settings !== null) {
+        dispatch(AppAction.SetSettings, JSON.parse(settings));
+      }
     }
-  }, []);
+  }, [appState.status]);
 }

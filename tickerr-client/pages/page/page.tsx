@@ -34,7 +34,7 @@ export const Page: React.FC<PageProps> = (props: PageProps) => {
   const getLoading = (): JSX.Element => {
     if(appState.status === AppStatus.Loading || props.status === RequestStatus.Loading) {
       return (
-        <LoadingIcon />
+        <LoadingIcon poweredBy />
       )
     }
   }

@@ -4,9 +4,10 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 220px;
 
   .loading-icon {
-    animation: heartBeat 1.5s ease-in-out infinite;
+    text-align: center;
 
     &.white {
       i {
@@ -15,9 +16,51 @@
     }
 
     i {
+      animation: heartBeat 1.5s ease-in-out infinite;  
       color: $themeColor;
       font-size: 2em;
       text-shadow: 0px 0px 8px rgba($themeColor, 0.5);
+    }
+
+    .powered-by {
+      height: 30px;
+      line-height: 30px;
+      margin-top: 20px;
+
+      img, span {
+        vertical-align: top;
+      }
+
+      img {
+        height: 30px;
+        margin: 0px 10px;
+        width: 30px;
+      }
+
+      span {
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@include phone-or-smaller {
+  .loading-icon-wrapper {
+    .loading-icon {
+      .powered-by {
+        height: 20px;
+        line-height: 20px;
+
+        img {
+          height: 20px;
+          margin: 0px 6px;
+          width: 20px;
+        }
+
+        span {
+          font-size: 0.8em;
+        }
+      }
     }
   }
 }

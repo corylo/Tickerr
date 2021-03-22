@@ -20,7 +20,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = (props: SettingsModal
   
   if(appState.toggles.settings) {
     return (
-      <Modal id="tickerr-user-settings-modal" priority>
+      <Modal id="tickerr-user-settings-modal" priority status={appState.statuses.settings}>
         <ModalTitle text="Settings" handleOnClose={() => dispatch(AppAction.ToggleSettings, false)} />
         <ModalBody>
           <Settings />

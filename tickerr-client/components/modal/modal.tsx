@@ -2,11 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import classNames from "classnames";
 
+import { LoadingIcon } from "../loadingIcon/loadingIcon";
+
+import { RequestStatus } from "../../enums/requestStatus";
+
 interface ModalProps {
   id: string;
   children: any;
   transparent?: boolean;  
   priority?: boolean;
+  status?: RequestStatus;
 }
 
 export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
@@ -19,11 +24,23 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
     return classNames("tickerr-modal-wrapper", classes);
   }
 
-  return ReactDOM.createPortal(
-    <div id={props.id} className={getClasses()}>
+  const getModalContent = (): JSX.Element => {
+    if(props.status === RequestStatus.Loading) {
+      return (
+        <LoadingIcon />
+      )
+    }
+
+    return (
       <div className="tickerr-modal-content">
         {props.children}
       </div>
+    )
+  }
+
+  return ReactDOM.createPortal(
+    <div id={props.id} className={getClasses()}>
+      {getModalContent()}
     </div>,
     document.body
   );

@@ -8,6 +8,16 @@
   top: 70px;
   z-index: 9997;
 
+  &.signed-out {
+    #tickerr-user-menu-content {
+      .tickerr-user-menu-item {
+        &:first-child {
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+
   .tickerr-user-icon {
     display: block;
     height: 80px;
@@ -16,10 +26,11 @@
   }
 
   #tickerr-user-menu-content {
-    margin-top: 10px;
     width: 300px;
 
     .tickerr-user-full-name {
+      margin-top: 10px;
+
       h1 {
         color: white;
         font-size: 1.25em;
@@ -27,10 +38,16 @@
       }
     }
 
-    .tickerr-user-menu-item {
+    .tickerr-user-menu-item,
+    .termly-cookie-preference-button {
       font-size: 1.25em;
       margin-top: 10px;
+      text-align: center;
       width: 100%;
+
+      &.link {
+        width: calc(100% - 20px);
+      }
     }
     
     #tickerr-sign-out-button {

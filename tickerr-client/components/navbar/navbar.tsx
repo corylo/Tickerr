@@ -33,14 +33,6 @@ export const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     }
   }
 
-  const getLegalLink = (): JSX.Element => {
-    if(status !== AppStatus.Loading) {
-      return (        
-        <a className="tickerr-navbar-item passion-one-font" href="https://legal.tickerr.tv">Legal</a>
-      )
-    }
-  }
-
   const getUserMenuButton = (): JSX.Element => {
     if(status === AppStatus.SignedIn && user) {
       return (
@@ -48,16 +40,12 @@ export const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
           <UserIcon image={user.image} />
         </Button>
       )
-    }
-  }
-
-  const getSettingsButton = (): JSX.Element => {
-    if(status === AppStatus.SignedOut) {
+    } else if (status !== AppStatus.Loading) {
       return (
         <IconButton 
-          className="tickerr-navbar-item tickerr-navbar-button"
-          icon="fad fa-cog" 
-          handleOnClick={() => dispatch(AppAction.ToggleSettings, !toggles.settings)} 
+          id="tickerr-user-menu-button"
+          icon="far fa-ellipsis-h" 
+          handleOnClick={() => dispatch(AppAction.ToggleMenu, !toggles.menu)} 
         />
       )
     }
@@ -67,10 +55,8 @@ export const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     <div id="tickerr-navbar">      
       <TickerrBrand />
       <div id="tickerr-navbar-items">
-        {getLegalLink()}
         {getSignInButton()}
         {getUserMenuButton()}
-        {getSettingsButton()}
       </div>
     </div>
   )
