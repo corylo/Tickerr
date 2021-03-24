@@ -12,6 +12,7 @@ interface ModalProps {
   transparent?: boolean;  
   priority?: boolean;
   status?: RequestStatus;
+  handleOnClose?: () => void;
 }
 
 export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
@@ -32,14 +33,14 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
     }
 
     return (
-      <div id={`${props.id}-content`} className="tickerr-modal-content">
+      <div id={`${props.id}-content`} className="tickerr-modal-content" onClick={(e: any) => e.stopPropagation()}>
         {props.children}
       </div>
     )
   }
 
   return ReactDOM.createPortal(
-    <div id={props.id} className={getClasses()}>
+    <div id={props.id} className={getClasses()} onClick={props.handleOnClose}>
       {getModalContent()}
     </div>,
     document.body

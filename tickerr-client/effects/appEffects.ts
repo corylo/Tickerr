@@ -24,13 +24,13 @@ export const useOnClickAwayEffect = (
 
       const handleClick = (e: any): void => {
         let count: number = 0;
-
+        
         focusedElements.forEach((el: HTMLElement) => {
           if (el.contains(e.target)) {
             count++;
           }
         });
-
+        
         if (count === 0) {
           handleOnClickAway();
         }
@@ -38,7 +38,9 @@ export const useOnClickAwayEffect = (
 
       document.addEventListener("mousedown", handleClick);
 
-      return () => document.removeEventListener("mousedown", handleClick);
+      return () => {
+        document.removeEventListener("mousedown", handleClick);
+      };
     }
   }, changeProps);
 };

@@ -34,6 +34,7 @@ export const UserService: IUserService = {
     return null;
   },
   update: async (uid: string, updates: any): Promise<void> => {
+    console.log(updates)
     return await db
       .collection("users")     
       .doc(uid)       

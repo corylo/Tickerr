@@ -7,8 +7,6 @@ import { Settings } from "../settings/settings";
 
 import { AppContext } from "../app/contexts/appContext";
 
-import { useOnClickAwayEffect } from "../../effects/appEffects";
-
 import { AppAction } from "../../enums/appAction";
 
 interface SettingsModalProps {  
@@ -22,17 +20,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = (props: SettingsModal
   
   const { statuses, toggles } = appState;
 
-  useOnClickAwayEffect(
-    toggles.settings, 
-    ["tickerr-user-settings-modal-content"], 
-    [toggles.settings], 
-    () => dispatch(AppAction.ToggleSettings, false)
-  );
-
   if(toggles.settings) {
+    const handleOnClose = (): void => dispatch(AppAction.ToggleSettings, false);
+
     return (
-      <Modal id="tickerr-user-settings-modal" priority status={statuses.settings}>
-        <ModalTitle text="Settings" handleOnClose={() => dispatch(AppAction.ToggleSettings, false)} />
+      <Modal id="tickerr-user-settings-modal" priority status={statuses.settings} handleOnClose={handleOnClose}>
+        <ModalTitle text="Settings" handleOnClose={handleOnClose} />
         <ModalBody>
           <Settings />
         </ModalBody>
