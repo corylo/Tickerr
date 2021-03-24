@@ -74,9 +74,19 @@
     }
 
     #tickerr-user-menu-button {
+      background-color: gray(60);
       height: 50px;
       margin-left: 10px;
       padding: 5px;
+
+      &:hover,
+      &:focus {
+        background-color: $themeColor;
+        
+        i {
+          color: white;
+        }
+      }
 
       i {
         height: 40px;
