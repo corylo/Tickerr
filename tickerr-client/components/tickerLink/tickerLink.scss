@@ -54,6 +54,7 @@
   }
   
   .ticker-icon {
+    border-radius: 200px;
     height: 300px;
     margin-left: 20px;   
     width: 300px;
@@ -61,6 +62,7 @@
 
   .ticker-background-icon {
     @include centered;
+    border-radius: 1000px;
     height: 180%;    
     opacity: 0.1;
     position: absolute;    

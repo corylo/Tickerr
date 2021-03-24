@@ -62,6 +62,7 @@
 
     #ticker-stats-background-icon {
       @include centered;
+      border-radius: 10000px;
       height: 180vh;
       opacity: 0.05;
       position: fixed;

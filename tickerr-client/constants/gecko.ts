@@ -196,7 +196,7 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
     "rank": 32,
     "symbol": "ksm",
     "geckoID": "kusama",
-    "tracked": false
+    "tracked": true
   },
   {
     "rank": 33,
