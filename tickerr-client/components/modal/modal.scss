@@ -46,7 +46,7 @@
 
 @include phone-or-smaller {
   .tickerr-modal-wrapper {
-    background-color: rgba(gray(40), 0.9);
+    background-color: rgba(gray(40), 0.98);
 
     &:not(.priority) {
       position: absolute;
