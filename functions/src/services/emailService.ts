@@ -12,17 +12,18 @@ export const EmailService: IEmailService = {
     try {
       const options: any = {
         from: `${appConfig.name} <no-reply@tickerr.tv>`,
+        subject: `Welcome to ${appConfig.name}!`,
+        text: `Hey ${user.displayName || "there"}! Welcome to ${appConfig.name}.`,
         to: user.email,
       };
     
-      options.subject = `Welcome to ${appConfig.name}!`;
-      options.text = `Hey ${user.displayName || "there"}! Welcome to ${appConfig.name}.`;
-
+      await transport.verify();
       await transport.sendMail(options);
 
       logger.log(`Welcome email sent to user: ${user.displayName} at: ${user.email}`);
-      return null;
     } catch (err) {
+      logger.error(err);
+
       logger.error(`Unable to send welcome email to user: ${user.displayName} at: ${user.email}`);
     }
 

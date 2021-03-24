@@ -7,7 +7,7 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "set:dev": "firebase use tickerr-development",
+    "set:dev": "firebase use tickerr-development-308516",
     "set:prod": "firebase use tickerr",
     "projects": "firebase projects:list"
   },

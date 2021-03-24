@@ -10,7 +10,7 @@
     "build:prod": "cross-env NODE_ENV=production webpack --mode production",
     "deploy": "npm run clean && npm run build && firebase deploy --only hosting",
     "deploy:prod": "npm run clean && npm run build:prod && firebase deploy --only hosting",
-    "set:dev": "firebase use tickerr-development",
+    "set:dev": "firebase use tickerr-development-308516",
     "set:prod": "firebase use tickerr-16944",
     "projects": "firebase projects:list",
     "pd": "git push && npm run deploy"
