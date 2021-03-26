@@ -61,10 +61,12 @@ export const ChartUtility: IChartUtility = {
   update: (chart: Chart, points: ITickerChartPoint[], change: number): void => {
     const color: Color = change >= 0 ? Color.Green : Color.Red;
     
+    const options: Chart.ChartDataSets = ChartOptionsUtility.getDatasetOptions(color);
+
     chart.data.datasets[0].data = ChartUtility.getPrices(points);
-    chart.data.datasets[0].borderColor = `rgba(${color}, 0.5)`;
-    chart.data.datasets[0].fill = `rgba(${color}, 0.5)`;     
-    chart.data.datasets[0].pointRadius = 0;
+    chart.data.datasets[0].backgroundColor = options.backgroundColor;
+    chart.data.datasets[0].borderColor = options.borderColor;    
+    chart.data.datasets[0].pointRadius = options.pointRadius;
 
     chart.data.labels = ChartUtility.getTimestamps(points);
 

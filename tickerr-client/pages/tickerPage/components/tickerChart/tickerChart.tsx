@@ -18,18 +18,6 @@ export const TickerChart: React.FC<TickerChartProps> = (props: TickerChartProps)
   }, []);
 
   useEffect(() => {
-    const handleResize = (): void => {
-      ChartUtility.draw(id, props.ticker.chart, props.ticker.change.day);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {      
-      window.removeEventListener("resize", handleResize);
-    }
-  }, []);
-
-  useEffect(() => {
     if(chart) {
       const update = (): void => ChartUtility.update(chart, props.ticker.chart, props.ticker.change.day);
 

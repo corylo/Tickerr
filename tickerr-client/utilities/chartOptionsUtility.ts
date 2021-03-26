@@ -10,8 +10,8 @@ interface IChartOptionsUtility {
 export const ChartOptionsUtility: IChartOptionsUtility = {
   getDatasetOptions: (color: Color): Chart.ChartDataSets => {
     return {
+      backgroundColor: `rgba(${color}, 0.2)`,
       borderColor: `rgba(${color}, 0.5)`,
-      fill: `rgba(${color}, 0.5)`,            
       pointRadius: 0
     }
   },
