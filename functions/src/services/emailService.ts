@@ -17,11 +17,11 @@ export const EmailService: IEmailService = {
       await transport.verify();
       await transport.sendMail(options);
 
-      logger.log(`[${label}] email sent to user: ${user.displayName} at: ${user.email}`);
+      logger.log(`[${label}] email sent to user: ${user.displayName} at: ${user.email}.`);
     } catch (err) {
       logger.error(err);
 
-      logger.error(`Unable to send [${label}] email to user: ${user.displayName} at: ${user.email}`);
+      logger.error(`Unable to send [${label}] email to user: ${user.displayName} at: ${user.email}.`);
     }
 
     return;
