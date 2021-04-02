@@ -64,6 +64,16 @@ export const UserMenuModal: React.FC<UserMenuModalProps> = (props: UserMenuModal
       }
     }
 
+    const getAccountButton = (): JSX.Element => {
+      if(user) {
+        return (          
+          <Button className="tickerr-user-menu-item passion-one-font" url="/account" handleOnClick={() => dispatch(AppAction.ToggleMenu, false)}>
+            Account
+          </Button>
+        )
+      }
+    }
+
     const getSignOutButton = (): JSX.Element => {
       if(user) {
         return (          
@@ -79,9 +89,7 @@ export const UserMenuModal: React.FC<UserMenuModalProps> = (props: UserMenuModal
         {getUserIcon()}
         <div id="tickerr-user-menu-content">
           {getUserFullName()}
-          <Button className="tickerr-user-menu-item passion-one-font" url="/account" handleOnClick={() => dispatch(AppAction.ToggleMenu, false)}>
-            Account
-          </Button>
+          {getAccountButton()}
           <Button className="tickerr-user-menu-item passion-one-font" handleOnClick={() => dispatch(AppAction.ToggleSettings, !toggles.settings)}>
             Settings
           </Button>
