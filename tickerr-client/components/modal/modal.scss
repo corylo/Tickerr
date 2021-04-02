@@ -43,18 +43,21 @@
     }
 
     .tickerr-modal-status-message {
-      background-color: rgba($red, 0.15);
       border-radius: 6px;
       margin-top: 10px;
-      padding: 10px;
+      padding: 15px 10px;
 
       &.success {
+        background-color: rgba($green, 0.15);
+
         h1 {
           color: $green;
         }
       }
 
       &.error {
+        background-color: rgba($red, 0.15);
+
         h1 {
           color: $red;
         }
@@ -63,6 +66,16 @@
       h1 {
         font-size: 1.1em;
         font-weight: 400;
+      }
+    }
+
+    .tickerr-modal-actions {
+      margin-top: 10px;
+
+      .button {
+        color: white;
+        font-size: 2em;
+        padding: 10px 20px;
       }
     }
   }

@@ -3,7 +3,8 @@ import { useHistory } from "react-router";
 
 import { Button } from "../../../../components/buttons/button";
 import { Modal } from "../../../../components/modal/modal";
-import { ModalBody } from "../../../../components/modal//modalBody";
+import { ModalActions } from "../../../../components/modal/modalActions";
+import { ModalStatusMessage } from "../../../../components/modal/modalStatusMessage";
 import { ModalTitle } from "../../../../components/modal/modalTitle";
 
 import { AccountStateContext } from "../../contexts/accountStateContext";
@@ -53,7 +54,7 @@ export const ConfirmAccountDeletionModal: React.FC<ConfirmAccountDeletionModalPr
 
   const handleOnClose = (): void => dispatch(AccountStateAction.CancelAccountDeletion);  
 
-  const getModalBody = (): JSX.Element => {
+  const getModalActions = (): JSX.Element => {
     if(errorCode === AuthErrorCode.RecentLogin) {
       return (
         <Button id="tickerr-confirm-account-deletion-reauth-button" className="passion-one-font" handleOnClick={() => UserService.reauth()}>
@@ -78,13 +79,13 @@ export const ConfirmAccountDeletionModal: React.FC<ConfirmAccountDeletionModalPr
     <Modal 
       id="tickerr-confirm-account-deletion-modal" 
       status={status} 
-      statusMessage={statusMessage}
       handleOnClose={handleOnClose}
     >
       <ModalTitle text="Are you sure?" handleOnClose={handleOnClose} />
-      <ModalBody>
-        {getModalBody()}
-      </ModalBody>
+      <ModalStatusMessage status={status} statusMessage={statusMessage} />
+      <ModalActions>
+        {getModalActions()}
+      </ModalActions>
     </Modal>
   );
 }

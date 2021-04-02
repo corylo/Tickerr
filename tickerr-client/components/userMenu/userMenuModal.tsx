@@ -40,7 +40,7 @@ export const UserMenuModal: React.FC<UserMenuModalProps> = (props: UserMenuModal
         
         await auth.signOut();
         
-        dispatch(AppAction.SignOutUser);
+        location.reload();
       } catch (err) {
         console.error(err);
       }

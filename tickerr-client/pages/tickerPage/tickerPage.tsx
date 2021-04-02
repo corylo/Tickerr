@@ -30,7 +30,7 @@ interface TickerPageProps {
 
 export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) => {
   const { appState } = useContext(AppContext);
-
+  
   const [tickerState, dispatchToTickerState] = useReducer(tickerStateReducer, defaultTickerState());
 
   const { errorMessage, status, sidePanelToggled, ticker, urlSymbol } = tickerState;

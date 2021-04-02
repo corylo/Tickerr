@@ -1,13 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
+import { Button } from "../buttons/button";
 import { Modal } from "../modal/modal";
+import { ModalActions } from "../modal/modalActions";
 import { ModalBody } from "../modal/modalBody";
+import { ModalStatusMessage } from "../modal/modalStatusMessage";
 import { ModalTitle } from "../../components/modal/modalTitle";
 import { Settings } from "../settings/settings";
 
 import { AppContext } from "../app/contexts/appContext";
 
+import { UserService } from "../../services/userService";
+
+import { IUserSettings } from "../../../tickerr-models/userSettings";
+
 import { AppAction } from "../../enums/appAction";
+import { AppStatus } from "../app/enums/appStatus";
+import { RequestStatus } from "../../enums/requestStatus";
 
 interface SettingsModalProps {  
   
@@ -16,19 +25,62 @@ interface SettingsModalProps {
 export const SettingsModal: React.FC<SettingsModalProps> = (props: SettingsModalProps) => {  
   const { appState, dispatchToApp } = useContext(AppContext);
 
+  const { settings, status, statuses, toggles, user } = appState;
+
   const dispatch = (type: AppAction, payload?: any): void => dispatchToApp({ type, payload });
   
-  const { statuses, toggles } = appState;
+  const [unsavedSettings, setUnsavedSettings] = useState<IUserSettings>(settings);
 
+  useEffect(() => setUnsavedSettings(settings), [settings]);
+
+  useEffect(() => {
+    if(statuses.settings.is !== RequestStatus.Loading && statuses.settings.is !== RequestStatus.Idle) {
+      dispatch(AppAction.SetSettingsStatus, { is: RequestStatus.Idle, message: "" });
+    }
+  }, [unsavedSettings]);
+  
   if(toggles.settings) {
-    const handleOnClose = (): void => dispatch(AppAction.ToggleSettings, false);
+    const handleOnClose = (): void => dispatch(AppAction.CloseSettings);
+    
+    const handleSave = async () => {
+      try {
+        dispatch(AppAction.SetSettingsStatus, { is: RequestStatus.Loading, message: "" });
+        
+        if(status === AppStatus.SignedIn) {
+          await UserService.update(user.uid, { settings: unsavedSettings });
+        } else {
+          window.localStorage.setItem("settings", JSON.stringify(unsavedSettings));
+        }
+        
+        if(unsavedSettings.currency !== appState.settings.currency) {
+          location.reload();
+        } else {          
+          dispatch(AppAction.UpdateSettings, unsavedSettings);
+        }
+      } catch (err) {
+        console.error(err);
+        
+        dispatch(AppAction.SetSettingsStatus, { is: RequestStatus.Error, message: "Unable to save settings!" });
+      }
+    }
 
     return (
-      <Modal id="tickerr-user-settings-modal" priority status={statuses.settings} handleOnClose={handleOnClose}>
+      <Modal 
+        id="tickerr-user-settings-modal" 
+        priority 
+        status={statuses.settings.is} 
+        handleOnClose={handleOnClose}
+      >
         <ModalTitle text="Settings" handleOnClose={handleOnClose} />
         <ModalBody>
-          <Settings />
+          <Settings unsavedSettings={unsavedSettings} setUnsavedSettings={setUnsavedSettings} />
         </ModalBody>
+        <ModalStatusMessage status={statuses.settings.is} statusMessage={statuses.settings.message} />
+        <ModalActions>
+          <Button className="save-settings-button passion-one-font" handleOnClick={handleSave}>
+            Save
+          </Button>
+        </ModalActions>
       </Modal>
     );
   }

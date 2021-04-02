@@ -7,7 +7,23 @@ import { AppStatus } from "../enums/appStatus";
 import { RequestStatus } from "../../../enums/requestStatus";
 
 export const appReducer = (state: IAppState, action: IAction): IAppState => {  
-  switch (action.type) {
+  switch (action.type) {    
+    case AppAction.CloseSettings:
+      return {
+        ...state,
+        statuses: {
+          ...state.statuses,
+          settings: {
+            is: RequestStatus.Idle,
+            message: ""
+          }
+        },
+        toggles: {
+          ...state.toggles,
+          menu: false,
+          settings: false
+        }
+      }
     case AppAction.Cya:
       return {
         ...state,
@@ -34,13 +50,16 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
           font: action.payload
         }
       }
-    case AppAction.SetSettings:
+    case AppAction.InitSettings:      
       return {
         ...state,
         settings: action.payload,
         statuses: {
           ...state.statuses,
-          settings: RequestStatus.Success
+          settings: {
+            is: RequestStatus.Idle,
+            message: ""
+          }
         }
       }
     case AppAction.SetStatus:
@@ -66,6 +85,13 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         ...state,
         settings: action.payload.settings,
         status: AppStatus.SignedIn,
+        statuses: {
+          ...state.statuses,
+          settings: {
+            is: RequestStatus.Idle,
+            message: ""
+          }
+        },
         user: action.payload
       }
     case AppAction.SignOutUser:
@@ -115,6 +141,18 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         toggles: {
           ...state.toggles,
           signIn: action.payload
+        }
+      }
+    case AppAction.UpdateSettings:
+      return {
+        ...state,
+        settings: action.payload,
+        statuses: {
+          ...state.statuses,
+          settings: {
+            is: RequestStatus.Success,
+            message: "Saved!"
+          }
         }
       }
     default:

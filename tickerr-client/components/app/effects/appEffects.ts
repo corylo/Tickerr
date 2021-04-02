@@ -13,12 +13,8 @@ import { AppStatus } from "../enums/appStatus";
 
 export const useAuthStateChangedEffect = (appState: IAppState, dispatch: (type: AppAction, payload?: any) => void): void => {
   useEffect(() => {
-    auth.onAuthStateChanged(async (firebaseUser: firebase.User) => {  
-      if(appState.status !== AppStatus.Loading) {
-        dispatch(AppAction.SetStatus, AppStatus.Loading);
-      }
-      
-      if(firebaseUser) {
+    const unsub = auth.onAuthStateChanged(async (firebaseUser: firebase.User) => {  
+      if(firebaseUser && appState.user === null) {
         const user: IUser = await UserService.get(firebaseUser.uid);
 
         if(user) {
@@ -28,20 +24,22 @@ export const useAuthStateChangedEffect = (appState: IAppState, dispatch: (type: 
 
           location.reload();
         }
-      } else {
+      } else if (appState.user === null) {
         dispatch(AppAction.SetStatus, AppStatus.SignedOut);
       }
     });
-  }, []);
+
+    return () => unsub();
+  }, [appState.user]);
 }
 
 export const useFetchUserSettingsEffect = (appState: IAppState, dispatch: (type: AppAction, payload?: any) => void): void => {
-  useEffect(() => {
+  useEffect(() => { 
     if(appState.status === AppStatus.SignedOut) {
       const settings: string | null = localStorage.getItem("settings");
 
       if(settings !== null) {
-        dispatch(AppAction.SetSettings, JSON.parse(settings));
+        dispatch(AppAction.InitSettings, JSON.parse(settings));
       }
     }
   }, [appState.status]);

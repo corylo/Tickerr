@@ -80,14 +80,6 @@
       }
     }
   }
-
-  .save-settings-button {
-    background-color: $themeColor;
-    color: white;
-    font-size: 2em;
-    margin-top: 20px;
-    padding: 10px 40px;
-  }
 }
 
 @include medium-phone-or-smaller {

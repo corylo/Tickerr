@@ -31,36 +31,35 @@ interface IUseTickersEffect {
 }
 
 export const useTickersEffect = (appState: IAppState, limit: number): IUseTickersEffect => {
-  const [tickers, setTickers] = useState<ITicker[]>([]),
-    [status, setStatus] = useState<RequestStatus>(RequestStatus.Loading);
+  const [state, setState] = useState<IUseTickersEffect>({ tickers: [], status: RequestStatus.Loading });
 
-    useEffect(() => {
-      if(appState.status !== AppStatus.Loading) {
-        const fetch = async () => {
-          try {
-            const tickers: ITicker[] = await TickerService.fetchTickers(appState.settings.currency, limit);
-            
-            setTickers(tickers);
+  const { settings, statuses } = appState;
+  
+  useEffect(() => {    
+    if(appState.status !== AppStatus.Loading && statuses.settings.is !== RequestStatus.Loading) {
+      const fetch = async () => {
+        try {
+          const tickers: ITicker[] = await TickerService.fetchTickers(settings.currency, limit);
+          
+          setState({ tickers, status: RequestStatus.Success });
+        } catch (err) {
+          console.error(err);
 
-            setStatus(RequestStatus.Success);
-          } catch (err) {
-            console.error(err);
-
-            setStatus(RequestStatus.Error);
-          }
-        }
-
-        fetch();
-
-        const interval: NodeJS.Timeout = setInterval(() => fetch(), 30000);
-
-        return () => {
-          clearInterval(interval);
+          setState({ ...state, status: RequestStatus.Error });
         }
       }
-    }, [appState.status]);
+
+      fetch();
+
+      const interval: NodeJS.Timeout = setInterval(() => fetch(), 30000);
+
+      return () => {
+        clearInterval(interval);
+      }
+    }
+  }, [appState.status, statuses.settings.is]);
     
-  return { tickers, status };
+  return state;
 }
 
 export const useTickerEffect = (symbol: string, currency: Currency, dispatch: (type: TickerStateAction, payload?: any) => void): void => {  
