@@ -1,6 +1,8 @@
 import React, { useReducer } from "react";
 import { Redirect, Route, Switch, useLocation } from "react-router";
 
+import { AccountPage } from "../../pages/accountPage/accountPage";
+import { CyaPage } from "../../pages/cyaPage/cyaPage";
 import { HomePage } from "../../pages/homePage/homePage";
 import { TickerPage } from "../../pages/tickerPage/tickerPage";
 
@@ -47,6 +49,12 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route exact path="/account">
+            <AccountPage />
+          </Route>
+          <Route exact path="/cya">
+            <CyaPage />
           </Route>
           <Route exact path="/:symbol">
             <TickerPage />

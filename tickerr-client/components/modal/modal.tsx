@@ -12,6 +12,7 @@ interface ModalProps {
   transparent?: boolean;  
   priority?: boolean;
   status?: RequestStatus;
+  statusMessage?: string;
   handleOnClose?: () => void;
 }
 
@@ -25,6 +26,19 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
     return classNames("tickerr-modal-wrapper", classes);
   }
 
+  const getStatusMessage = (): JSX.Element => {
+    if(
+      (props.status === RequestStatus.Success || props.status === RequestStatus.Error) && 
+      props.statusMessage
+    ) {
+      return (
+        <div className={classNames("tickerr-modal-status-message", props.status.toLowerCase())}>
+          <h1 className="passion-one-font">{props.statusMessage}</h1>
+        </div>
+      )
+    }
+  }
+
   const getModalContent = (): JSX.Element => {
     if(props.status === RequestStatus.Loading) {
       return (
@@ -35,6 +49,7 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
     return (
       <div id={`${props.id}-content`} className="tickerr-modal-content" onClick={(e: any) => e.stopPropagation()}>
         {props.children}
+        {getStatusMessage()}
       </div>
     )
   }

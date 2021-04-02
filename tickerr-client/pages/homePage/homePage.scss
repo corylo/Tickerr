@@ -1,4 +1,9 @@
 #tickerr-home-page {
+  .tickerr-page-content {
+    margin: auto;
+    max-width: 3200px;
+  }
+
   .nvpn-clickinator {
     &:nth-of-type(1) {
       margin-bottom: 10px;

@@ -1,13 +1,23 @@
-import { IAppState } from "../models/appState";
 import { IAction } from "../../../models/action";
+import { IAppState } from "../models/appState";
+import { defaultUserSettings } from "../../../../tickerr-models/userSettings";
 
 import { AppAction } from "../../../enums/appAction";
 import { AppStatus } from "../enums/appStatus";
 import { RequestStatus } from "../../../enums/requestStatus";
-import { defaultUserSettings } from "../../../../tickerr-models/userSettings";
 
 export const appReducer = (state: IAppState, action: IAction): IAppState => {  
   switch (action.type) {
+    case AppAction.Cya:
+      return {
+        ...state,
+        settings: defaultUserSettings(),
+        toggles: {
+          ...state.toggles,
+          cya: true
+        },
+        user: null
+      }
     case AppAction.SetCurrency:
       return {
         ...state,
@@ -72,6 +82,14 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         toggles: {
           ...state.toggles,
           menu: false
+        }
+      }
+    case AppAction.ToggleCya:
+      return {
+        ...state,
+        toggles: {
+          ...state.toggles,
+          cya: action.payload
         }
       }
     case AppAction.ToggleMenu:

@@ -1,0 +1,24 @@
+#tickerr-confirm-account-deletion-modal {
+  .button:not(.icon-button) {
+    font-size: 2em;
+  }
+
+  #tickerr-confirm-account-deletion-button {
+    background-color: $red;
+    margin-right: 10px;
+  }
+}
+
+@include phone-or-smaller {
+  #tickerr-confirm-account-deletion-modal {
+    .button:not(.icon-button) {
+      display: block;
+      width: 100%;
+    }
+
+    #tickerr-confirm-account-deletion-button {      
+      margin-bottom: 10px;
+      margin-right: 0px;
+    }
+  }
+}

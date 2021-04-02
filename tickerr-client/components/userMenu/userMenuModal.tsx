@@ -79,11 +79,14 @@ export const UserMenuModal: React.FC<UserMenuModalProps> = (props: UserMenuModal
         {getUserIcon()}
         <div id="tickerr-user-menu-content">
           {getUserFullName()}
+          <Button className="tickerr-user-menu-item passion-one-font" url="/account" handleOnClick={() => dispatch(AppAction.ToggleMenu, false)}>
+            Account
+          </Button>
           <Button className="tickerr-user-menu-item passion-one-font" handleOnClick={() => dispatch(AppAction.ToggleSettings, !toggles.settings)}>
             Settings
           </Button>
           <TermlyPreferencesButton />
-          <Button className="tickerr-user-menu-item passion-one-font" url="https://legal.tickerr.tv">
+          <Button className="tickerr-user-menu-item passion-one-font" url="https://legal.tickerr.tv" external>
             Legal
           </Button>
           {getSignOutButton()}

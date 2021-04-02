@@ -77,7 +77,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   return(
     <TickerStateContext.Provider value={{ tickerState, dispatchToTickerState }}>
-      <Page id="tickerr-ticker-page" status={status} errorMessage={errorMessage}>      
+      <Page id="tickerr-ticker-page" status={status} errorMessage={errorMessage} backToHome>      
         {getTickerStats()}
         <NVpnClickinator closeable />
       </Page>

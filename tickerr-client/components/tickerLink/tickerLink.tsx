@@ -25,8 +25,6 @@ export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) =>
     AnalyticsUtility.log("ticker_link_click", ticker);
   }
 
-  console.log(ticker.icon.color)
-
   return(
     <Link to={`/${ticker.symbol}`} className={classNames("ticker-link", SettingsUtility.getFontClass(appState.settings.font))} onClick={handleOnClick}>
       <h1 className="ticker-index passion-one-font">{ticker.rank}</h1>

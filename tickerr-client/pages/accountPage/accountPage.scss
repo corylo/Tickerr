@@ -1,0 +1,36 @@
+@import "./components/confirmAccountDeletionModal/confirmAccountDeletionModal.scss";
+
+#tickerr-account-page {
+  .tickerr-page-content {
+    margin: auto;
+    margin-top: 80px;
+    max-width: 1200px;
+    text-align: center;
+  }
+
+  .tickerr-user-icon {
+    height: 100px;
+    width: 100px;
+  }
+
+  .tickerr-user-full-name {
+    margin-top: 10px;
+
+    h1 {
+      color: white;
+      font-size: 2em;
+    }
+  }
+
+  .tickerr-user-email {
+    h1 {
+      color: gray(180);
+    }
+  }
+
+  #tickerr-delete-account-button {
+    background-color: $red;
+    font-size: 1.25em;
+    margin-top: 20px;
+  }
+}
