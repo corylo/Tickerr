@@ -1,4 +1,4 @@
-import { auth, logger } from "firebase-functions";
+import { auth, https, logger } from "firebase-functions";
 import axios from "axios";
 
 import { appConfig } from "../config/app";
@@ -6,27 +6,26 @@ import { appConfig } from "../config/app";
 import { EmailUtility } from "../utilities/emailUtility";
 
 import { IEmailOptions } from "../../../tickerr-models/emailOptions";
+import { EmailTemplate } from "../enums/emailTemplate";
 
 interface IEmailService {
-  getWelcomeTemplate: () => Promise<string>;
+  fetchTemplate: (template: EmailTemplate) => Promise<string>;
   sendEmail: (label: string, user: auth.UserRecord, options: IEmailOptions) => Promise<void>;
   sendGoodbye: (user: auth.UserRecord) => Promise<void>;
   sendWelcome: (user: auth.UserRecord) => Promise<void>;
 }
 
 export const EmailService: IEmailService = {
-  getWelcomeTemplate: async (): Promise<string> => {
+  fetchTemplate: async (template: EmailTemplate): Promise<string> => {
     try {
-      const res: any = await axios.get("https://firebasestorage.googleapis.com/v0/b/tickerr-tv.appspot.com/o/emails%2Ftemplates%2Fwelcome.html?alt=media&token=42132f2b-b1fd-4497-a62a-a69bef00cc07");
+      const res: any = await axios.get(template);
 
       return res.data;
     } catch (err) {
       logger.error(err);
-
-      logger.error("Unable to get welcome template.");
     }
 
-    return "";
+    throw new https.HttpsError("internal", `Unable to get [${EmailTemplate[template]}] template.`);
   },
   sendEmail: async (label: string, user: auth.UserRecord, options: IEmailOptions): Promise<void> => {
     try {
@@ -45,27 +44,28 @@ export const EmailService: IEmailService = {
     return;
   },
   sendGoodbye: async (user: auth.UserRecord): Promise<void> => {
-    const label: string = "Goodbye";
+    const label: string = EmailTemplate[EmailTemplate.Goodbye];
+
+    const template: string = await EmailService.fetchTemplate(EmailTemplate.Goodbye);
 
     const options: any = {
       from: `${appConfig.name} <no-reply@tickerr.tv>`,
-      subject: "Come back again soon!",
-      text: `Thanks for stopping by${user.displayName ? `, ${user.displayName}` : ""}! Hope to see you again soon.`,
+      html: EmailUtility.fillTemplate(template, { name: user.displayName }),
+      subject: "Thanks for stopping by!",
       to: user.email,
     };
 
     return await EmailService.sendEmail(label, user, options);
   },
   sendWelcome: async (user: auth.UserRecord): Promise<void> => {
-    const label: string = "Welcome";
+    const label: string = EmailTemplate[EmailTemplate.Welcome];
 
-    const template: string = await EmailService.getWelcomeTemplate();
+    const template: string = await EmailService.fetchTemplate(EmailTemplate.Welcome);
 
     const options: any = {
       from: `${appConfig.name} <no-reply@tickerr.tv>`,      
-      html: EmailUtility.getTemplate(template, { name: user.displayName }),
-      subject: `Welcome to ${appConfig.name}!`,
-      // text: `Hey ${user.displayName || "there"}! Welcome to ${appConfig.name}.`,
+      html: EmailUtility.fillTemplate(template, { name: user.displayName }),
+      subject: `Welcome to ${appConfig.name}!`,      
       to: user.email,
     };
   

@@ -3,12 +3,12 @@ import mailer from "nodemailer";
 import Handlebars from "handlebars";
 
 interface IEmailUtility {
-  getTemplate: (html: string, data: any) => string;
+  fillTemplate: (html: string, data: any) => string;
   getTransport: () => any;
 }
 
 export const EmailUtility: IEmailUtility = {
-  getTemplate: (html: string, data: any): string => {
+  fillTemplate: (html: string, data: any): string => {
     return Handlebars.compile(html)(data);
   },
   getTransport: (): any => {
