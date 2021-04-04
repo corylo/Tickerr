@@ -28,4 +28,22 @@
       margin-left: 10px;
     }
   }
+
+  #tickerr-sign-in-disclaimer {
+    margin-top: 10px;
+
+    h1 {
+      color: white;
+
+      a {
+        color: $themeColor;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }
