@@ -10,6 +10,7 @@ import { IUser } from "../../../../tickerr-models/user";
 
 import { AppAction } from "../../../enums/appAction";
 import { AppStatus } from "../enums/appStatus";
+import { RequestStatus } from "../../../enums/requestStatus";
 
 export const useAuthStateChangedEffect = (appState: IAppState, dispatch: (type: AppAction, payload?: any) => void): void => {
   useEffect(() => {
@@ -40,6 +41,8 @@ export const useFetchUserSettingsEffect = (appState: IAppState, dispatch: (type:
 
       if(settings !== null) {
         dispatch(AppAction.InitSettings, JSON.parse(settings));
+      } else {
+        dispatch(AppAction.SetSettingsStatus, { is: RequestStatus.Idle, message: "" });
       }
     }
   }, [appState.status]);
