@@ -24,14 +24,6 @@ const config = {
       template: path.resolve(__dirname, "tickerr-client/index.html"),
       filename: "index.html",
       favicon: "tickerr-client/img/favicon.png"
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: "tickerr-client/img",
-          to: "img"
-        }
-      ],
     })
   ]
 }

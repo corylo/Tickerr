@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
+import { CDN } from "../../enums/cdn";
+
 interface ClickinatorProps {
   id?: string;
   className?: string;
@@ -21,12 +23,12 @@ export const Clickinator: React.FC<ClickinatorProps> = (props: ClickinatorProps)
       )
     }
   }
-
+  
   if(!closed) {
     return(
       <div id={props.id} className={classNames("clickinator", props.className)}>
         <a className="clickinator-link" href={props.url}>
-          <img src={props.src} />
+          <img src={`${CDN.Url}${props.src}`} />
         </a>
         {getCloseButton()}
       </div>

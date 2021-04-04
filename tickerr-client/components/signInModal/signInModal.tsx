@@ -13,6 +13,7 @@ import { AppContext } from "../app/contexts/appContext";
 import { useOnClickAwayEffect } from "../../effects/appEffects";
 
 import { AppAction } from "../../enums/appAction";
+import { CDN } from "../../enums/cdn";
 
 interface SignInModalProps {  
   
@@ -46,7 +47,7 @@ export const SignInModal: React.FC<SignInModalProps> = (props: SignInModalProps)
         <ModalTitle text="Sign In" handleOnClose={() => dispatch(AppAction.ToggleSignIn, false)} />
         <ModalBody>
           <Button id="tickerr-google-sign-in-button" handleOnClick={handleSignInWithGoogle}>
-            <img src="/img/brands/google-logo.png" />
+            <img src={`${CDN.Url}/img/brands/google-logo.png`} />
             <h1 className="passion-one-font">Sign In</h1>
           </Button>
         </ModalBody>
