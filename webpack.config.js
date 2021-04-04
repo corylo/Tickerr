@@ -1,8 +1,7 @@
 const webpack = require("webpack"),
   path = require("path");
 
-const CopyPlugin = require("copy-webpack-plugin"),
-  HtmlPlugin = require("html-webpack-plugin"),
+const HtmlPlugin = require("html-webpack-plugin"),
   MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
