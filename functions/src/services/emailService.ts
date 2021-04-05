@@ -44,7 +44,7 @@ export const EmailService: IEmailService = {
     return;
   },
   sendGoodbye: async (user: auth.UserRecord): Promise<void> => {
-    const label: string = EmailTemplate[EmailTemplate.Goodbye];
+    const label: string = "Goodbye";
 
     const template: string = await EmailService.fetchTemplate(EmailTemplate.Goodbye);
 
@@ -58,7 +58,7 @@ export const EmailService: IEmailService = {
     return await EmailService.sendEmail(label, user, options);
   },
   sendWelcome: async (user: auth.UserRecord): Promise<void> => {
-    const label: string = EmailTemplate[EmailTemplate.Welcome];
+    const label: string = "Welcome";
 
     const template: string = await EmailService.fetchTemplate(EmailTemplate.Welcome);
 
