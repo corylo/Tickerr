@@ -3,25 +3,39 @@
   border-radius: 6px;
   margin: 10px;
   padding: 15px 10px;
+  position: relative;
   white-space: nowrap;
 
-  i, .tickerr-update-banner-body {
+  .tickerr-update-banner-icon, 
+  .tickerr-update-banner-body {
     display: inline-block;
     vertical-align: top;
   }
 
-  i {
-    color: white;
-    font-size: 2em;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    width: 40px;
+  .tickerr-update-banner-icon {
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    width: 50px;
+
+    i {
+      color: white;
+      font-size: 2em;
+      height: 40px;
+      left: 50%;
+      line-height: 40px;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+    }
   }
 
   .tickerr-update-banner-body {
-    margin-left: 10px;
-    width: calc(100% - 50px);
+    margin-left: 40px;
+    width: calc(100% - 40px);
 
     h1 {
       color: white;
@@ -37,6 +51,22 @@
         font-size: 1.25em;
         font-weight: lighter;
         margin-top: 2px;
+      }
+    }
+  }
+}
+
+@include phone-or-smaller {
+  .tickerr-update-banner {
+    .tickerr-update-banner-body {
+      h1 {
+        &.title {
+          font-size: 1.25em;
+        }
+
+        &.text {
+          font-size: 1em;
+        }
       }
     }
   }
