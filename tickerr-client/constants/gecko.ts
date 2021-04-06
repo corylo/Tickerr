@@ -256,7 +256,7 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
     "rank": 42,
     "symbol": "ceth",
     "geckoID": "compound-ether",
-    "tracked": false
+    "tracked": true
   },
   {
     "rank": 43,
@@ -430,7 +430,7 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
     "rank": 71,
     "symbol": "btt",
     "geckoID": "bittorrent-2",
-    "tracked": false
+    "tracked": true
   },
   {
     "rank": 72,

@@ -1,0 +1,43 @@
+.tickerr-update-banner {
+  background-color: rgba($themeColor, 0.75);
+  border-radius: 6px;
+  margin: 10px;
+  padding: 15px 10px;
+  white-space: nowrap;
+
+  i, .tickerr-update-banner-body {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  i {
+    color: white;
+    font-size: 2em;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+  }
+
+  .tickerr-update-banner-body {
+    margin-left: 10px;
+    width: calc(100% - 50px);
+
+    h1 {
+      color: white;
+      white-space: normal;
+
+      &.title {
+        font-size: 1.5em;
+        height: 20px;
+        line-height: 20px;
+      }
+
+      &.text {
+        font-size: 1.25em;
+        font-weight: lighter;
+        margin-top: 2px;
+      }
+    }
+  }
+}

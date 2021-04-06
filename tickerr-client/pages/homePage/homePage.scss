@@ -1,7 +1,7 @@
 #tickerr-home-page {
   .tickerr-page-content {
     margin: auto;
-    max-width: 3200px;
+    max-width: 1200px;
   }
 
   .nvpn-clickinator {
@@ -9,16 +9,14 @@
       margin-bottom: 10px;
       margin-top: 70px;
     }
-
-    &:nth-of-type(2) {
-      margin-bottom: 70px;
-    }
   }
 
   #tickerr-home-page-ticker-links {
-    margin: auto;
-    padding: 10px;
-    padding-top: 0px;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); 
+    margin:  10px auto;
+    text-align: center;
     width: calc(100% - 20px);
   }
 

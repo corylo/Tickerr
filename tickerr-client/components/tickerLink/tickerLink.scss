@@ -3,38 +3,26 @@
   border: 1px solid transparent;
   border-radius: 10px;
   display: inline-block;
-  margin: 10px;
   outline: none;
   overflow: hidden;
   padding: 20px;
   position: relative;
+  text-align: left;
   text-decoration: none;
   transition: transform 0.25s;
+  vertical-align: top;
   white-space: nowrap;
-  width: calc(33.33% - 62px);
 
   &:hover,
   &:focus {
     border-color: $themeColor;
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     
     .ticker-index {
       color: $themeColor;
     }
   }
   
-  &.passion-one-font {
-    .ticker-symbol-and-price {        
-      margin: 85px auto;
-      margin-left: 20px;
-  
-      .ticker-symbol {
-        height: 100px;
-        line-height: 100px;
-      }
-    }
-  }
-
   .ticker-index,
   .ticker-icon,
   .ticker-symbol-and-price {
@@ -49,28 +37,29 @@
     font-size: 2em;
     height: 50px;
     line-height: 50px;
-    margin: 125px auto;
+    margin: 25px auto;
     z-index: 2;
   }
   
   .ticker-icon {
-    border-radius: 200px;
-    height: 300px;
+    border-radius: 100px;
+    height: 100px;
     margin-left: 20px;   
-    width: 300px;
+    width: 100px;
   }
 
   .ticker-background-icon {
-    @include centered;
     border-radius: 1000px;
-    height: 180%;    
+    height: 150%;    
     opacity: 0.1;
     position: absolute;    
-    transform: translate(0%, -50%);
+    right: -10%;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .ticker-symbol-and-price {        
-    margin: 70px auto;
+    margin: 10px auto;
     margin-left: 20px;
 
     .ticker-price,
@@ -81,163 +70,22 @@
 
     .ticker-symbol {
       color: gray(220);
-      font-size: 8em;
-      height: 140px;
-      line-height: 140px;
+      font-size: 3.5em;
+      height: 50px;
+      line-height: 50px;
       text-transform: uppercase;
     }
 
     .ticker-price {
       color: white;
+      font-size: 1.5em;
+      height: 20px;
+      line-height: 20px;
     }
 
     .ticker-change {
-      font-size: 1.25em;
+      font-size: 1em;
       margin-left: 5px;
-    }
-  }
-}
-
-@include extra-large-desktop-or-smaller {
-  .ticker-link {
-    &.passion-one-font {
-      .ticker-symbol-and-price {        
-        margin: 50px auto;
-        margin-left: 20px;
-    
-        .ticker-symbol {
-          font-size: 5em;
-          height: 70px;
-          line-height: 70px;
-        }
-      }
-    }
-  
-    .ticker-index {
-      margin: 75px auto;
-    }
-    
-    .ticker-icon {
-      height: 200px;  
-      width: 200px;
-    }
-  
-    .ticker-symbol-and-price {        
-      margin: 35px auto;
-      margin-left: 20px;
-  
-      .ticker-symbol {
-        font-size: 6em;
-        height: 100px;
-        line-height: 100px;
-      }
-    }
-  }
-}
-
-@include laptop-or-smaller {
-  .ticker-link {
-    width: calc(50% - 62px);
-  }
-}
-
-@include tablet-or-smaller {
-  .ticker-link {
-    width: calc(100% - 62px);
-  }
-}
-
-@include phone-or-smaller {
-  .ticker-link {
-    &.passion-one-font {
-      .ticker-symbol-and-price {        
-        margin: 20px auto;
-        margin-left: 20px;
-    
-        .ticker-symbol {
-          font-size: 6em;
-          height: 80px;
-          line-height: 80px;
-        }
-      }
-    }
-  
-    .ticker-index {
-      font-size: 1.5em;
-      height: 50px;
-      line-height: 50px;
-      margin: 50px auto;
-    }
-    
-    .ticker-icon {
-      height: 150px;  
-      width: 150px;
-    }
-  
-    .ticker-symbol-and-price {        
-      margin: 30px auto;
-      margin-left: 20px;
-  
-      .ticker-symbol {
-        font-size: 4em;
-        height: 60px;
-        line-height: 60px;
-      }
-
-      .ticker-price {
-        font-size: 1.5em;
-      }
-    }
-  }
-}
-
-@include medium-phone-or-smaller {
-  .ticker-link {
-    margin: 5px 0px;
-    width: calc(100% - 42px);
-
-    &.passion-one-font {
-      .ticker-symbol-and-price {        
-        margin: 15px auto;
-        margin-left: 20px;
-        
-        .ticker-symbol {
-          font-size: 4em;
-          height: 50px;
-          line-height: 50px;
-        }
-      }
-    }
-
-    .ticker-index {
-      margin: 25px auto;
-    }
-
-    .ticker-icon {
-      height: 100px;  
-      width: 100px;
-    }
-  
-    .ticker-symbol-and-price {        
-      margin: 15px auto;
-      margin-left: 20px;
-      height: 70px;
-  
-      .ticker-symbol {
-        font-size: 3.5em;
-        height: 50px;
-        line-height: 50px;
-      }
-
-      .ticker-price {
-        font-size: 1.25em;
-        height: 20px;
-        line-height: 20px;
-      }
-
-      .ticker-change {
-        font-size: 0.9em;
-      }
     }
   }
 }

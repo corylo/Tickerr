@@ -4,6 +4,7 @@ import { Page } from "../page/page";
 
 import { NVpnClickinator } from "../../components/clickinator/nVpnClickinator";
 import { TickerLink } from "../../components/tickerLink/tickerLink";
+import { UpdateBanner } from "../../components/updateBanner/updateBanner";
 
 import { AppContext } from "../../components/app/contexts/appContext";
 
@@ -11,6 +12,7 @@ import { useUpdatePageTitleEffect } from "../../effects/appEffects";
 import { useTickersEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
+import { UpdateBannerBody } from "../../components/updateBanner/updateBannerBody";
 
 interface HomePageProps {
   
@@ -35,8 +37,15 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   }
   
   return(
-    <Page id="tickerr-home-page" status={status}>   
-      <NVpnClickinator />
+    <Page id="tickerr-home-page" status={status}>  
+      <NVpnClickinator /> 
+      <UpdateBanner>
+        <i className="fad fa-sparkles" />
+        <UpdateBannerBody>
+          <h1 className="title">NEW</h1>
+          <h1 className="text">Sign In to save your settings! More features coming soon!</h1>
+        </UpdateBannerBody>
+      </UpdateBanner>
       {getTickerLinks()}  
       <NVpnClickinator />
       <h1 id="tickerr-username" className="passion-one-font">Made with ❤️ by vvaffleman</h1>
