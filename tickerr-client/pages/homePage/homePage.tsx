@@ -14,6 +14,7 @@ import { useUpdatePageTitleEffect } from "../../effects/appEffects";
 import { useTickersEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
+import { AppStatus } from "../../components/app/enums/appStatus";
 
 interface HomePageProps {
   
@@ -36,17 +37,25 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
       </div>
     );
   }
+
+  const getUpdateBanner = (): JSX.Element => {
+    if(appState.status === AppStatus.SignedOut) {
+      return (
+        <UpdateBanner>
+          <UpdateBannerIcon icon="fad fa-sparkles" />
+          <UpdateBannerBody>
+            <h1 className="title">NEW</h1>
+            <h1 className="text">Sign In to save your settings! More features coming soon!</h1>
+          </UpdateBannerBody>
+        </UpdateBanner>
+      )
+    }
+  }
   
   return(
     <Page id="tickerr-home-page" status={status}>  
       <NVpnClickinator /> 
-      <UpdateBanner>
-        <UpdateBannerIcon icon="fad fa-sparkles" />
-        <UpdateBannerBody>
-          <h1 className="title">NEW</h1>
-          <h1 className="text">Sign In to save your settings! More features coming soon!</h1>
-        </UpdateBannerBody>
-      </UpdateBanner>
+      {getUpdateBanner()}
       {getTickerLinks()}  
       <NVpnClickinator />
       <h1 id="tickerr-username" className="passion-one-font">Made with ❤️ by vvaffleman</h1>
