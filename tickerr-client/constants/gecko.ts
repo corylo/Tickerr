@@ -220,7 +220,7 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
     "rank": 36,
     "symbol": "xtz",
     "geckoID": "tezos",
-    "tracked": false
+    "tracked": true
   },
   {
     "rank": 37,
