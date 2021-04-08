@@ -39,3 +39,11 @@
     }
   }
 }
+
+@include medium-phone-or-smaller {
+  #tickerr-home-page {
+    #tickerr-home-page-ticker-links {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    }
+  }
+}

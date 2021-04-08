@@ -6,7 +6,6 @@ import { auth } from "../../firebase";
 
 import { Button } from "../buttons/button";
 import { UserIcon } from "../userIcon/userIcon";
-import { TermlyPreferencesButton } from "../termlyPreferenceButton/termlyPreferencesButton";
 
 import { AppContext } from "../app/contexts/appContext";
 
@@ -93,7 +92,6 @@ export const UserMenuModal: React.FC<UserMenuModalProps> = (props: UserMenuModal
           <Button className="tickerr-user-menu-item passion-one-font" handleOnClick={() => dispatch(AppAction.ToggleSettings, !toggles.settings)}>
             Settings
           </Button>
-          <TermlyPreferencesButton />
           <Button className="tickerr-user-menu-item passion-one-font" url="https://legal.tickerr.tv" external>
             Legal
           </Button>

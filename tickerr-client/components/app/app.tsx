@@ -6,6 +6,7 @@ import { CyaPage } from "../../pages/cyaPage/cyaPage";
 import { HomePage } from "../../pages/homePage/homePage";
 import { TickerPage } from "../../pages/tickerPage/tickerPage";
 
+import { CookieAlert } from "../cookieAlert/cookieAlert";
 import { Navbar } from "../navbar/navbar";
 import { SettingsModal } from "../settingsModal/settingsModal";
 import { SignInModal } from "../signInModal/signInModal";
@@ -46,6 +47,7 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
         <SignInModal />
         <SettingsModal />
         <UserMenu />
+        <CookieAlert />
         <Switch>
           <Route exact path="/">
             <HomePage />
