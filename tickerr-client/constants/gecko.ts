@@ -232,7 +232,7 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
       "name": "NEM",
       "symbol": "xem",
       "geckoID": "nem",
-      "tracked": false
+      "tracked": true
   },
   {
       "name": "Kusama",
