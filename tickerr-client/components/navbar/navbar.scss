@@ -104,3 +104,13 @@
     }    
   }
 }
+
+@include small-phone-or-smaller {
+  #tickerr-navbar {  
+    .tickerr-brand {
+      h1 {
+        display: none;
+      }
+    }
+  }
+}
