@@ -1,5 +1,5 @@
 export interface IGeckoCoinSymbolMapItem {
-  rank: number;
+  name: string;
   symbol: string;
   geckoID: string;
   tracked: boolean;
@@ -7,609 +7,1203 @@ export interface IGeckoCoinSymbolMapItem {
 
 export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
   {
-    "rank": 1,
-    "symbol": "btc",
-    "geckoID": "bitcoin",
-    "tracked": true
+      "name": "Bitcoin",
+      "symbol": "btc",
+      "geckoID": "bitcoin",
+      "tracked": true
   },
   {
-    "rank": 2,
-    "symbol": "eth",
-    "geckoID": "ethereum",
-    "tracked": true
+      "name": "Ethereum",
+      "symbol": "eth",
+      "geckoID": "ethereum",
+      "tracked": true
   },
   {
-    "rank": 3,
-    "symbol": "ada",
-    "geckoID": "cardano",
-    "tracked": true
+      "name": "Binance Coin",
+      "symbol": "bnb",
+      "geckoID": "binancecoin",
+      "tracked": true
   },
   {
-    "rank": 4,
-    "symbol": "bnb",
-    "geckoID": "binancecoin",
-    "tracked": true
+      "name": "XRP",
+      "symbol": "xrp",
+      "geckoID": "ripple",
+      "tracked": true
   },
   {
-    "rank": 5,
-    "symbol": "usdt",
-    "geckoID": "tether",
-    "tracked": true
+      "name": "Tether",
+      "symbol": "usdt",
+      "geckoID": "tether",
+      "tracked": true
   },
   {
-    "rank": 6,
-    "symbol": "dot",
-    "geckoID": "polkadot",
-    "tracked": true
+      "name": "Cardano",
+      "symbol": "ada",
+      "geckoID": "cardano",
+      "tracked": true
   },
   {
-    "rank": 7,
-    "symbol": "xrp",
-    "geckoID": "ripple",
-    "tracked": true
+      "name": "Polkadot",
+      "symbol": "dot",
+      "geckoID": "polkadot",
+      "tracked": true
   },
   {
-    "rank": 8,
-    "symbol": "uni",
-    "geckoID": "uniswap",
-    "tracked": true
+      "name": "Uniswap",
+      "symbol": "uni",
+      "geckoID": "uniswap",
+      "tracked": true
   },
   {
-    "rank": 9,
-    "symbol": "ltc",
-    "geckoID": "litecoin",
-    "tracked": true
+      "name": "Litecoin",
+      "symbol": "ltc",
+      "geckoID": "litecoin",
+      "tracked": true
   },
   {
-    "rank": 10,
-    "symbol": "link",
-    "geckoID": "chainlink",
-    "tracked": true
+      "name": "Stellar",
+      "symbol": "xlm",
+      "geckoID": "stellar",
+      "tracked": true
   },
   {
-    "rank": 11,
-    "symbol": "bch",
-    "geckoID": "bitcoin-cash",
-    "tracked": true
+      "name": "Chainlink",
+      "symbol": "link",
+      "geckoID": "chainlink",
+      "tracked": true
   },
   {
-    "rank": 12,
-    "symbol": "usdc",
-    "geckoID": "usd-coin",
-    "tracked": true
+      "name": "Bitcoin Cash",
+      "symbol": "bch",
+      "geckoID": "bitcoin-cash",
+      "tracked": true
   },
   {
-    "rank": 13,
-    "symbol": "xlm",
-    "geckoID": "stellar",
-    "tracked": true
+      "name": "Theta Network",
+      "symbol": "theta",
+      "geckoID": "theta-token",
+      "tracked": true
   },
   {
-    "rank": 14,
-    "symbol": "theta",
-    "geckoID": "theta-token",
-    "tracked": true
+      "name": "Dogecoin",
+      "symbol": "doge",
+      "geckoID": "dogecoin",
+      "tracked": true
   },
   {
-    "rank": 15,
-    "symbol": "luna",
-    "geckoID": "terra-luna",
-    "tracked": true
+      "name": "USD Coin",
+      "symbol": "usdc",
+      "geckoID": "usd-coin",
+      "tracked": true
   },
   {
-    "rank": 16,
-    "symbol": "wbtc",
-    "geckoID": "wrapped-bitcoin",
-    "tracked": true
+      "name": "Filecoin",
+      "symbol": "fil",
+      "geckoID": "filecoin",
+      "tracked": true
   },
   {
-    "rank": 17,
-    "symbol": "doge",
-    "geckoID": "dogecoin",
-    "tracked": true
+      "name": "TRON",
+      "symbol": "trx",
+      "geckoID": "tron",
+      "tracked": true
   },
   {
-    "rank": 18,
-    "symbol": "cro",
-    "geckoID": "crypto-com-chain",
-    "tracked": true
+      "name": "VeChain",
+      "symbol": "vet",
+      "geckoID": "vechain",
+      "tracked": true
   },
   {
-    "rank": 19,
-    "symbol": "vet",
-    "geckoID": "vechain",
-    "tracked": true
+      "name": "Wrapped Bitcoin",
+      "symbol": "wbtc",
+      "geckoID": "wrapped-bitcoin",
+      "tracked": true
   },
   {
-    "rank": 20,
-    "symbol": "atom",
-    "geckoID": "cosmos",
-    "tracked": true
+      "name": "Solana",
+      "symbol": "sol",
+      "geckoID": "solana",
+      "tracked": true
   },
   {
-    "rank": 21,
-    "symbol": "AVAX",
-    "geckoID": "avalanche-2",
-    "tracked": true
+      "name": "EOS",
+      "symbol": "eos",
+      "geckoID": "eos",
+      "tracked": true
   },
   {
-    "rank": 22,
-    "symbol": "fil",
-    "geckoID": "filecoin",
-    "tracked": true
+      "name": "Terra",
+      "symbol": "luna",
+      "geckoID": "terra-luna",
+      "tracked": true
   },
   {
-    "rank": 23,
-    "symbol": "aave",
-    "geckoID": "aave",
-    "tracked": true
+      "name": "Crypto.com Coin",
+      "symbol": "cro",
+      "geckoID": "crypto-com-chain",
+      "tracked": true
   },
   {
-    "rank": 24,
-    "symbol": "bsv",
-    "geckoID": "bitcoin-cash-sv",
-    "tracked": true
+      "name": "Monero",
+      "symbol": "xmr",
+      "geckoID": "monero",
+      "tracked": true
   },
   {
-    "rank": 25,
-    "symbol": "xmr",
-    "geckoID": "monero",
-    "tracked": true
+      "name": "cETH",
+      "symbol": "ceth",
+      "geckoID": "compound-ether",
+      "tracked": true
   },
   {
-    "rank": 26,
-    "symbol": "trx",
-    "geckoID": "tron",
-    "tracked": true
+      "name": "IOTA",
+      "symbol": "miota",
+      "geckoID": "iota",
+      "tracked": true
   },
   {
-    "rank": 27,
-    "symbol": "eos",
-    "geckoID": "eos",
-    "tracked": true
+      "name": "Cosmos",
+      "symbol": "atom",
+      "geckoID": "cosmos",
+      "tracked": true
   },
   {
-    "rank": 28,
-    "symbol": "okb",
-    "geckoID": "okb",
-    "tracked": true
+      "name": "OKB",
+      "symbol": "okb",
+      "geckoID": "okb",
+      "tracked": true
   },
   {
-    "rank": 29,
-    "symbol": "sol",
-    "geckoID": "solana",
-    "tracked": true
+      "name": "BitTorrent",
+      "symbol": "btt",
+      "geckoID": "bittorrent-2",
+      "tracked": true
   },
   {
-    "rank": 30,
-    "symbol": "miota",
-    "geckoID": "iota",
-    "tracked": true
+      "name": "Bitcoin SV",
+      "symbol": "bsv",
+      "geckoID": "bitcoin-cash-sv",
+      "tracked": true
   },
   {
-    "rank": 31,
-    "symbol": "ftt",
-    "geckoID": "ftx-token",
-    "tracked": true
+      "name": "Binance USD",
+      "symbol": "busd",
+      "geckoID": "binance-usd",
+      "tracked": false
   },
   {
-    "rank": 32,
-    "symbol": "ksm",
-    "geckoID": "kusama",
-    "tracked": true
+      "name": "Tezos",
+      "symbol": "xtz",
+      "geckoID": "tezos",
+      "tracked": true
   },
   {
-    "rank": 33,
-    "symbol": "xem",
-    "geckoID": "nem",
-    "tracked": false
+      "name": "Aave",
+      "symbol": "aave",
+      "geckoID": "aave",
+      "tracked": true
   },
   {
-    "rank": 34,
-    "symbol": "algo",
-    "geckoID": "algorand",
-    "tracked": false
+      "name": "NEO",
+      "symbol": "neo",
+      "geckoID": "neo",
+      "tracked": false
   },
   {
-    "rank": 35,
-    "symbol": "chz",
-    "geckoID": "chiliz",
-    "tracked": false
+      "name": "FTX Token",
+      "symbol": "ftt",
+      "geckoID": "ftx-token",
+      "tracked": true
   },
   {
-    "rank": 36,
-    "symbol": "xtz",
-    "geckoID": "tezos",
-    "tracked": true
+      "name": "Avalanche",
+      "symbol": "AVAX",
+      "geckoID": "avalanche-2",
+      "tracked": true
   },
   {
-    "rank": 37,
-    "symbol": "neo",
-    "geckoID": "neo",
-    "tracked": false
+      "name": "Algorand",
+      "symbol": "algo",
+      "geckoID": "algorand",
+      "tracked": false
   },
   {
-    "rank": 38,
-    "symbol": "busd",
-    "geckoID": "binance-usd",
-    "tracked": false
+      "name": "NEM",
+      "symbol": "xem",
+      "geckoID": "nem",
+      "tracked": false
   },
   {
-    "rank": 39,
-    "symbol": "snx",
-    "geckoID": "havven",
-    "tracked": false
+      "name": "Kusama",
+      "symbol": "ksm",
+      "geckoID": "kusama",
+      "tracked": true
   },
   {
-    "rank": 40,
-    "symbol": "dai",
-    "geckoID": "dai",
-    "tracked": false
+      "name": "Huobi Token",
+      "symbol": "ht",
+      "geckoID": "huobi-token",
+      "tracked": false
   },
   {
-    "rank": 41,
-    "symbol": "sushi",
-    "geckoID": "sushi",
-    "tracked": false
+      "name": "Elrond",
+      "symbol": "egld",
+      "geckoID": "elrond-erd-2",
+      "tracked": false
   },
   {
-    "rank": 42,
-    "symbol": "ceth",
-    "geckoID": "compound-ether",
-    "tracked": true
+      "name": "PancakeSwap",
+      "symbol": "cake",
+      "geckoID": "pancakeswap-token",
+      "tracked": false
   },
   {
-    "rank": 43,
-    "symbol": "hbar",
-    "geckoID": "hedera-hashgraph",
-    "tracked": false
+      "name": "cDAI",
+      "symbol": "cdai",
+      "geckoID": "cdai",
+      "tracked": false
   },
   {
-    "rank": 44,
-    "symbol": "cdai",
-    "geckoID": "cdai",
-    "tracked": false
+      "name": "cUSDC",
+      "symbol": "cusdc",
+      "geckoID": "compound-usd-coin",
+      "tracked": false
   },
   {
-    "rank": 45,
-    "symbol": "cusdc",
-    "geckoID": "compound-usd-coin",
-    "tracked": false
+      "name": "Holo",
+      "symbol": "hot",
+      "geckoID": "holotoken",
+      "tracked": false
   },
   {
-    "rank": 46,
-    "symbol": "ht",
-    "geckoID": "huobi-token",
-    "tracked": false
+      "name": "Dai",
+      "symbol": "dai",
+      "geckoID": "dai",
+      "tracked": false
   },
   {
-    "rank": 47,
-    "symbol": "enj",
-    "geckoID": "enjincoin",
-    "tracked": false
+      "name": "Synthetix Network Token",
+      "symbol": "snx",
+      "geckoID": "havven",
+      "tracked": false
   },
   {
-    "rank": 48,
-    "symbol": "egld",
-    "geckoID": "elrond-erd-2",
-    "tracked": false
+      "name": "Dash",
+      "symbol": "dash",
+      "geckoID": "dash",
+      "tracked": false
   },
   {
-    "rank": 49,
-    "symbol": "dash",
-    "geckoID": "dash",
-    "tracked": false
+      "name": "Enjin Coin",
+      "symbol": "enj",
+      "geckoID": "enjincoin",
+      "tracked": false
   },
   {
-    "rank": 50,
-    "symbol": "zil",
-    "geckoID": "zilliqa",
-    "tracked": false
+      "name": "THORChain",
+      "symbol": "rune",
+      "geckoID": "thorchain",
+      "tracked": false
   },
   {
-    "rank": 51,
-    "symbol": "omi",
-    "geckoID": "ecomi",
-    "tracked": false
+      "name": "Chiliz",
+      "symbol": "chz",
+      "geckoID": "chiliz",
+      "tracked": false
   },
   {
-    "rank": 52,
-    "symbol": "grt",
-    "geckoID": "the-graph",
-    "tracked": false
+      "name": "Hedera Hashgraph",
+      "symbol": "hbar",
+      "geckoID": "hedera-hashgraph",
+      "tracked": false
   },
   {
-    "rank": 53,
-    "symbol": "dcr",
-    "geckoID": "decred",
-    "tracked": false
+      "name": "Ethereum Classic",
+      "symbol": "etc",
+      "geckoID": "ethereum-classic",
+      "tracked": false
   },
   {
-    "rank": 54,
-    "symbol": "matic",
-    "geckoID": "matic-network",
-    "tracked": false
+      "name": "Celsius Network",
+      "symbol": "cel",
+      "geckoID": "celsius-degree-token",
+      "tracked": false
   },
   {
-    "rank": 55,
-    "symbol": "near",
-    "geckoID": "near",
-    "tracked": false
+      "name": "Decred",
+      "symbol": "dcr",
+      "geckoID": "decred",
+      "tracked": false
   },
   {
-    "rank": 56,
-    "symbol": "leo",
-    "geckoID": "leo-token",
-    "tracked": false
+      "name": "Zcash",
+      "symbol": "zec",
+      "geckoID": "zcash",
+      "tracked": false
   },
   {
-    "rank": 57,
-    "symbol": "cel",
-    "geckoID": "celsius-degree-token",
-    "tracked": false
+      "name": "Zilliqa",
+      "symbol": "zil",
+      "geckoID": "zilliqa",
+      "tracked": false
   },
   {
-    "rank": 58,
-    "symbol": "comp",
-    "geckoID": "compound-governance-token",
-    "tracked": false
+      "name": "The Graph",
+      "symbol": "grt",
+      "geckoID": "the-graph",
+      "tracked": false
   },
   {
-    "rank": 59,
-    "symbol": "mkr",
-    "geckoID": "maker",
-    "tracked": false
+      "name": "Compound",
+      "symbol": "comp",
+      "geckoID": "compound-governance-token",
+      "tracked": false
   },
   {
-    "rank": 60,
-    "symbol": "rvn",
-    "geckoID": "ravencoin",
-    "tracked": true
+      "name": "Near",
+      "symbol": "near",
+      "geckoID": "near",
+      "tracked": false
   },
   {
-    "rank": 61,
-    "symbol": "bat",
-    "geckoID": "basic-attention-token",
-    "tracked": false
+      "name": "Maker",
+      "symbol": "mkr",
+      "geckoID": "maker",
+      "tracked": false
   },
   {
-    "rank": 62,
-    "symbol": "hbtc",
-    "geckoID": "huobi-btc",
-    "tracked": false
+      "name": "Stacks",
+      "symbol": "stx",
+      "geckoID": "blockstack",
+      "tracked": false
   },
   {
-    "rank": 63,
-    "symbol": "zec",
-    "geckoID": "zcash",
-    "tracked": false
+      "name": "Sushi",
+      "symbol": "sushi",
+      "geckoID": "sushi",
+      "tracked": false
   },
   {
-    "rank": 64,
-    "symbol": "nexo",
-    "geckoID": "nexo",
-    "tracked": false
+      "name": "Basic Attention Token",
+      "symbol": "bat",
+      "geckoID": "basic-attention-token",
+      "tracked": false
   },
   {
-    "rank": 65,
-    "symbol": "uma",
-    "geckoID": "uma",
-    "tracked": false
+      "name": "LEO Token",
+      "symbol": "leo",
+      "geckoID": "leo-token",
+      "tracked": false
   },
   {
-    "rank": 66,
-    "symbol": "stx",
-    "geckoID": "blockstack",
-    "tracked": false
+      "name": "Polygon",
+      "symbol": "matic",
+      "geckoID": "matic-network",
+      "tracked": false
   },
   {
-    "rank": 67,
-    "symbol": "etc",
-    "geckoID": "ethereum-classic",
-    "tracked": false
+      "name": "NEXO",
+      "symbol": "nexo",
+      "geckoID": "nexo",
+      "tracked": false
   },
   {
-    "rank": 68,
-    "symbol": "xsushi",
-    "geckoID": "xsushi",
-    "tracked": false
+      "name": "Bitcoin Gold",
+      "symbol": "btg",
+      "geckoID": "bitcoin-gold",
+      "tracked": false
   },
   {
-    "rank": 69,
-    "symbol": "hot",
-    "geckoID": "holotoken",
-    "tracked": false
+      "name": "0x",
+      "symbol": "zrx",
+      "geckoID": "0x",
+      "tracked": false
   },
   {
-    "rank": 70,
-    "symbol": "cake",
-    "geckoID": "pancakeswap-token",
-    "tracked": false
+      "name": "TerraUSD",
+      "symbol": "ust",
+      "geckoID": "terrausd",
+      "tracked": false
   },
   {
-    "rank": 71,
-    "symbol": "btt",
-    "geckoID": "bittorrent-2",
-    "tracked": true
+      "name": "Huobi BTC",
+      "symbol": "hbtc",
+      "geckoID": "huobi-btc",
+      "tracked": false
   },
   {
-    "rank": 72,
-    "symbol": "bnt",
-    "geckoID": "bancor",
-    "tracked": false
+      "name": "yearn.finance",
+      "symbol": "yfi",
+      "geckoID": "yearn-finance",
+      "tracked": false
   },
   {
-    "rank": 73,
-    "symbol": "rune",
-    "geckoID": "thorchain",
-    "tracked": false
+      "name": "Ravencoin",
+      "symbol": "rvn",
+      "geckoID": "ravencoin",
+      "tracked": true
   },
   {
-    "rank": 74,
-    "symbol": "yfi",
-    "geckoID": "yearn-finance",
-    "tracked": false
+      "name": "UMA",
+      "symbol": "uma",
+      "geckoID": "uma",
+      "tracked": false
   },
   {
-    "rank": 75,
-    "symbol": "mana",
-    "geckoID": "decentraland",
-    "tracked": false
+      "name": "Qtum",
+      "symbol": "qtum",
+      "geckoID": "qtum",
+      "tracked": false
   },
   {
-    "rank": 76,
-    "symbol": "ust",
-    "geckoID": "terrausd",
-    "tracked": false
+      "name": "Fei Protocol",
+      "symbol": "fei",
+      "geckoID": "fei-protocol",
+      "tracked": false
   },
   {
-    "rank": 77,
-    "symbol": "chsb",
-    "geckoID": "swissborg",
-    "tracked": false
+      "name": "Waves",
+      "symbol": "waves",
+      "geckoID": "waves",
+      "tracked": false
   },
   {
-    "rank": 78,
-    "symbol": "npxs",
-    "geckoID": "pundi-x",
-    "tracked": false
+      "name": "Ontology",
+      "symbol": "ont",
+      "geckoID": "ontology",
+      "tracked": false
   },
   {
-    "rank": 79,
-    "symbol": "rsr",
-    "geckoID": "reserve-rights-token",
-    "tracked": false
+      "name": "ICON",
+      "symbol": "icx",
+      "geckoID": "icon",
+      "tracked": false
   },
   {
-    "rank": 80,
-    "symbol": "zrx",
-    "geckoID": "0x",
-    "tracked": false
+      "name": "Decentraland",
+      "symbol": "mana",
+      "geckoID": "decentraland",
+      "tracked": false
   },
   {
-    "rank": 81,
-    "symbol": "icx",
-    "geckoID": "icon",
-    "tracked": false
+      "name": "Flow",
+      "symbol": "flow",
+      "geckoID": "flow",
+      "tracked": false
   },
   {
-    "rank": 82,
-    "symbol": "sc",
-    "geckoID": "siacoin",
-    "tracked": false
+      "name": "Harmony",
+      "symbol": "one",
+      "geckoID": "harmony",
+      "tracked": false
   },
   {
-    "rank": 83,
-    "symbol": "one",
-    "geckoID": "harmony",
-    "tracked": false
+      "name": "ECOMI",
+      "symbol": "omi",
+      "geckoID": "ecomi",
+      "tracked": false
   },
   {
-    "rank": 84,
-    "symbol": "vgx",
-    "geckoID": "ethos",
-    "tracked": false
+      "name": "OMG Network",
+      "symbol": "omg",
+      "geckoID": "omisego",
+      "tracked": false
   },
   {
-    "rank": 85,
-    "symbol": "ftm",
-    "geckoID": "fantom",
-    "tracked": false
+      "name": "Siacoin",
+      "symbol": "sc",
+      "geckoID": "siacoin",
+      "tracked": false
   },
   {
-    "rank": 86,
-    "symbol": "waves",
-    "geckoID": "waves",
-    "tracked": false
+      "name": "KuCoin Token",
+      "symbol": "kcs",
+      "geckoID": "kucoin-shares",
+      "tracked": false
   },
   {
-    "rank": 87,
-    "symbol": "dgb",
-    "geckoID": "digibyte",
-    "tracked": false
+      "name": "Bancor Network Token",
+      "symbol": "bnt",
+      "geckoID": "bancor",
+      "tracked": false
   },
   {
-    "rank": 88,
-    "symbol": "flow",
-    "geckoID": "flow",
-    "tracked": false
+      "name": "Helium",
+      "symbol": "hnt",
+      "geckoID": "helium",
+      "tracked": false
   },
   {
-    "rank": 89,
-    "symbol": "amp",
-    "geckoID": "amp-token",
-    "tracked": false
+      "name": "WINk",
+      "symbol": "win",
+      "geckoID": "wink",
+      "tracked": false
   },
   {
-    "rank": 90,
-    "symbol": "btmx",
-    "geckoID": "bmax",
-    "tracked": false
+      "name": "DigiByte",
+      "symbol": "dgb",
+      "geckoID": "digibyte",
+      "tracked": false
   },
   {
-    "rank": 91,
-    "symbol": "ren",
-    "geckoID": "republic-protocol",
-    "tracked": false
+      "name": "Ankr",
+      "symbol": "ankr",
+      "geckoID": "ankr",
+      "tracked": false
   },
   {
-    "rank": 92,
-    "symbol": "ont",
-    "geckoID": "ontology",
-    "tracked": false
+      "name": "IOST",
+      "symbol": "iost",
+      "geckoID": "iostoken",
+      "tracked": false
   },
   {
-    "rank": 93,
-    "symbol": "iost",
-    "geckoID": "iostoken",
-    "tracked": false
+      "name": "Arweave",
+      "symbol": "ar",
+      "geckoID": "arweave",
+      "tracked": false
   },
   {
-    "rank": 94,
-    "symbol": "omg",
-    "geckoID": "omisego",
-    "tracked": false
+      "name": "Reserve Rights Token",
+      "symbol": "rsr",
+      "geckoID": "reserve-rights-token",
+      "tracked": false
   },
   {
-    "rank": 95,
-    "symbol": "ar",
-    "geckoID": "arweave",
-    "tracked": false
+      "name": "Pundi X",
+      "symbol": "pundix",
+      "geckoID": "pundi-x-2",
+      "tracked": false
   },
   {
-    "rank": 96,
-    "symbol": "renbtc",
-    "geckoID": "renbtc",
-    "tracked": false
+      "name": "Dent",
+      "symbol": "dent",
+      "geckoID": "dent",
+      "tracked": false
   },
   {
-    "rank": 97,
-    "symbol": "1inch",
-    "geckoID": "1inch",
-    "tracked": false
+      "name": "Voyager Token",
+      "symbol": "vgx",
+      "geckoID": "ethos",
+      "tracked": false
   },
   {
-    "rank": 98,
-    "symbol": "qtum",
-    "geckoID": "qtum",
-    "tracked": false
+      "name": "Fantom",
+      "symbol": "ftm",
+      "geckoID": "fantom",
+      "tracked": false
   },
   {
-    "rank": 99,
-    "symbol": "lrc",
-    "geckoID": "loopring",
-    "tracked": false
+      "name": "Amp",
+      "symbol": "amp",
+      "geckoID": "amp-token",
+      "tracked": false
   },
   {
-    "rank": 100,
-    "symbol": "pax",
-    "geckoID": "paxos-standard",
-    "tracked": false
+      "name": "Pundi X [OLD]",
+      "symbol": "npxs",
+      "geckoID": "pundi-x",
+      "tracked": false
   },
   {
-    "rank": 143,
-    "symbol": "vtho",
-    "geckoID": "vethor-token",
-    "tracked": true
+      "name": "Bitmax Token",
+      "symbol": "btmx",
+      "geckoID": "bmax",
+      "tracked": false
+  },
+  {
+      "name": "SwissBorg",
+      "symbol": "chsb",
+      "geckoID": "swissborg",
+      "tracked": false
+  },
+  {
+      "name": "XDC Network",
+      "symbol": "xdc",
+      "geckoID": "xdce-crowd-sale",
+      "tracked": false
+  },
+  {
+      "name": "xSUSHI",
+      "symbol": "xsushi",
+      "geckoID": "xsushi",
+      "tracked": false
+  },
+  {
+      "name": "Lisk",
+      "symbol": "lsk",
+      "geckoID": "lisk",
+      "tracked": false
+  },
+  {
+      "name": "Paxos Standard",
+      "symbol": "pax",
+      "geckoID": "paxos-standard",
+      "tracked": false
+  },
+  {
+      "name": "REN",
+      "symbol": "ren",
+      "geckoID": "republic-protocol",
+      "tracked": false
+  },
+  {
+      "name": "Horizen",
+      "symbol": "zen",
+      "geckoID": "zencash",
+      "tracked": false
+  },
+  {
+      "name": "1inch",
+      "symbol": "1inch",
+      "geckoID": "1inch",
+      "tracked": false
+  },
+  {
+      "name": "Curve DAO Token",
+      "symbol": "crv",
+      "geckoID": "curve-dao-token",
+      "tracked": false
+  },
+  {
+      "name": "Status",
+      "symbol": "SNT",
+      "geckoID": "status",
+      "tracked": false
+  },
+  {
+      "name": "renBTC",
+      "symbol": "renbtc",
+      "geckoID": "renbtc",
+      "tracked": false
+  },
+  {
+      "name": "Venus",
+      "symbol": "xvs",
+      "geckoID": "venus",
+      "tracked": false
+  },
+  {
+      "name": "WazirX",
+      "symbol": "wrx",
+      "geckoID": "wazirx",
+      "tracked": false
+  },
+  {
+      "name": "Loopring",
+      "symbol": "lrc",
+      "geckoID": "loopring",
+      "tracked": false
+  },
+  {
+      "name": "Nano",
+      "symbol": "nano",
+      "geckoID": "nano",
+      "tracked": false
+  },
+  {
+      "name": "Bitcoin Cash ABC",
+      "symbol": "bcha",
+      "geckoID": "bitcoin-cash-abc-2",
+      "tracked": false
+  },
+  {
+      "name": "HUSD",
+      "symbol": "husd",
+      "geckoID": "husd",
+      "tracked": false
+  },
+  {
+      "name": "Kyber Network",
+      "symbol": "knc",
+      "geckoID": "kyber-network",
+      "tracked": false
+  },
+  {
+      "name": "Nervos Network",
+      "symbol": "ckb",
+      "geckoID": "nervos-network",
+      "tracked": false
+  },
+  {
+      "name": "Livepeer",
+      "symbol": "lpt",
+      "geckoID": "livepeer",
+      "tracked": false
+  },
+  {
+      "name": "Ocean Protocol",
+      "symbol": "ocean",
+      "geckoID": "ocean-protocol",
+      "tracked": false
+  },
+  {
+      "name": "ZKSwap",
+      "symbol": "zks",
+      "geckoID": "zkswap",
+      "tracked": false
+  },
+  {
+      "name": "cUSDT",
+      "symbol": "cusdt",
+      "geckoID": "compound-usdt",
+      "tracked": false
+  },
+  {
+      "name": "Verge",
+      "symbol": "xvg",
+      "geckoID": "verge",
+      "tracked": false
+  },
+  {
+      "name": "GateToken",
+      "symbol": "gt",
+      "geckoID": "gatechain-token",
+      "tracked": false
+  },
+  {
+      "name": "Alien Worlds",
+      "symbol": "tlm",
+      "geckoID": "alien-worlds",
+      "tracked": false
+  },
+  {
+      "name": "Energy Web Token",
+      "symbol": "ewt",
+      "geckoID": "energy-web-token",
+      "tracked": false
+  },
+  {
+      "name": "Oxygen",
+      "symbol": "oxy",
+      "geckoID": "oxygen",
+      "tracked": false
+  },
+  {
+      "name": "BTC Standard Hashrate Token",
+      "symbol": "btcst",
+      "geckoID": "btc-standard-hashrate-token",
+      "tracked": false
+  },
+  {
+      "name": "Balancer",
+      "symbol": "bal",
+      "geckoID": "balancer",
+      "tracked": false
+  },
+  {
+      "name": "StormX",
+      "symbol": "stmx",
+      "geckoID": "storm",
+      "tracked": false
+  },
+  {
+      "name": "Nexus Mutual",
+      "symbol": "nxm",
+      "geckoID": "nxm",
+      "tracked": false
+  },
+  {
+      "name": "Tokamak Network",
+      "symbol": "ton",
+      "geckoID": "tokamak-network",
+      "tracked": false
+  },
+  {
+      "name": "MaidSafeCoin",
+      "symbol": "maid",
+      "geckoID": "maidsafecoin",
+      "tracked": false
+  },
+  {
+      "name": "Golem",
+      "symbol": "glm",
+      "geckoID": "golem",
+      "tracked": false
+  },
+  {
+      "name": "Tribe",
+      "symbol": "tribe",
+      "geckoID": "tribe-2",
+      "tracked": false
+  },
+  {
+      "name": "Mirror Protocol",
+      "symbol": "mir",
+      "geckoID": "mirror-protocol",
+      "tracked": false
+  },
+  {
+      "name": "NKN",
+      "symbol": "nkn",
+      "geckoID": "nkn",
+      "tracked": false
+  },
+  {
+      "name": "Medibloc",
+      "symbol": "med",
+      "geckoID": "medibloc",
+      "tracked": false
+  },
+  {
+      "name": "DODO",
+      "symbol": "dodo",
+      "geckoID": "dodo",
+      "tracked": false
+  },
+  {
+      "name": "Ardor",
+      "symbol": "ardr",
+      "geckoID": "ardor",
+      "tracked": false
+  },
+  {
+      "name": "Quant",
+      "symbol": "qnt",
+      "geckoID": "quant-network",
+      "tracked": false
+  },
+  {
+      "name": "VeThor Token",
+      "symbol": "vtho",
+      "geckoID": "vethor-token",
+      "tracked": true
+  },
+  {
+      "name": "Origin Protocol",
+      "symbol": "ogn",
+      "geckoID": "origin-protocol",
+      "tracked": false
+  },
+  {
+      "name": "Bitcoin Diamond",
+      "symbol": "bcd",
+      "geckoID": "bitcoin-diamond",
+      "tracked": false
+  },
+  {
+      "name": "Lido Staked Ether",
+      "symbol": "steth",
+      "geckoID": "staked-ether",
+      "tracked": false
+  },
+  {
+      "name": "Reef Finance",
+      "symbol": "reef",
+      "geckoID": "reef-finance",
+      "tracked": false
+  },
+  {
+      "name": "Pirate Chain",
+      "symbol": "arrr",
+      "geckoID": "pirate-chain",
+      "tracked": false
+  },
+  {
+      "name": "Mdex",
+      "symbol": "mdx",
+      "geckoID": "mdex",
+      "tracked": false
+  },
+  {
+      "name": "Kin",
+      "symbol": "kin",
+      "geckoID": "kin",
+      "tracked": false
+  },
+  {
+      "name": "Celo",
+      "symbol": "celo",
+      "geckoID": "celo",
+      "tracked": false
+  },
+  {
+      "name": "Steem",
+      "symbol": "steem",
+      "geckoID": "steem",
+      "tracked": false
+  },
+  {
+      "name": "SingularityNET",
+      "symbol": "agi",
+      "geckoID": "singularitynet",
+      "tracked": false
+  },
+  {
+      "name": "Electroneum",
+      "symbol": "etn",
+      "geckoID": "electroneum",
+      "tracked": false
+  },
+  {
+      "name": "SKALE",
+      "symbol": "skl",
+      "geckoID": "skale",
+      "tracked": false
+  },
+  {
+      "name": "Komodo",
+      "symbol": "kmd",
+      "geckoID": "komodo",
+      "tracked": false
+  },
+  {
+      "name": "SAND",
+      "symbol": "sand",
+      "geckoID": "the-sandbox",
+      "tracked": false
+  },
+  {
+      "name": "Band Protocol",
+      "symbol": "band",
+      "geckoID": "band-protocol",
+      "tracked": false
+  },
+  {
+      "name": "HBTC Captain Token",
+      "symbol": "hbc",
+      "geckoID": "hbtc-token",
+      "tracked": false
+  },
+  {
+      "name": "Axie Infinity",
+      "symbol": "axs",
+      "geckoID": "axie-infinity",
+      "tracked": false
+  },
+  {
+      "name": "Civic",
+      "symbol": "cvc",
+      "geckoID": "civic",
+      "tracked": false
+  },
+  {
+      "name": "Fetch.ai",
+      "symbol": "fet",
+      "geckoID": "fetch-ai",
+      "tracked": false
+  },
+  {
+      "name": "WAX",
+      "symbol": "waxp",
+      "geckoID": "wax",
+      "tracked": false
+  },
+  {
+      "name": "RedFOX Labs",
+      "symbol": "rfox",
+      "geckoID": "redfox-labs-2",
+      "tracked": false
+  },
+  {
+      "name": "Numeraire",
+      "symbol": "nmr",
+      "geckoID": "numeraire",
+      "tracked": false
+  },
+  {
+      "name": "FUNToken",
+      "symbol": "fun",
+      "geckoID": "funfair",
+      "tracked": false
+  },
+  {
+      "name": "Ark",
+      "symbol": "ark",
+      "geckoID": "ark",
+      "tracked": false
+  },
+  {
+      "name": "Orbs",
+      "symbol": "orbs",
+      "geckoID": "orbs",
+      "tracked": false
+  },
+  {
+      "name": "Polymath Network",
+      "symbol": "poly",
+      "geckoID": "polymath-network",
+      "tracked": false
+  },
+  {
+      "name": "Audius",
+      "symbol": "audio",
+      "geckoID": "audius",
+      "tracked": false
+  },
+  {
+      "name": "Swipe",
+      "symbol": "sxp",
+      "geckoID": "swipe",
+      "tracked": false
+  },
+  {
+      "name": "cUNI",
+      "symbol": "cuni",
+      "geckoID": "compound-uniswap",
+      "tracked": false
+  },
+  {
+      "name": "Telcoin",
+      "symbol": "tel",
+      "geckoID": "telcoin",
+      "tracked": false
+  },
+  {
+      "name": "Alpha Finance",
+      "symbol": "alpha",
+      "geckoID": "alpha-finance",
+      "tracked": false
+  },
+  {
+      "name": "Aragon",
+      "symbol": "ant",
+      "geckoID": "aragon",
+      "tracked": false
+  },
+  {
+      "name": "Wanchain",
+      "symbol": "wan",
+      "geckoID": "wanchain",
+      "tracked": false
+  },
+  {
+      "name": "PAID Network",
+      "symbol": "paid",
+      "geckoID": "paid-network",
+      "tracked": false
+  },
+  {
+      "name": "Kava.io",
+      "symbol": "kava",
+      "geckoID": "kava",
+      "tracked": false
+  },
+  {
+      "name": "SafePal",
+      "symbol": "sfp",
+      "geckoID": "safepal",
+      "tracked": false
+  },
+  {
+      "name": "Wootrade Network",
+      "symbol": "woo",
+      "geckoID": "wootrade-network",
+      "tracked": false
+  },
+  {
+      "name": "Serum",
+      "symbol": "srm",
+      "geckoID": "serum",
+      "tracked": false
+  },
+  {
+      "name": "Liquity USD",
+      "symbol": "lusd",
+      "geckoID": "liquity-usd",
+      "tracked": false
+  },
+  {
+      "name": "Metadium",
+      "symbol": "meta",
+      "geckoID": "metadium",
+      "tracked": false
+  },
+  {
+      "name": "Haven",
+      "symbol": "xhv",
+      "geckoID": "haven",
+      "tracked": false
+  },
+  {
+      "name": "Storj",
+      "symbol": "storj",
+      "geckoID": "storj",
+      "tracked": false
+  },
+  {
+      "name": "Celer Network",
+      "symbol": "celr",
+      "geckoID": "celer-network",
+      "tracked": false
+  },
+  {
+      "name": "Badger DAO",
+      "symbol": "badger",
+      "geckoID": "badger-dao",
+      "tracked": false
+  },
+  {
+      "name": "MATH",
+      "symbol": "math",
+      "geckoID": "math",
+      "tracked": false
+  },
+  {
+      "name": "Linear",
+      "symbol": "lina",
+      "geckoID": "linear",
+      "tracked": false
+  },
+  {
+      "name": "BitShares",
+      "symbol": "bts",
+      "geckoID": "bitshares",
+      "tracked": false
+  },
+  {
+      "name": "Akash Network",
+      "symbol": "akt",
+      "geckoID": "akash-network",
+      "tracked": false
+  },
+  {
+      "name": "Klever",
+      "symbol": "klv",
+      "geckoID": "klever",
+      "tracked": false
+  },
+  {
+      "name": "Rocket Pool",
+      "symbol": "rpl",
+      "geckoID": "rocket-pool",
+      "tracked": false
+  },
+  {
+      "name": "Augur",
+      "symbol": "rep",
+      "geckoID": "augur",
+      "tracked": false
+  },
+  {
+      "name": "Travala.com",
+      "symbol": "ava",
+      "geckoID": "concierge-io",
+      "tracked": false
+  },
+  {
+      "name": "Unibright",
+      "symbol": "ubt",
+      "geckoID": "unibright",
+      "tracked": false
+  },
+  {
+      "name": "Orion Protocol",
+      "symbol": "orn",
+      "geckoID": "orion-protocol",
+      "tracked": false
+  },
+  {
+      "name": "sETH",
+      "symbol": "seth",
+      "geckoID": "seth",
+      "tracked": false
+  },
+  {
+      "name": "Metal",
+      "symbol": "mtl",
+      "geckoID": "metal",
+      "tracked": false
   }
 ];

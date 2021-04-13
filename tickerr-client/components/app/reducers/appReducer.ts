@@ -126,6 +126,15 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
           menu: action.payload
         }
       }
+    case AppAction.ToggleSearch:
+      return {
+        ...state,
+        toggles: {
+          ...state.toggles,
+          menu: false,
+          search: action.payload
+        }
+      }
     case AppAction.ToggleSettings:
       return {
         ...state,

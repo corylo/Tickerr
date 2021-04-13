@@ -10,7 +10,7 @@ import { AnalyticsUtility } from "../../../../utilities/analyticsUtility";
 import { CurrencyUtility } from "../../../../utilities/currencyUtility";
 import { SettingsUtility } from "../../../../utilities/settingsUtility";
 
-import { CDN } from "../../../../enums/cdn";
+import { URL } from "../../../../enums/url";
 import { TickerStateAction } from "../../enums/tickerStateAction";
 
 interface TickerSidePanelProps {
@@ -37,7 +37,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
         id="ticker-icon-and-symbol" 
         onClick={handleOnClick}
       >
-        <img className="ticker-icon" src={`${CDN.Url}${ticker.icon.color}`} />
+        <img className="ticker-icon" src={`${URL.CDN}${ticker.icon.color}`} />
         <h1 className={classNames("ticker-symbol", SettingsUtility.getFontClass(appState.settings.font))}>{ticker.symbol}</h1>
       </button>
       <div id="ticker-side-panel-details-wrapper">

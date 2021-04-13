@@ -22,8 +22,8 @@ import { CurrencyUtility } from "../../utilities/currencyUtility";
 import { ITickerChartPoint } from "../../../tickerr-models/tickerChartPoint";
 import { defaultTickerState } from "./models/tickerState";
 
-import { CDN } from "../../enums/cdn";
 import { TickerStateAction } from "./enums/tickerStateAction";
+import { URL } from "../../enums/url";
 
 interface TickerPageProps {
   
@@ -33,7 +33,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
   const { appState } = useContext(AppContext);
   
   const [tickerState, dispatchToTickerState] = useReducer(tickerStateReducer, defaultTickerState());
-
+  
   const { errorMessage, status, sidePanelToggled, ticker, urlSymbol } = tickerState;
 
   const dispatch = (type: TickerStateAction, payload?: any): void => dispatchToTickerState({ type, payload });
@@ -69,7 +69,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
           <div id="ticker-stats-price-wrapper">
             <TickerPrice value={ticker.price} change={ticker.change.day} />
           </div>
-          <img id="ticker-stats-background-icon" src={`${CDN.Url}${ticker.icon.white}`} />
+          <img id="ticker-stats-background-icon" src={`${URL.CDN}${ticker.icon.white}`} />
           {memoizedTickerChart}
         </div>
       )

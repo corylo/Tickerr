@@ -30,6 +30,12 @@ export const tickerStateReducer = (state: ITickerState, action: IAction): ITicke
         ...state,
         urlSymbol: action.payload
       }
+    case TickerStateAction.SwitchTicker:
+      return {
+        ...state,
+        ticker: null,
+        urlSymbol: action.payload
+      }
     case TickerStateAction.ToggleSidePanel:
       return {
         ...state,

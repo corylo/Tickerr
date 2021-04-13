@@ -8,8 +8,8 @@ import { ITicker } from "../../tickerr-models/ticker";
 
 import { AppStatus } from "../components/app/enums/appStatus";
 import { Currency } from "../../tickerr-enums/currency";
-import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
+import { RequestStatus } from "../enums/requestStatus";
 
 export const useUpdateUrlSymbolEffect = (match: any, dispatch: (type: TickerStateAction, payload?: any) => void): void => {
   useEffect(() => {
@@ -20,9 +20,9 @@ export const useUpdateUrlSymbolEffect = (match: any, dispatch: (type: TickerStat
       match.params.symbol.length > 1 && 
       match.params.symbol.length < 20
     ) {      
-      dispatch(TickerStateAction.SetUrlSymbol, match.params.symbol);
+      dispatch(TickerStateAction.SwitchTicker, match.params.symbol);
     }
-  }, []);
+  }, [location.pathname]);
 }
 
 interface IUseTickersEffect {
@@ -64,6 +64,10 @@ export const useTickersEffect = (appState: IAppState, limit: number): IUseTicker
 
 export const useTickerEffect = (symbol: string, currency: Currency, dispatch: (type: TickerStateAction, payload?: any) => void): void => {  
   useEffect(() => {
+    if(status !== RequestStatus.Loading) {
+      dispatch(TickerStateAction.SetStatus, RequestStatus.Loading);
+    }
+
     if(symbol !== "") {
       const fetch = async () => {
         try {

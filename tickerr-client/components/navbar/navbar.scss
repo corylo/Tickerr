@@ -48,19 +48,6 @@
       text-transform: uppercase;
     }
 
-    .tickerr-navbar-button {
-      background-color: transparent;
-      border: none;
-      padding: 0px 10px;
-
-      i {
-        color: white;
-        font-size: 1.5em;
-        height: 50px;
-        line-height: 50px;
-      }
-    }
-
     #tickerr-sign-in-button {
       background-color: $themeColor;      
       color: white;
@@ -73,7 +60,8 @@
       }
     }
 
-    #tickerr-user-menu-button {
+    #tickerr-user-menu-button,
+    #tickerr-toggle-search-button {
       background-color: gray(60);
       height: 50px;
       margin-left: 10px;
@@ -94,5 +82,25 @@
         width: 40px;
       }
     }
+    
+    #tickerr-toggle-search-button {
+      display: none;
+
+      i {
+        color: white;
+        font-size: 1.25em;
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+@include small-tablet-or-smaller {
+  #tickerr-navbar {  
+    #tickerr-navbar-items {    
+      #tickerr-toggle-search-button {
+        display: inline-block;
+      }
+    }    
   }
 }

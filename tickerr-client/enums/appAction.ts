@@ -13,6 +13,7 @@ export enum AppAction {
   UpdateSettings = "Update Settings",
   ToggleCya = "Toggle Cya",
   ToggleMenu = "Toggle Menu",
+  ToggleSearch = "Toggle Search",
   ToggleSettings = "Toggle Settings",
   ToggleSignIn = "Toggle Sign In"
 }

@@ -12,7 +12,7 @@ import { SettingsUtility } from "../../utilities/settingsUtility";
 
 import { ITicker } from "../../../tickerr-models/ticker";
 
-import { CDN } from "../../enums/cdn";
+import { URL } from "../../enums/url";
 
 interface TickerLinkProps {
   ticker: ITicker;
@@ -29,9 +29,9 @@ export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) =>
   
   return(
     <Link to={`/${ticker.symbol}`} className={classNames("ticker-link", SettingsUtility.getFontClass(appState.settings.font))} onClick={handleOnClick}>
-      <h1 className="ticker-index passion-one-font">{ticker.rank}</h1>
-      <img className="ticker-icon" src={`${CDN.Url}${ticker.icon.color}`} />
-      <img className="ticker-background-icon" src={`${CDN.Url}${ticker.icon.white}`} />
+      <h1 className="ticker-index">{ticker.rank}</h1>
+      <img className="ticker-icon" src={`${URL.CDN}${ticker.icon.color}`} />
+      <img className="ticker-background-icon" src={`${URL.CDN}${ticker.icon.white}`} />
       <div className="ticker-symbol-and-price">
         <h1 className="ticker-symbol">{ticker.symbol}</h1>
         <TickerPrice value={ticker.price} />
