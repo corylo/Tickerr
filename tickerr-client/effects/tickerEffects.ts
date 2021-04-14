@@ -62,18 +62,26 @@ export const useTickersEffect = (appState: IAppState, limit: number): IUseTicker
   return state;
 }
 
-export const useTickerEffect = (symbol: string, currency: Currency, dispatch: (type: TickerStateAction, payload?: any) => void): void => {  
+export const useTickerEffect = (symbol: string, appState: IAppState, status: RequestStatus, dispatch: (type: TickerStateAction, payload?: any) => void): void => {  
+  const { settings, statuses } = appState;
+  
   useEffect(() => {
     if(status !== RequestStatus.Loading) {
       dispatch(TickerStateAction.SetStatus, RequestStatus.Loading);
     }
+  }, [symbol]);
 
-    if(symbol !== "") {
+  useEffect(() => {
+    if(
+      symbol !== "" && 
+      appState.status !== AppStatus.Loading && 
+      statuses.settings.is !== RequestStatus.Loading
+    ) {
       const fetch = async () => {
         try {
-          const ticker: ITicker = await TickerService.fetchTicker(symbol, currency);
-
-          ticker.chart = await TickerService.fetchChart(symbol, currency);
+          const ticker: ITicker = await TickerService.fetchTicker(symbol, settings.currency);
+          
+          ticker.chart = await TickerService.fetchChart(symbol, settings.currency);
 
           dispatch(TickerStateAction.SetTicker, ticker);
         } catch (err) {
@@ -91,5 +99,5 @@ export const useTickerEffect = (symbol: string, currency: Currency, dispatch: (t
         clearInterval(interval);
       }
     }
-  }, [symbol]);
+  }, [symbol, appState.status, statuses.settings.is]);
 }

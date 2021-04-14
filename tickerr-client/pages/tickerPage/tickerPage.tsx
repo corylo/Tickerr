@@ -50,7 +50,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   useUpdateUrlSymbolEffect(useRouteMatch(), dispatch);
 
-  useTickerEffect(urlSymbol, appState.settings.currency, dispatch);
+  useTickerEffect(urlSymbol, appState, status, dispatch);
 
   const chart: ITickerChartPoint[] = ticker ? ticker.chart : [];
 
