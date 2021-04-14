@@ -31,15 +31,15 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
       "tracked": true
   },
   {
-      "name": "Tether",
-      "symbol": "usdt",
-      "geckoID": "tether",
-      "tracked": true
-  },
-  {
       "name": "Cardano",
       "symbol": "ada",
       "geckoID": "cardano",
+      "tracked": true
+  },
+  {
+      "name": "Tether",
+      "symbol": "usdt",
+      "geckoID": "tether",
       "tracked": true
   },
   {
