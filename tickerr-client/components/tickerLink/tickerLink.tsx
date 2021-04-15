@@ -44,7 +44,10 @@ export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) =>
     if(!ticker.exists) {
       return (
         <div className="ticker-link-disabled-message">
-          <h1 className="permanent-marker">Will add soon!</h1>
+          <div className="ticker-link-disabled-message-text">
+            <h1 className="title">Will add soon!</h1>
+            <h1 className="sub-title">(Need to upload assets and whatnot)</h1>
+          </div>
         </div>
       )
     }
@@ -60,6 +63,7 @@ export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) =>
         <TickerPrice value={ticker.price} />
         <TickerChange change={ticker.change.day} />
       </div>
+      <h1 className="ticker-name">{ticker.name}</h1>
       {getDisabledMessage()}
     </Link>
   )

@@ -11,6 +11,16 @@
     }
   }
 
+  #tickerr-percent-change-legend-text {
+    color: gray(90);
+    margin-left: 10px;
+    text-transform: uppercase;
+
+    .text-highlight {
+      margin-left: 2px;
+    }
+  }
+
   #tickerr-home-page-ticker-links {
     display: grid;
     grid-gap: 1em;

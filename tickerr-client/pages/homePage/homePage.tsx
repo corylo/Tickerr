@@ -56,6 +56,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
     <Page id="tickerr-home-page" status={status}>  
       <NVpnClickinator /> 
       {getUpdateBanner()}
+      <h1 id="tickerr-percent-change-legend-text" className="passion-one-font">% change based on last <span className="text-highlight">24H</span></h1>
       {getTickerLinks()}  
       <NVpnClickinator />
       <h1 id="tickerr-username" className="passion-one-font">Made with ❤️ by vvaffleman</h1>

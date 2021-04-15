@@ -21,6 +21,10 @@
     .ticker-index {
       color: $themeColor;
     }
+
+    .ticker-background-icon {
+      transform: translateY(-50%) scale(1.1);
+    }
   }
 
   &.disabled {
@@ -31,8 +35,8 @@
       .ticker-link-disabled-message {
         opacity: 1;
 
-        h1 {
-          transform: translate(-50%, -50%) scale(1);
+        .ticker-link-disabled-message-text {
+          transform: translate(-50%, -50%) scale(1);  
         }
       }
     }
@@ -71,10 +75,11 @@
     right: -10%;
     top: 50%;
     transform: translateY(-50%);
+    transition: transform 0.25s;
   }
 
   .ticker-symbol-and-price {        
-    margin: 10px auto;
+    margin: 20px auto;
     margin-left: 20px;
 
     .ticker-price,
@@ -85,9 +90,9 @@
 
     .ticker-symbol {
       color: gray(220);
-      font-size: 3.5em;
-      height: 50px;
-      line-height: 50px;
+      font-size: 3em;
+      height: 40px;
+      line-height: 40px;
       text-transform: uppercase;
     }
 
@@ -100,8 +105,21 @@
 
     .ticker-change {
       font-size: 1em;
+      height: 14px;
+      line-height: 14px;
       margin-left: 5px;
     }
+  }
+
+  .ticker-name {
+    bottom: 0px;
+    color: gray(200);
+    font-size: 0.9em;
+    height: 15px;
+    line-height: 15px;
+    margin: 10px;
+    position: absolute;
+    right: 0px;
   }
 
   .ticker-link-disabled-message {
@@ -116,13 +134,24 @@
     width: 100%;
     z-index: 10;
 
-    h1 {
+    .ticker-link-disabled-message-text {
       @include centered;
-      color: white;
-      font-size: 2em;
       position: absolute;
       transform: translate(-50%, -50%) scale(0.25);
       transition: all 0.25s;
+
+      h1 {
+        color: white;
+        text-align: center;
+
+        &.title {
+          font-size: 2em;
+        }
+
+        &.sub-title {
+          font-size: 1em;
+        }
+      }
     }
   }
 }
