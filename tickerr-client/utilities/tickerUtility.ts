@@ -12,6 +12,7 @@ import { geckoCoinSymbolMap, IGeckoCoinSymbolMapItem } from "../constants/gecko"
 import { URL } from "../enums/url";
 
 interface ITickerUtility {
+  exists: (geckoTicker: IGeckoTicker) => boolean;
   filterSearchResults: (query: string, limit?: number) => IGeckoCoinSymbolMapItem[];
   getDefaultSearchResults: () => IGeckoCoinSymbolMapItem[];
   getGeckoIDFromSymbol: (symbol: string) => string;
@@ -26,6 +27,11 @@ interface ITickerUtility {
 }
 
 export const TickerUtility: ITickerUtility = {
+  exists: (geckoTicker: IGeckoTicker): boolean => {
+    const item: IGeckoCoinSymbolMapItem = geckoCoinSymbolMap.find((item: IGeckoCoinSymbolMapItem) => item.symbol === geckoTicker.symbol);
+
+    return item !== undefined;
+  },
   filterSearchResults: (query: string, limit?: number): IGeckoCoinSymbolMapItem[] => {
     query = StringUtility.format(query);
 
@@ -80,6 +86,7 @@ export const TickerUtility: ITickerUtility = {
       },
       chart: [],
       cap: geckoTicker.market_cap,
+      exists: TickerUtility.exists(geckoTicker),
       geckoID: geckoTicker.id,
       id: geckoTicker.id,
       icon: TickerUtility.getIcon(geckoTicker.symbol, tracked),

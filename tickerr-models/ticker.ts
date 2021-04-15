@@ -1,5 +1,3 @@
-import firebase from "firebase/app";
-
 import { ITickerChange } from "./tickerChange";
 import { ITickerChartPoint } from "./tickerChartPoint";
 import { ITickerIcon } from "./tickerIcon";
@@ -9,6 +7,7 @@ export interface ITicker {
   cap: number; 
   change: ITickerChange;
   chart: ITickerChartPoint[];
+  exists: boolean;
   geckoID: string;
   icon: ITickerIcon;
   name: string;
@@ -18,45 +17,4 @@ export interface ITicker {
   symbol: string;
   tracked: boolean;
   volume: number;
-}
-
-export const tickerConverter: any = {
-  toFirestore(ticker: ITicker): firebase.firestore.DocumentData {
-    return {
-      cap: ticker.cap,
-      change: ticker.change,
-      chart: ticker.chart,
-      geckoID: ticker.geckoID,
-      icon: ticker.icon,
-      name: ticker.name,
-      price: ticker.price,
-      rank: ticker.rank,
-      supply: ticker.supply,
-      symbol: ticker.symbol,
-      tracked: ticker.tracked,
-      volume: ticker.volume
-    }
-  },
-  fromFirestore(
-    snapshot: firebase.firestore.QueryDocumentSnapshot,
-    options: firebase.firestore.SnapshotOptions
-  ): ITicker {
-    const data: ITicker = snapshot.data(options) as ITicker;
-
-    return {
-      id: snapshot.id,
-      cap: data.cap,
-      change: data.change,
-      chart: data.chart,
-      geckoID: data.geckoID,
-      icon: data.icon,
-      name: data.name,
-      price: data.price,
-      rank: data.rank,
-      supply: data.supply,
-      symbol: data.symbol,      
-      tracked: data.tracked,
-      volume: data.volume
-    }
-  }
 }

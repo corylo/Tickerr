@@ -23,12 +23,35 @@ export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) =>
 
   const { ticker } = props;
 
-  const handleOnClick = (): void => {
-    AnalyticsUtility.log("ticker_link_click", ticker);
+  const handleOnClick = (e: any): void => {
+    if(ticker.exists) {
+      AnalyticsUtility.log("ticker_link_click", ticker);
+    } else {
+      e.preventDefault();
+    }
+  }
+
+  const getClasses = (): string => {
+    return classNames(
+      "ticker-link", 
+      SettingsUtility.getFontClass(appState.settings.font), {
+        disabled: !ticker.exists
+      }
+    );
+  }
+
+  const getDisabledMessage = (): JSX.Element => {
+    if(!ticker.exists) {
+      return (
+        <div className="ticker-link-disabled-message">
+          <h1 className="permanent-marker">Will add soon!</h1>
+        </div>
+      )
+    }
   }
   
   return(
-    <Link to={`/${ticker.symbol}`} className={classNames("ticker-link", SettingsUtility.getFontClass(appState.settings.font))} onClick={handleOnClick}>
+    <Link to={`/${ticker.symbol}`} className={getClasses()} onClick={handleOnClick}>
       <h1 className="ticker-index">{ticker.rank}</h1>
       <img className="ticker-icon" src={`${URL.CDN}${ticker.icon.color}`} />
       <img className="ticker-background-icon" src={`${URL.CDN}${ticker.icon.white}`} />
@@ -37,6 +60,7 @@ export const TickerLink: React.FC<TickerLinkProps> = (props: TickerLinkProps) =>
         <TickerPrice value={ticker.price} />
         <TickerChange change={ticker.change.day} />
       </div>
+      {getDisabledMessage()}
     </Link>
   )
 }

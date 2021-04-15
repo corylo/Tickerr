@@ -9,11 +9,13 @@
     "build": "cross-env NODE_ENV=development webpack --mode production",
     "build:prod": "cross-env NODE_ENV=production webpack --mode production",
     "deploy": "npm run clean && npm run build && firebase deploy --only hosting",
-    "deploy:prod": "npm run clean && npm run build:prod && firebase deploy --only hosting",
+    "dp": "npm run clean && npm run build:prod && firebase deploy --only hosting",
+    "da": "npm run set:dev && npm run deploy && npm run set:prod && npm run dp",
     "set:dev": "firebase use tickerr-development-308516",
     "set:prod": "firebase use tickerr-tv",
     "projects": "firebase projects:list",
-    "pd": "git push && npm run deploy"
+    "pd": "git push && npm run deploy",
+    "pda": "git push && npm run da"
   },
   "author": "",
   "license": "ISC",
