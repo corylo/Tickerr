@@ -7,7 +7,6 @@ import { IAppState } from "../components/app/models/appState";
 import { ITicker } from "../../tickerr-models/ticker";
 
 import { AppStatus } from "../components/app/enums/appStatus";
-import { Currency } from "../../tickerr-enums/currency";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
 import { RequestStatus } from "../enums/requestStatus";
 

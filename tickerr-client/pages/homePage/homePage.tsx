@@ -14,6 +14,7 @@ import { useUpdatePageTitleEffect } from "../../effects/appEffects";
 import { useTickersEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
+
 import { AppStatus } from "../../components/app/enums/appStatus";
 
 interface HomePageProps {
