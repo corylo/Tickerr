@@ -22,8 +22,16 @@
     }
 
     &.side-panel-toggled {
-      #ticker-side-panel-details-wrapper {
-        transform: translateX(0%);
+      #ticker-icon-and-symbol {
+        i {
+          transform: rotate(180deg);
+        }
+      }
+
+      #ticker-side-panel {
+        #ticker-side-panel-details-wrapper {
+          transform: translateX(0%);
+        }
       }
     }
 

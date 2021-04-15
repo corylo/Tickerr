@@ -19,16 +19,11 @@
     position: absolute;
     z-index: 2;
 
-    &:hover,
-    &:focus {
+    &:hover {
       cursor: pointer;
-      
-      .ticker-icon {
-        box-shadow: $shadow2;
-      }
 
-      .ticker-symbol {
-        text-shadow: 0px 0px 8px rgba(white, 0.5);
+      i {
+        background-color: rgba(white, 0.15);
       }
     }
 
@@ -51,6 +46,18 @@
       line-height: 80px;
       margin-left: 20px;
       text-transform: uppercase;
+    }
+
+    i {
+      background-color: rgba(white, 0.1);
+      border-radius: 6px;
+      color: white;
+      font-size: 1.25em;
+      height: 50px;
+      line-height: 50px;
+      margin: 15px;          
+      margin-right: 0px;
+      width: 40px;
     }
   }
 
