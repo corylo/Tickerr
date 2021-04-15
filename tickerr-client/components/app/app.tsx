@@ -16,8 +16,8 @@ import { AppContext } from "./contexts/appContext";
 
 import { appReducer } from "./reducers/appReducer";
 
-import { useAuthStateChangedEffect, useFetchUserSettingsEffect } from "./effects/appEffects";
-import { useScrollToTopEffect, useUpdatePageOGUrlEffect } from "../../effects/appEffects";
+import { useAuthStateChangedEffect, useFetchUserSettingsEffect } from "../../effects/userEffects";
+import { useGlobalCommandsEffect, useScrollToTopEffect, useUpdatePageOGUrlEffect } from "../../effects/appEffects";
 
 import { defaultAppState } from "./models/appState";
 
@@ -39,6 +39,8 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
   useAuthStateChangedEffect(appState, dispatch);
 
   useFetchUserSettingsEffect(appState, dispatch);
+
+  useGlobalCommandsEffect();
 
   return (
     <AppContext.Provider value={{ appState, dispatchToApp }}>

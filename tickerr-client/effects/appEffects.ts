@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { ElementID } from "../enums/elementId";
+
 export const useScrollToTopEffect = (location: any): void => {  
   useEffect(() => window.scrollTo(0, 0), [location.pathname]);
 }
@@ -59,4 +61,26 @@ export const useUpdatePageTitleEffect = (title: string): void => {
       document.querySelector("meta[name=\"twitter:title\"]").setAttribute("content", title);
     }
   }, [title]);
+}
+
+export const useGlobalCommandsEffect = (): void => {
+  useEffect(() => {
+    const handleOnKeyDown = (e: any): void => {
+      if(document.activeElement.id !== ElementID.SearchBarInput && e.key === "/") {
+        const el: HTMLElement | null = document.getElementById(ElementID.SearchBarInput);
+
+        if (el) {
+          e.preventDefault();
+
+          el.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleOnKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleOnKeyDown);
+    }
+  }, []);
 }

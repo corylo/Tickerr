@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useContext, useEffect, useReducer, useRef } from "react";
+import React, { useContext, useReducer, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import { IconButton } from "../buttons/iconButton";
@@ -12,6 +12,7 @@ import { SettingsUtility } from "../../utilities/settingsUtility";
 import { TickerUtility } from "../../utilities/tickerUtility";
 
 import { useOnClickAwayEffect } from "../../effects/appEffects";
+import { useFilterSearchResultsEffect, useFocusSearchOnToggleEffect } from "./effects/searchEffects";
 
 import { defaultSearch } from "./models/search";
 import { ITickerIcon } from "../../../tickerr-models/tickerIcon";
@@ -19,6 +20,7 @@ import { ITickerIcon } from "../../../tickerr-models/tickerIcon";
 import { IGeckoCoinSymbolMapItem } from "../../constants/gecko";
 
 import { AppAction } from "../../enums/appAction";
+import { ElementID } from "../../enums/elementId";
 import { SearchAction } from "./enums/searchAction";
 import { URL } from "../../enums/url";
 
@@ -42,6 +44,8 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const ref: React.MutableRefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
 
   const clear = (): void => {
+    ref.current.blur();
+
     dispatch(SearchAction.ClearSearch);
 
     if(toggled) {
@@ -51,28 +55,14 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
 
   useOnClickAwayEffect(
     focused, 
-    ["tickerr-search-bar-input", "tickerr-search-results"], 
+    [ElementID.SearchBarInput, "tickerr-search-results"], 
     [focused],
     clear
   );
 
-  useEffect(() => {
-    if(toggled) {
-      ref.current.focus();
-    }
-  }, [toggled]);
+  useFocusSearchOnToggleEffect(ref, toggled);
 
-  useEffect(() => {
-    let results: IGeckoCoinSymbolMapItem[] = query.trim() !== ""
-      ? TickerUtility.filterSearchResults(query)
-      : TickerUtility.getDefaultSearchResults();
-
-    dispatch(SearchAction.SetResults, results);
-
-    if(index !== 0) {
-      dispatch(SearchAction.SetIndex, 0);
-    }
-  }, [query]);
+  useFilterSearchResultsEffect(index, query, dispatch);
 
   const handleOnKeyDown = (e: any): void => {   
     if(e.key === "Tab") {
@@ -86,8 +76,8 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
     } else if (e.key === "Enter") {
       history.push(`/${results[index].symbol}`);
 
-      ref.current.blur();
-
+      clear();
+    } else if (e.key === "Escape") {
       clear();
     }
   }
@@ -130,6 +120,10 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
     }
   }
 
+  const getPlaceholder = (): string => {
+    return focused ? "Search" : "Hit / to search";
+  }
+
   return (
     <div id="tickerr-search-bar-wrapper" className={classNames({ toggled })}> 
       <div id="tickerr-search-bar"> 
@@ -141,10 +135,10 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         <input 
           type="text" 
           ref={ref}
-          id="tickerr-search-bar-input"
+          id={ElementID.SearchBarInput}
           className="passion-one-font"
           value={query} 
-          placeholder="Search"
+          placeholder={getPlaceholder()}
           onChange={(e: any) => dispatch(SearchAction.SetQuery, e.target.value)}
           onKeyDown={handleOnKeyDown}
           onFocus={() => dispatch(SearchAction.SetFocused, true)}

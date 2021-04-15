@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import firebase from "firebase/app";
 
-import { auth } from "../../../firebase";
+import { auth } from "../firebase";
 
-import { UserService } from "../../../services/userService";
+import { UserService } from "../services/userService";
 
-import { IAppState } from "../models/appState";
-import { IUser } from "../../../../tickerr-models/user";
+import { IAppState } from "../components/app/models/appState";
+import { IUser } from "../../tickerr-models/user";
 
-import { AppAction } from "../../../enums/appAction";
-import { AppStatus } from "../enums/appStatus";
-import { RequestStatus } from "../../../enums/requestStatus";
+import { AppAction } from "../enums/appAction";
+import { AppStatus } from "../components/app/enums/appStatus";
+import { RequestStatus } from "../enums/requestStatus";
 
 export const useAuthStateChangedEffect = (appState: IAppState, dispatch: (type: AppAction, payload?: any) => void): void => {
   useEffect(() => {
