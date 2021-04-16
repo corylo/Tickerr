@@ -33,7 +33,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
   
   const [tickerState, dispatchToTickerState] = useReducer(tickerStateReducer, defaultTickerState());
   
-  const { errorMessage, status, sidePanelToggled, ticker, urlSymbol } = tickerState;
+  const { errorMessage, status, toggles, ticker, urlSymbol } = tickerState;
 
   const dispatch = (type: TickerStateAction, payload?: any): void => dispatchToTickerState({ type, payload });
 
@@ -59,7 +59,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
     if(ticker) {
       const classes: string = classNames(
         CurrencyUtility.getChangeClass(ticker.change.day), {
-        "side-panel-toggled": sidePanelToggled
+        "side-panel-toggled": toggles.panel
       });
 
       return (

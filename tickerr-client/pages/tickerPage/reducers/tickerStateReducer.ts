@@ -39,7 +39,10 @@ export const tickerStateReducer = (state: ITickerState, action: IAction): ITicke
     case TickerStateAction.ToggleSidePanel:
       return {
         ...state,
-        sidePanelToggled: action.payload
+        toggles: {
+          ...state.toggles,
+          panel: action.payload
+        }
       }
     default:
       throw new Error(`Unknown action type in tickerStateReducer: ${action.type}`);

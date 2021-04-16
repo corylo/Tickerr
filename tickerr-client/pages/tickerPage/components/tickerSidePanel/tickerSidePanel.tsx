@@ -21,10 +21,10 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
   const { appState } = useContext(AppContext),
     { tickerState, dispatchToTickerState } = useContext(TickerStateContext);
 
-  const { ticker, sidePanelToggled } = tickerState;
+  const { ticker, toggles } = tickerState;
 
   const handleOnClick = (): void => {
-    const payload: boolean = !sidePanelToggled;
+    const payload: boolean = !toggles.panel;
 
     dispatchToTickerState({ type: TickerStateAction.ToggleSidePanel, payload });
 
@@ -32,16 +32,16 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
   }
 
   return(
-    <div id="ticker-side-panel">
+    <React.Fragment>
       <button 
         id="ticker-icon-and-symbol" 
         onClick={handleOnClick}
       >
         <img className="ticker-icon" src={`${URL.CDN}${ticker.icon.color}`} />
         <h1 className={classNames("ticker-symbol", SettingsUtility.getFontClass(appState.settings.font))}>{ticker.symbol}</h1>
-        <i className="fas fa-chevron-right" />
+        <i className={toggles.panel ? "fas fa-chevron-left" : "fas fa-chevron-right"} />
       </button>
-      <div id="ticker-side-panel-details-wrapper">
+      <div id="ticker-side-panel" className={classNames({ toggled: toggles.panel })}>
         <div id="ticker-side-panel-details" className="scroll-bar">
           <TickerSidePanelField 
             value={ticker.rank.toString()}
@@ -69,7 +69,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
             label="24H" 
           />
         </div>
-      </div>
     </div>
+    </React.Fragment>
   )
 }

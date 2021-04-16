@@ -21,20 +21,6 @@
       background-color: rgba($red, 0.2);
     }
 
-    &.side-panel-toggled {
-      #ticker-icon-and-symbol {
-        i {
-          transform: rotate(180deg);
-        }
-      }
-
-      #ticker-side-panel {
-        #ticker-side-panel-details-wrapper {
-          transform: translateX(0%);
-        }
-      }
-    }
-
     #ticker-stats-price-wrapper {
       height: 100vh;
       overflow: hidden;
