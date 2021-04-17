@@ -190,7 +190,7 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
       "name": "Binance USD",
       "symbol": "busd",
       "geckoID": "binance-usd",
-      "tracked": false
+      "tracked": true
   },
   {
       "name": "Tezos",
@@ -208,7 +208,7 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
       "name": "NEO",
       "symbol": "neo",
       "geckoID": "neo",
-      "tracked": false
+      "tracked": true
   },
   {
       "name": "FTX Token",
