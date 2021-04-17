@@ -32,7 +32,7 @@ export const useOnClickAwayEffect = (
             count++;
           }
         });
-        
+
         if (count === 0) {
           handleOnClickAway();
         }

@@ -72,12 +72,28 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         ...state,
         user: action.payload
       }
+    case AppAction.SetUserWallets:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          wallets: action.payload
+        }
+      }
     case AppAction.SetSettingsStatus:
       return {
         ...state,
         statuses: {
           ...state.statuses,
           settings: action.payload
+        }
+      }
+    case AppAction.SetWalletStatus:
+      return {
+        ...state,
+        statuses: {
+          ...state.statuses,
+          wallet: action.payload
         }
       }
     case AppAction.SignInUser:

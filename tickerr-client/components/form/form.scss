@@ -1,0 +1,51 @@
+.tickerr-form {
+  .tickerr-form-body {
+    .tickerr-input-wrapper {
+      &:nth-of-type(n + 2) {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .tickerr-form-actions {
+    margin-top: 20px;
+
+    .submit-button {
+      font-size: 2em;
+      width: 100%;
+
+      &:nth-child(n + 2) {
+        margin-top: 10px;
+      }
+    }
+
+    a.submit-button {
+      width: calc(100% - 40px);
+    }
+  }
+
+  .tickerr-form-error-message,
+  .tickerr-form-submit-success-message,
+  .tickerr-form-submit-error-message {
+    margin-top: 10px;
+
+    h1 {
+      font-size: 1em;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+  }
+  
+  .tickerr-form-error-message,
+  .tickerr-form-submit-error-message {
+    h1 {
+      color: $red;
+    }
+  }
+  
+  .tickerr-form-submit-success-message {
+    h1 {
+      color: $green;
+    }
+  }
+}

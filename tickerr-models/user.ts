@@ -1,13 +1,15 @@
 import firebase from "firebase/app";
 
 import { IUserSettings } from "./userSettings";
+import { IWallet } from "./wallet";
 
 export interface IUser {
   uid: string;
   email: string;
   image: string;
   name: string;
-  settings: IUserSettings
+  settings: IUserSettings;
+  wallets: IWallet[];
 }
 
 export const userConverter: firebase.firestore.FirestoreDataConverter<IUser> = {
@@ -16,7 +18,8 @@ export const userConverter: firebase.firestore.FirestoreDataConverter<IUser> = {
       email: user.email,
       image: user.image,
       name: user.name,
-      settings: user.settings
+      settings: user.settings,
+      wallets: user.wallets
     }
   },
   fromFirestore(
@@ -30,7 +33,8 @@ export const userConverter: firebase.firestore.FirestoreDataConverter<IUser> = {
       email: data.email,
       image: data.image,
       name: data.name,
-      settings: data.settings
+      settings: data.settings,
+      wallets: data.wallets
     }
   }
 }

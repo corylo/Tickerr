@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import { LoadingIcon } from "../loadingIcon/loadingIcon";
 
+import { FormStatus } from "../../enums/formStatus";
 import { RequestStatus } from "../../enums/requestStatus";
 
 interface ModalProps {
@@ -11,7 +12,7 @@ interface ModalProps {
   children: any;
   transparent?: boolean;  
   priority?: boolean;
-  status?: RequestStatus;
+  status?: RequestStatus | FormStatus;
   handleOnClose?: () => void;
 }
 
@@ -26,7 +27,7 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
   }
 
   const getModalContent = (): JSX.Element => {
-    if(props.status === RequestStatus.Loading) {
+    if(props.status === RequestStatus.Loading || props.status === FormStatus.Submitting) {
       return (
         <LoadingIcon />
       )

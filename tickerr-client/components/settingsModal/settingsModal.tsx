@@ -5,7 +5,7 @@ import { Modal } from "../modal/modal";
 import { ModalActions } from "../modal/modalActions";
 import { ModalBody } from "../modal/modalBody";
 import { ModalStatusMessage } from "../modal/modalStatusMessage";
-import { ModalTitle } from "../../components/modal/modalTitle";
+import { ModalTitle } from "../modal/modalTitle";
 import { Settings } from "../settings/settings";
 
 import { AppContext } from "../app/contexts/appContext";

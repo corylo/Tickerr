@@ -78,6 +78,8 @@
     overflow: auto;
 
     .ticker-side-panel-field {
+      position: relative;
+      
       &:nth-of-type(n + 2) {
         margin-top: 20px;
       }
@@ -94,10 +96,22 @@
         }
       }
 
+      &.ticker-side-panel-wallet-address {
+        .ticker-side-panel-field-value {
+          font-size: 1.25em;
+          height: 30px;
+          line-height: 30px;
+        }
+      }
+
       .ticker-side-panel-field-value {
         color: white;
         font-size: 2em;
         font-weight: 400;
+        max-width: calc(100% - 40px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       .ticker-side-panel-field-label {
@@ -105,6 +119,47 @@
         font-size: 1.25em;
         font-weight: 700;
         text-transform: uppercase;
+      }
+
+      .ticker-side-panel-field-action-button {
+        background-color: transparent;
+        margin-right: 0px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+
+        &:focus,
+        &:hover {
+          background-color: rgba(white, 0.1);
+        }
+
+        i {
+          font-size: 1em;
+          height: 30px;
+          line-height: 30px;
+          width: 30px;
+        }
+      }
+    }
+
+    #ticker-add-wallet-button {
+      margin-top: 10px;
+      padding: 15px 20px;
+
+      &:hover,
+      &:focus {
+        background-color: rgba(white, 0.25);
+      }
+
+      i, h1 {
+        color: white;
+        display: inline-block;
+        font-size: 1.25em;
+        vertical-align: top;
+      }
+
+      h1 {
+        margin-left: 10px;
       }
     }
   }

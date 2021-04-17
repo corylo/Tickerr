@@ -12,6 +12,6 @@ export const SettingsUtility: ISettingsUtility = {
       return "passion-one-font";
     }
 
-    return "pt-sans";
+    return "pt-sans-font";
   }
 }

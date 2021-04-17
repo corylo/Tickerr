@@ -7,7 +7,7 @@ export interface ITickerState {
   errorMessage: string;  
   status: RequestStatus;
   ticker: ITicker;
-  toggles: ITickerToggles
+  toggles: ITickerToggles;
   urlSymbol: string;
 }
 

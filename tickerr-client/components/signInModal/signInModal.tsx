@@ -6,7 +6,7 @@ import { auth } from "../../firebase";
 import { Button } from "../buttons/button";
 import { Modal } from "../modal/modal";
 import { ModalBody } from "../modal/modalBody";
-import { ModalTitle } from "../../components/modal/modalTitle";
+import { ModalTitle } from "../modal/modalTitle";
 
 import { AppContext } from "../app/contexts/appContext";
 
