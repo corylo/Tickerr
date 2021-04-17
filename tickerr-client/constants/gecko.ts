@@ -163,6 +163,12 @@ export const geckoCoinSymbolMap: IGeckoCoinSymbolMapItem[] = [
       "tracked": true
   },
   {
+      "name": "Klaytn",
+      "symbol": "klay",
+      "geckoID": "klay-token",
+      "tracked": true
+  },
+  {
       "name": "Cosmos",
       "symbol": "atom",
       "geckoID": "cosmos",
