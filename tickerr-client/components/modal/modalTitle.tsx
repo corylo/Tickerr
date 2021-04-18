@@ -29,7 +29,7 @@ export const ModalTitle: React.FC<ModalTitleProps> = (props: ModalTitleProps) =>
       return (
         <IconButton 
           className="close-button"
-          icon="fad fa-times" 
+          icon="fal fa-times" 
           handleOnClick={props.handleOnClose} 
         />
       )

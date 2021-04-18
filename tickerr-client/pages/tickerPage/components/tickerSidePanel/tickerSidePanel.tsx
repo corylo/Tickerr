@@ -42,7 +42,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
       >
         <img className="ticker-icon" src={`${URL.CDN}${ticker.icon.color}`} />
         <h1 className={classNames("ticker-symbol", SettingsUtility.getFontClass(appState.settings.font))}>{ticker.symbol}</h1>
-        <i className={toggles.panel ? "fas fa-chevron-left" : "fas fa-chevron-right"} />
+        <i className={toggles.panel ? "fal fa-times" : "far fa-ellipsis-v"} />
       </button>
       <div id="ticker-side-panel" className={classNames({ toggled: toggles.panel })}>
         <div id="ticker-side-panel-details" className="scroll-bar">

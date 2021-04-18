@@ -170,7 +170,7 @@
 
 @include tablet-or-smaller {  
   #ticker-side-panel {
-    background-color: rgba(gray(40), 0.8);
+    background-color: gray(40);
     box-shadow: $shadow3;
   }
 }

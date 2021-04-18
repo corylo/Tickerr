@@ -26,10 +26,17 @@
         }
       }
 
-      .close-button {        
+      .close-button {  
+        background-color: transparent;      
         position: absolute;
         right: 0px;
         top: 0px;
+        
+        &:hover,
+        &:focus {
+          background-color: $themeColor;
+          color: white;
+        }
       }
 
       h1 {
