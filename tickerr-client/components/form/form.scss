@@ -25,6 +25,7 @@
   }
 
   .tickerr-form-error-message,
+  .tickerr-form-submit-info-message,
   .tickerr-form-submit-success-message,
   .tickerr-form-submit-error-message {
     margin-top: 10px;
@@ -35,6 +36,7 @@
     }
   }
   
+  .tickerr-form-submit-info-message,
   .tickerr-form-submit-success-message,
   .tickerr-form-submit-error-message {
     border-radius: 6px;
@@ -47,6 +49,14 @@
       color: $red;
     }
   }
+
+  .tickerr-form-submit-info-message {    
+    background-color: rgba($indigo, 0.4);
+
+    h1 {
+      color: white;
+    }
+  }  
 
   .tickerr-form-submit-error-message {    
     background-color: rgba($red, 0.2);

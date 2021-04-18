@@ -16,6 +16,12 @@ export const walletStateReducer = (state: IWalletState, action: IAction): IWalle
         status: FormStatus.SubmitSuccess,
         statusMessage: "Success! Wallet updated!"
       }
+    case WalletStateAction.AlreadyExists:
+      return {
+        ...state,    
+        status: FormStatus.SubmitInfo,
+        statusMessage: "This is already your wallet address!"
+      }
     case WalletStateAction.Clear:
       return defaultWalletState();
     case WalletStateAction.Removed:

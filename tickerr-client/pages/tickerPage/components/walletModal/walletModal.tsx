@@ -58,14 +58,18 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
   useSetWalletEffect(toggles, ticker, user, dispatch);
 
   useEffect(() => {
-    if(walletState.status === FormStatus.SubmitSuccess) {
+    if((walletState.status === FormStatus.SubmitSuccess || walletState.status === FormStatus.SubmitError || walletState.status === FormStatus.SubmitInfo)) {
       dispatch(WalletStateAction.SetStatus, FormStatus.InProgress);
     }
-  }, [walletState.wallet]);
+  }, [walletState.wallet.address]);
 
   if(toggles.wallet) {
     const saveWallet = async () => {
-      if(WalletStateValidator.validateWallet(user.wallets, walletState, dispatch)) {
+      const originalWallet: IWallet | null = WalletUtility.getWallet(walletState.wallet.symbol, user.wallets);
+  
+      if(originalWallet && originalWallet.address === walletState.wallet.address) {
+        dispatch(WalletStateAction.AlreadyExists);        
+      } else if(WalletStateValidator.validateWallet(walletState, dispatch)) {
         try {
           dispatch(WalletStateAction.SetStatus, FormStatus.Submitting);
 
@@ -137,6 +141,7 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
           <Form 
             errors={walletState.errors} 
             errorMessage="Whoops! Error updating wallet address. Please double check that your address is correct."
+            infoMessage={walletState.statusMessage}
             status={walletState.status} 
             successMessage={walletState.statusMessage || "Success! Wallet updated!"}
           >

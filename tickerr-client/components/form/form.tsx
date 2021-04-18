@@ -7,6 +7,7 @@ interface FormProps {
   children: any;
   errors?: any;
   status?: FormStatus;
+  infoMessage?: string;
   successMessage?: string;
   errorMessage?: string;
 }
@@ -36,8 +37,17 @@ export const Form: React.FC<FormProps> = (props: FormProps) => {
   }
   
   const getSubmitStatusMessage = (): JSX.Element | null => {
-    if(props.status === FormStatus.SubmitSuccess) {
+    if(props.status === FormStatus.SubmitInfo) {
+      const infoMessage: string = props.infoMessage || "Info!";
+
+      return (
+        <div className="tickerr-form-submit-info-message">
+          <h1 className="passion-one-font">{infoMessage}</h1>
+        </div>
+      )
+    } else if(props.status === FormStatus.SubmitSuccess) {
       const successMessage: string = props.successMessage || "Success!";
+
       return (
         <div className="tickerr-form-submit-success-message">
           <h1 className="passion-one-font">{successMessage}</h1>

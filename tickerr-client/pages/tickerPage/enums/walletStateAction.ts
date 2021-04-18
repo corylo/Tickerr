@@ -1,5 +1,6 @@
 export enum WalletStateAction {
   Added = "Added",
+  AlreadyExists = "Already Exists",
   Clear = "Clear",
   Removed = "Removed",
   SetAddress = "Set SetAddress",

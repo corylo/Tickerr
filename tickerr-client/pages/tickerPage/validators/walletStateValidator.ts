@@ -1,6 +1,3 @@
-import { WalletUtility } from "../../../utilities/walletUtility";
-
-import { IWallet } from "../../../../tickerr-models/wallet";
 import { IWalletState } from "../models/walletState";
 import { IWalletStateErrors } from "../models/walletStateErrors";
 
@@ -8,17 +5,11 @@ import { FormError } from "../../../enums/formError";
 import { WalletStateAction } from "../enums/walletStateAction";
 
 interface IWalletStateValidator {
-  validateWallet: (wallets: IWallet[], walletState: IWalletState, dispatch: (type: WalletStateAction, payload?: any) => void) => boolean;
+  validateWallet: (walletState: IWalletState, dispatch: (type: WalletStateAction, payload?: any) => void) => boolean;
 }
 
 export const WalletStateValidator: IWalletStateValidator = {
-  validateWallet: (wallets: IWallet[], walletState: IWalletState, dispatch: (type: WalletStateAction, payload?: any) => void): boolean => {
-    const originalWallet: IWallet | null = WalletUtility.getWallet(walletState.wallet.symbol, wallets);
-
-    if(originalWallet && originalWallet.address === walletState.wallet.address) {
-      return false;
-    }
-
+  validateWallet: (walletState: IWalletState, dispatch: (type: WalletStateAction, payload?: any) => void): boolean => {
     const errors: IWalletStateErrors = { ...walletState.errors };
 
     let errorCount: number = 0;
