@@ -98,7 +98,7 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
           handleOnAction={updateBalance}
         />
         <TickerSidePanelField 
-          value={CurrencyUtility.formatCurrency(wallet.balance * ticker.price, appState.settings.currency)} 
+          value={CurrencyUtility.formatCurrency(wallet.balance * ticker.price, appState.settings.currency, 2)} 
           label="Wallet Value" 
           status={appState.statuses.wallet.is}
         />
