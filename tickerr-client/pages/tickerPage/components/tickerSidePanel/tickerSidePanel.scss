@@ -81,7 +81,7 @@
       position: relative;
       
       &:nth-of-type(n + 2) {
-        margin-top: 20px;
+        margin-top: 15px;
       }
 
       &.green {
@@ -96,9 +96,21 @@
         }
       }
 
+      &.pt-sans-font {
+        .ticker-side-panel-field-value {
+          font-size: 1.5em;
+          height: 25px;
+          line-height: 25px;
+        }
+
+        .ticker-side-panel-field-label {
+          font-size: 0.9em;
+        }
+      }
+
       &.ticker-side-panel-wallet-address {
         .ticker-side-panel-field-value {
-          font-size: 1.25em;
+          font-size: 1em;
         }
       }
 

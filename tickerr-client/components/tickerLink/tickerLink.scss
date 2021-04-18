@@ -41,6 +41,23 @@
       }
     }
   }
+
+  &.pt-sans-font {
+    .ticker-symbol-and-price {
+      .ticker-symbol {
+        font-size: 2.8em;
+      }
+    
+      .ticker-price {
+        font-size: 1.1em;
+        padding-left: 2px;
+      }
+
+      .ticker-change {
+        font-size: 0.9em;
+      }
+    }
+  }
   
   .ticker-index,
   .ticker-icon,

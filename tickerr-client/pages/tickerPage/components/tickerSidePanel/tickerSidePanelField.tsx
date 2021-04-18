@@ -47,9 +47,9 @@ export const TickerSidePanelField: React.FC<TickerSidePanelFieldProps> = (props:
   }
 
   return(
-    <div className={classNames("ticker-side-panel-field", props.className)}>            
-      <h1 className={classNames("ticker-side-panel-field-value", SettingsUtility.getFontClass(appState.settings.font))}>{getValue()}</h1>
-      <h1 className={classNames("ticker-side-panel-field-label", SettingsUtility.getFontClass(appState.settings.font))}>{props.label}</h1>    
+    <div className={classNames("ticker-side-panel-field", SettingsUtility.getFontClass(appState.settings.font), props.className)}>            
+      <h1 className="ticker-side-panel-field-value">{getValue()}</h1>
+      <h1 className="ticker-side-panel-field-label">{props.label}</h1>    
       {getActionButton()}  
     </div>
   )
