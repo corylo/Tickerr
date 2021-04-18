@@ -2,7 +2,7 @@ import { walletConfig } from "../../config/walletConfig";
 
 import { IWallet } from "../../tickerr-models/wallet";
 
-import { URL } from "../enums/url"
+import { ApiUrl } from "../enums/url"
 
 interface IWalletUtility {
   getAddressFormat: (symbol: string) => string;
@@ -51,7 +51,7 @@ export const WalletUtility: IWalletUtility = {
   getUrl: (symbol: string, address: string): string => {
     switch(symbol.toLowerCase()) {
       case "ada":
-        return `${URL.BlockFrost}/accounts/${address}`;
+        return `${ApiUrl.BlockFrost}/accounts/${address}`;
       default:
         console.error(`Symbol ${symbol} not found.`);
     }

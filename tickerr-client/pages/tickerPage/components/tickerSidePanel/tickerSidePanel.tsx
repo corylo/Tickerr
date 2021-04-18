@@ -12,7 +12,6 @@ import { CurrencyUtility } from "../../../../utilities/currencyUtility";
 import { SettingsUtility } from "../../../../utilities/settingsUtility";
 
 import { TickerStateAction } from "../../enums/tickerStateAction";
-import { URL } from "../../../../enums/url";
 
 interface TickerSidePanelProps {
   

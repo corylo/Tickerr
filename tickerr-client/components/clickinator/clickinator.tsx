@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import { URL } from "../../enums/url";
+import { ApiUrl } from "../../enums/url";
 
 interface ClickinatorProps {
   id?: string;
@@ -28,7 +28,7 @@ export const Clickinator: React.FC<ClickinatorProps> = (props: ClickinatorProps)
     return(
       <div id={props.id} className={classNames("clickinator", props.className)}>
         <a className="clickinator-link" href={props.url}>
-          <img src={`${URL.CDN}${props.src}`} />
+          <img src={`${ApiUrl.CDN}${props.src}`} />
         </a>
         {getCloseButton()}
       </div>

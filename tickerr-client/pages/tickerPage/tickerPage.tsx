@@ -23,7 +23,6 @@ import { ITickerChartPoint } from "../../../tickerr-models/tickerChartPoint";
 import { defaultTickerState } from "./models/tickerState";
 
 import { TickerStateAction } from "./enums/tickerStateAction";
-import { URL } from "../../enums/url";
 
 interface TickerPageProps {
   

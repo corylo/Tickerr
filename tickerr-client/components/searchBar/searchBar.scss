@@ -71,7 +71,7 @@
       transform: translateY(100%);
       width: 100%;
 
-      .tickerr-search-result {
+      .tickerr-search-link {
         display: block;
         outline: none;
         padding: 10px;
@@ -106,8 +106,16 @@
         }
         
         .ticker-icon {
+          background-color: rgba(black, 0.2);
+          border-radius: 100px;
           height: 40px;
           width: 40px;
+
+          img {
+            height: 20px;
+            margin: 10px;
+            width: 20px;
+          }
         }
 
         .ticker-name,

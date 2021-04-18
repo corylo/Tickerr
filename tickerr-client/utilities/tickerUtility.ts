@@ -5,10 +5,10 @@ import { IGeckoTickerChartPoint } from "../../tickerr-models/geckoTickerChartPoi
 import { ITicker } from "../../tickerr-models/ticker";
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
 
+import { ApiUrl } from "../enums/url";
 import { Currency } from "../../tickerr-enums/currency";
 
 import { geckoCoinSymbolMap, IGeckoCoinSymbolMapItem } from "../constants/gecko";
-import { URL } from "../enums/url";
 
 interface ITickerUtility {
   filterSearchResults: (query: string, limit?: number) => IGeckoCoinSymbolMapItem[];
@@ -41,13 +41,13 @@ export const TickerUtility: ITickerUtility = {
     return item ? item.geckoID : "";
   },
   getGeckoChartUrl: (geckoID: string, currency: Currency): string => {
-    return `${URL.Gecko}/coins/${geckoID}/market_chart?vs_currency=${currency}&days=1`;
+    return `${ApiUrl.Gecko}/coins/${geckoID}/market_chart?vs_currency=${currency}&days=1`;
   },
   getGeckoTickerUrl: (geckoID: string, currency: Currency): string => {
-    return `${URL.Gecko}/coins/markets?vs_currency=${currency}&ids=${geckoID}&per_page=1&sparkline=false`;
+    return `${ApiUrl.Gecko}/coins/markets?vs_currency=${currency}&ids=${geckoID}&per_page=1&sparkline=false`;
   },
   getGeckoTickersUrl: (currency: Currency, limit?: number): string => {   
-    return `${URL.Gecko}/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
+    return `${ApiUrl.Gecko}/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
   },
   mapTicker: (geckoTicker: IGeckoTicker): ITicker => {
     return {
@@ -67,8 +67,7 @@ export const TickerUtility: ITickerUtility = {
       volume: geckoTicker.total_volume
     }
   },
-  mapTickers: (geckoTickers: IGeckoTicker[]): ITicker[] => {
-    console.log(geckoTickers.map((ticker: IGeckoTicker) => ({ name: ticker.name, symbol: ticker.symbol, geckoID: ticker.id })));
+  mapTickers: (geckoTickers: IGeckoTicker[]): ITicker[] => {    
     return geckoTickers.map((geckoTicker: IGeckoTicker) => TickerUtility.mapTicker(geckoTicker))
   },
   mapTickerChart: (chart: IGeckoTickerChartPoint): ITickerChartPoint[] => {
