@@ -6,9 +6,7 @@ interface ISettingsUtility {
 
 export const SettingsUtility: ISettingsUtility = {
   getFontClass: (font: Font): string => {
-    if(font === Font.Awesome) {
-      return "bangers-font";
-    } else if (font === Font.Bold) {
+    if (font === Font.Bold) {
       return "passion-one-font";
     }
 
