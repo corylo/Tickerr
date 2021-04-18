@@ -33,25 +33,27 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
 
   const wallet: IWallet | null = WalletUtility.getWallet(ticker.symbol, appState.user.wallets);
 
-  const [countdown, setCountdown] = useState<number>(30);
+  const [countdown, setCountdown] = useState<number>(0);
 
   useEffect(() => {
-    const interval: NodeJS.Timeout = setInterval(() => {
-      const delta: number = Math.round((wallet.updatedAt + 30000 - new Date().getTime()) / 1000);
-      
-      if(delta >= 0 && countdown !== delta) {
-        setCountdown(delta);
-      } 
-      
-      if (delta < 0) {
+    if(wallet) {
+      const interval: NodeJS.Timeout = setInterval(() => {
+        const delta: number = Math.round((wallet.updatedAt + 30000 - new Date().getTime()) / 1000);
+        
+        if(delta >= 0 && countdown !== delta) {
+          setCountdown(delta);
+        } 
+        
+        if (delta < 0) {
+          clearInterval(interval);
+        }
+      }, 100);
+
+      return () => {
         clearInterval(interval);
       }
-    }, 100);
-
-    return () => {
-      clearInterval(interval);
     }
-  }, [countdown, wallet.updatedAt]);
+  }, [countdown, wallet]);
 
   const updateBalance = async () => {      
     if(appState.statuses.wallet.is !== RequestStatus.Loading && WalletUtility.updateAvailable(wallet)) {
@@ -120,4 +122,6 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
       </Button>
     )
   }
+
+  return null;
 }
