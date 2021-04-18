@@ -72,14 +72,15 @@
     width: 100px;
 
     img {
-      border-radius: 20px;
-      height: 60px;
-      margin: 20px;
-      width: 60px;
+      border-radius: 100px;
+      height: 80px;
+      margin: 10px;
+      width: 80px;
     }
   }
 
   .ticker-background-icon {
+    border-radius: 1000px;
     height: 150%;    
     opacity: 0.1;
     position: absolute;    
