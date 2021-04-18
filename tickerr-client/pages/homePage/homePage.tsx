@@ -26,7 +26,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
 
   useUpdatePageTitleEffect("Tickerr");
   
-  const { tickers, status } = useTickersEffect(appState, 30);
+  const { tickers, status } = useTickersEffect(appState, 60);
 
   const getTickerLinks = (): JSX.Element => {
     const links: JSX.Element[] = tickers

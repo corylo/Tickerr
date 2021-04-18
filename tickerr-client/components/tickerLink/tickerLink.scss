@@ -1,5 +1,5 @@
 .ticker-link {
-  background-color: rgba(black, 0.1);
+  background-color: rgba(black, 0.2);
   border: 1px solid transparent;
   border-radius: 10px;
   display: inline-block;
@@ -13,8 +13,8 @@
   vertical-align: top;
   white-space: nowrap;
 
-  &:not(.disabled):hover,
-  &:not(.disabled):focus {
+  &:hover,
+  &:focus {
     border-color: $themeColor;
     transform: translateY(-5px);
     
@@ -27,25 +27,10 @@
     }
   }
 
-  &.disabled {
-    cursor: auto;
-
-    &:hover,
-    &:focus {
-      .ticker-link-disabled-message {
-        opacity: 1;
-
-        .ticker-link-disabled-message-text {
-          transform: translate(-50%, -50%) scale(1);  
-        }
-      }
-    }
-  }
-
   &.pt-sans-font {
     .ticker-symbol-and-price {
       .ticker-symbol {
-        font-size: 2.8em;
+        font-size: 2.6em;
       }
     
       .ticker-price {
@@ -70,22 +55,33 @@
   
   .ticker-index {
     color: gray(220);
-    font-size: 2em;
+    font-size: 1.25em;
     height: 50px;
     line-height: 50px;
     margin: 25px auto;
+    text-align: right;
+    width: 40px;
     z-index: 2;
   }
   
   .ticker-icon {
+    background-color: rgba(black, 0.2);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     border-radius: 100px;
     height: 100px;
-    margin-left: 20px;   
+    margin-left: 10px;   
     width: 100px;
+
+    img {
+      height: 60px;
+      margin: 20px;
+      width: 60px;
+    }
   }
 
   .ticker-background-icon {
-    border-radius: 1000px;
     height: 150%;    
     opacity: 0.1;
     position: absolute;    
@@ -137,38 +133,5 @@
     margin: 10px;
     position: absolute;
     right: 0px;
-  }
-
-  .ticker-link-disabled-message {
-    background-color: rgba(gray(40), 0.8);
-    border-radius: 10px;
-    height: 100%;
-    left: 0px;
-    opacity: 0;
-    position: absolute;
-    top: 0px;
-    transition: all 0.25s;
-    width: 100%;
-    z-index: 10;
-
-    .ticker-link-disabled-message-text {
-      @include centered;
-      position: absolute;
-      transform: translate(-50%, -50%) scale(0.25);
-      transition: all 0.25s;
-
-      h1 {
-        color: white;
-        text-align: center;
-
-        &.title {
-          font-size: 2em;
-        }
-
-        &.sub-title {
-          font-size: 1em;
-        }
-      }
-    }
   }
 }

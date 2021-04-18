@@ -4,7 +4,6 @@ import { IGeckoTicker } from "../../tickerr-models/geckoTicker";
 import { IGeckoTickerChartPoint } from "../../tickerr-models/geckoTickerChartPoint";
 import { ITicker } from "../../tickerr-models/ticker";
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
-import { ITickerIcon } from "../../tickerr-models/tickerIcon";
 
 import { Currency } from "../../tickerr-enums/currency";
 
@@ -12,31 +11,22 @@ import { geckoCoinSymbolMap, IGeckoCoinSymbolMapItem } from "../constants/gecko"
 import { URL } from "../enums/url";
 
 interface ITickerUtility {
-  exists: (geckoTicker: IGeckoTicker) => boolean;
   filterSearchResults: (query: string, limit?: number) => IGeckoCoinSymbolMapItem[];
   getDefaultSearchResults: () => IGeckoCoinSymbolMapItem[];
   getGeckoIDFromSymbol: (symbol: string) => string;
   getGeckoChartUrl: (geckoID: string, currency: Currency) => string;
   getGeckoTickerUrl: (geckoID: string, currency: Currency) => string;    
-  getGeckoTickersUrl: (currency: Currency, limit?: number) => string;    
-  getIcon: (symbol: string, tracked: boolean) => ITickerIcon;
-  isTracked: (geckoTicker: IGeckoTicker) => boolean;
+  getGeckoTickersUrl: (currency: Currency, limit?: number) => string;   
   mapTicker: (geckoTicker: IGeckoTicker) => ITicker;
   mapTickers: (geckoTickers: IGeckoTicker[]) => ITicker[];
   mapTickerChart: (points: IGeckoTickerChartPoint) => ITickerChartPoint[];
 }
 
 export const TickerUtility: ITickerUtility = {
-  exists: (geckoTicker: IGeckoTicker): boolean => {
-    const item: IGeckoCoinSymbolMapItem = geckoCoinSymbolMap.find((item: IGeckoCoinSymbolMapItem) => item.symbol === geckoTicker.symbol);
-
-    return item !== undefined;
-  },
   filterSearchResults: (query: string, limit?: number): IGeckoCoinSymbolMapItem[] => {
     query = StringUtility.format(query);
 
-    return geckoCoinSymbolMap.filter((coin: IGeckoCoinSymbolMapItem) => coin.tracked)
-      .filter((coin: IGeckoCoinSymbolMapItem) => (
+    return geckoCoinSymbolMap.filter((coin: IGeckoCoinSymbolMapItem) => (
         StringUtility.format(coin.symbol).indexOf(query) >= 0 ||
         StringUtility.format(coin.name).indexOf(query) >= 0
       ))
@@ -59,47 +49,26 @@ export const TickerUtility: ITickerUtility = {
   getGeckoTickersUrl: (currency: Currency, limit?: number): string => {   
     return `${URL.Gecko}/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
   },
-  getIcon: (symbol: string, tracked: boolean): ITickerIcon => {
-    if(tracked) {
-      return {
-        color: `/img/icons/color/${symbol.toLowerCase()}.svg`,
-        white: `/img/icons/white/${symbol.toLowerCase()}.svg`
-      }
-    }
-
-    return {
-      color: "/img/icons/color/untracked.svg",
-      white: "/img/icons/white/untracked.svg"
-    }
-  },
-  isTracked: (geckoTicker: IGeckoTicker): boolean => {
-    const item: IGeckoCoinSymbolMapItem = geckoCoinSymbolMap.find((item: IGeckoCoinSymbolMapItem) => item.symbol === geckoTicker.symbol);
-
-    return item && item.tracked || false;
-  },
   mapTicker: (geckoTicker: IGeckoTicker): ITicker => {
-    const tracked: boolean = TickerUtility.isTracked(geckoTicker);
-
     return {
       change: {
         day: geckoTicker.price_change_percentage_24h
       },
       chart: [],
       cap: geckoTicker.market_cap,
-      exists: TickerUtility.exists(geckoTicker),
       geckoID: geckoTicker.id,
-      id: geckoTicker.id,
-      icon: TickerUtility.getIcon(geckoTicker.symbol, tracked),
+      id: geckoTicker.id,      
+      icon: geckoTicker.image,
       name: geckoTicker.name,
       price: geckoTicker.current_price,      
       rank: geckoTicker.market_cap_rank,
       supply: geckoTicker.circulating_supply,
-      symbol: geckoTicker.symbol,
-      tracked,
+      symbol: geckoTicker.symbol,      
       volume: geckoTicker.total_volume
     }
   },
   mapTickers: (geckoTickers: IGeckoTicker[]): ITicker[] => {
+    console.log(geckoTickers.map((ticker: IGeckoTicker) => ({ name: ticker.name, symbol: ticker.symbol, geckoID: ticker.id })));
     return geckoTickers.map((geckoTicker: IGeckoTicker) => TickerUtility.mapTicker(geckoTicker))
   },
   mapTickerChart: (chart: IGeckoTickerChartPoint): ITickerChartPoint[] => {

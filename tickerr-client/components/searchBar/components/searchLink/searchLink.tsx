@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 import { SettingsUtility } from "../../../../utilities/settingsUtility";
-import { TickerUtility } from "../../../../utilities/tickerUtility";
-
-import { ITickerIcon } from "../../../../../tickerr-models/tickerIcon";
 
 import { Font } from "../../../../../tickerr-enums/font";
-import { URL } from "../../../../enums/url";
 
 import { IGeckoCoinSymbolMapItem } from "../../../../constants/gecko";
 
@@ -20,7 +16,9 @@ interface SearchLinkProps {
 }
 
 export const SearchLink: React.FC<SearchLinkProps> = (props: SearchLinkProps) => {  
-  const icon: ITickerIcon = TickerUtility.getIcon(props.coin.symbol, props.coin.tracked);
+  const [imageError, setImageError] = useState<boolean>(false);
+
+  const image: string = "";
 
   const classes: string = classNames(
     "tickerr-search-result", 
@@ -28,13 +26,25 @@ export const SearchLink: React.FC<SearchLinkProps> = (props: SearchLinkProps) =>
     focused: props.focused
   });
 
+  const handleOnError = (): void => {
+    setImageError(true);
+  }
+
+  const getImage = (): JSX.Element => {
+    if(image !== "" && !imageError) {
+      return (
+        <img className="ticker-icon" src={image} onError={handleOnError} />
+      )
+    }
+  }
+
   return (
     <Link 
       to={`/${props.coin.symbol}`}
       onClick={props.clear}
       className={classes}
     >
-      <img className="ticker-icon" src={`${URL.CDN}${icon.color}`} />
+      {getImage()}
       <h1 className="ticker-name">{props.coin.name}</h1>
       <h1 className="ticker-symbol">{props.coin.symbol}</h1>
       <i className="fad fa-caret-right" />

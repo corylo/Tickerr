@@ -40,7 +40,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
         id="ticker-icon-and-symbol" 
         onClick={handleOnClick}
       >
-        <img className="ticker-icon" src={`${URL.CDN}${ticker.icon.color}`} />
+        <img className="ticker-icon" src={ticker.icon} />
         <h1 className={classNames("ticker-symbol", SettingsUtility.getFontClass(appState.settings.font))}>{ticker.symbol}</h1>
         <i className={toggles.panel ? "fal fa-times" : "far fa-ellipsis-v"} />
       </button>
