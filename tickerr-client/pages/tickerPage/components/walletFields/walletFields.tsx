@@ -89,6 +89,11 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
 
     return (
       <React.Fragment>
+        <TickerSidePanelField 
+          value={CurrencyUtility.formatCurrency(wallet.balance * ticker.price, appState.settings.currency, 2)} 
+          label="Wallet Value" 
+          status={appState.statuses.wallet.is}
+        />
         <TickerSidePanelField             
           actionIcon="fad fa-sync-alt"
           label={`Wallet Balance (${DateUtility.formatRelative(wallet.updatedAt / 1000)} ago)`} 
@@ -96,11 +101,6 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
           status={appState.statuses.wallet.is}       
           tooltip={getTooltip()}
           handleOnAction={updateBalance}
-        />
-        <TickerSidePanelField 
-          value={CurrencyUtility.formatCurrency(wallet.balance * ticker.price, appState.settings.currency, 2)} 
-          label="Wallet Value" 
-          status={appState.statuses.wallet.is}
         />
         <TickerSidePanelField 
           className="ticker-side-panel-wallet-address"
