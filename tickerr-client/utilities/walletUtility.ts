@@ -3,6 +3,7 @@ import { walletConfig } from "../../config/walletConfig";
 import { IWallet } from "../../tickerr-models/wallet";
 
 import { ApiUrl } from "../enums/url"
+import { Symbol } from "../../tickerr-enums/symbol";
 
 interface IWalletUtility {
   getAddressFormat: (symbol: string) => string;
@@ -19,7 +20,7 @@ interface IWalletUtility {
 export const WalletUtility: IWalletUtility = {
   getAddressFormat: (symbol: string): string => {
     switch(symbol.toLowerCase()) {
-      case "ada":
+      case Symbol.Ada:
         return "stake";
       default:
         console.error(`Symbol ${symbol} not found.`);
@@ -27,12 +28,12 @@ export const WalletUtility: IWalletUtility = {
   },
   getAvailableWallets: (): string[] => {
     return [
-      "ada"
+      Symbol.Ada
     ]
   },
   getBalance: (symbol: string, balance: number): number => {
     switch(symbol.toLowerCase()) {
-      case "ada":
+      case Symbol.Ada:
         return balance / 1000000;
       default:
         console.error(`Symbol ${symbol} not found.`);
@@ -40,7 +41,7 @@ export const WalletUtility: IWalletUtility = {
   },
   getHeaders: (symbol: string): any => {
     switch(symbol.toLowerCase()) {
-      case "ada":
+      case Symbol.Ada:
         return {
           project_id: walletConfig.api.blockfrost.project_id
         };
@@ -50,7 +51,7 @@ export const WalletUtility: IWalletUtility = {
   },
   getUrl: (symbol: string, address: string): string => {
     switch(symbol.toLowerCase()) {
-      case "ada":
+      case Symbol.Ada:
         return `${ApiUrl.BlockFrost}/accounts/${address}`;
       default:
         console.error(`Symbol ${symbol} not found.`);

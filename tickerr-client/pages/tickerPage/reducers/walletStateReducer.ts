@@ -37,6 +37,8 @@ export const walletStateReducer = (state: IWalletState, action: IAction): IWalle
     case WalletStateAction.SetAddress:
       if(state.errors.address === FormError.MissingValue && action.payload.trim() !== "") {
         updatedErrors.address = FormError.None;
+      } else if(state.errors.address === FormError.InvalidValue) {
+        updatedErrors.address = FormError.None;
       }
 
       return {

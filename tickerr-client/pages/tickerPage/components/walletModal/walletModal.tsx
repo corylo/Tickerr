@@ -31,6 +31,7 @@ import { AppAction } from "../../../../enums/appAction";
 import { FormStatus } from "../../../../enums/formStatus";
 import { TickerStateAction } from "../../enums/tickerStateAction";
 import { WalletStateAction } from "../../enums/walletStateAction";
+import { FormError } from "../../../../enums/formError";
 
 interface WalletModalProps {  
   
@@ -151,6 +152,7 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
                 label="Address" 
                 value={walletState.wallet.address}
                 error={walletState.errors.address}
+                errorMessage={walletState.errors.address === FormError.InvalidValue ? "Not Formatted Correctly" : null }
               >
                 <input 
                   type="text"

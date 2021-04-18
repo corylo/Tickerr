@@ -28,6 +28,8 @@ export const InputLabel: React.FC<InputLabelProps> = (props: InputLabelProps) =>
           return props.errorMessage;
         } else if (props.error === FormError.CharacterMinimumNotMet) {
           return `${props.minLength} Chars Minimum`;
+        } else if (props.error === FormError.InvalidValue) {
+          return "Invalid Value";
         }
         
         return "Field Required";
