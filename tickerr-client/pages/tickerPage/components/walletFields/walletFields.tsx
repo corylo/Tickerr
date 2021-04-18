@@ -16,6 +16,7 @@ import { WalletUtility } from "../../../../utilities/walletUtility";
 import { IWallet } from "../../../../../tickerr-models/wallet";
 
 import { AppAction } from "../../../../enums/appAction";
+import { AppStatus } from "../../../../components/app/enums/appStatus";
 import { RequestStatus } from "../../../../enums/requestStatus";
 import { TickerStateAction } from "../../enums/tickerStateAction";
 
@@ -31,7 +32,7 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
 
   const { ticker } = tickerState;
 
-  const wallet: IWallet | null = WalletUtility.getWallet(ticker.symbol, appState.user.wallets);
+  const wallet: IWallet | null = WalletUtility.getWallet(ticker.symbol, appState.user ? appState.user.wallets : []);
 
   const [countdown, setCountdown] = useState<number>(0);
 
@@ -115,8 +116,16 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
     .find((symbol: string) => symbol === ticker.symbol) !== undefined;
 
   if(available) {
+    const handleOnClick = (): void => {
+      if(appState.status === AppStatus.SignedIn) {
+        dispatch(TickerStateAction.ToggleWallet, true);
+      } else {
+        dispatchToApp({ type: AppAction.ToggleSignIn, payload: true })
+      }
+    }
+
     return (      
-      <Button id="ticker-add-wallet-button" handleOnClick={() => dispatch(TickerStateAction.ToggleWallet, true)}>
+      <Button id="ticker-add-wallet-button" handleOnClick={handleOnClick}>
         <i className="fad fa-plus" />
         <h1 className="passion-one-font">Add Wallet</h1>
       </Button>

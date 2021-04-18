@@ -29,7 +29,7 @@ export const TickerSidePanelField: React.FC<TickerSidePanelFieldProps> = (props:
       return (
         <IconButton 
           className="ticker-side-panel-field-action-button" 
-          icon={props.actionIcon || "fas fa-pencil"} 
+          icon={props.actionIcon || "fad fa-pencil"} 
           tooltip={props.tooltip}
           tooltipSide={TooltipSide.Left}
           handleOnClick={props.handleOnAction} 
