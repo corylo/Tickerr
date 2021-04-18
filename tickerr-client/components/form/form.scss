@@ -31,19 +31,34 @@
 
     h1 {
       font-size: 1em;
-      margin-left: 10px;
       text-transform: uppercase;
     }
   }
   
-  .tickerr-form-error-message,
+  .tickerr-form-submit-success-message,
   .tickerr-form-submit-error-message {
+    border-radius: 6px;
+    padding: 15px 10px;
+  }
+
+  .tickerr-form-error-message,
+  .tickerr-form-submit-error-message {    
     h1 {
       color: $red;
     }
   }
+
+  .tickerr-form-submit-error-message {    
+    background-color: rgba($red, 0.2);
+    
+    h1 {
+      margin-left: 10px;
+    }
+  }
   
   .tickerr-form-submit-success-message {
+    background-color: rgba($green, 0.2);
+
     h1 {
       color: $green;
     }
