@@ -14,11 +14,9 @@ export const WalletStateValidator: IWalletStateValidator = {
     switch(symbol.toLowerCase()) {
       case Symbol.Ada:
         return address.indexOf("stake") === 0;
-      default:
-        console.error(`Symbol ${symbol} not found.`);
     }
 
-    return false;
+    return true;
   },
   validateWallet: (walletState: IWalletState, dispatch: (type: WalletStateAction, payload?: any) => void): boolean => {
     const { errors, wallet } = walletState;

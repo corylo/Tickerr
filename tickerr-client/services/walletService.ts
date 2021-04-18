@@ -10,8 +10,9 @@ export const WalletService: IWalletService = {
   fetchBalance: async (symbol: string, address: string): Promise<number> => {
     const headers: any = WalletUtility.getHeaders(symbol);
 
-    const res: any = await axios.get(WalletUtility.getUrl(symbol, address), { headers });
+    const res: any = await axios.get(WalletUtility.getUrl(symbol, address), { headers }),
+      balance: number = WalletUtility.handleApiResponse(symbol, address, res.data);
 
-    return await WalletUtility.getBalance(symbol, res.data.controlled_amount);
+    return await WalletUtility.getBalance(symbol, balance);
   }
 }

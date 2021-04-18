@@ -12,6 +12,7 @@ interface IWalletUtility {
   getHeaders: (symbol: string) => any;
   getUrl: (symbol: string, address: string) => string;
   getWallet: (symbol: string, wallets: IWallet[]) => IWallet | null;
+  handleApiResponse: (symbol: string, address: string, data: any) => number;
   mapWallet: (wallet: IWallet, balance: number) => IWallet;
   updateAvailable: (wallet: IWallet) => boolean;
   updateWallets: (updatedWallet: IWallet, wallets: IWallet[]) => IWallet[];
@@ -22,19 +23,22 @@ export const WalletUtility: IWalletUtility = {
     switch(symbol.toLowerCase()) {
       case Symbol.Ada:
         return "stake";
-      default:
-        console.error(`Symbol ${symbol} not found.`);
     }
+
+    return "";
   },
   getAvailableWallets: (): string[] => {
     return [
-      Symbol.Ada
+      Symbol.Ada,
+      Symbol.Btc
     ]
   },
   getBalance: (symbol: string, balance: number): number => {
     switch(symbol.toLowerCase()) {
       case Symbol.Ada:
         return balance / 1000000;
+      case Symbol.Btc:
+        return balance / 100000000;
       default:
         console.error(`Symbol ${symbol} not found.`);
     }
@@ -45,14 +49,16 @@ export const WalletUtility: IWalletUtility = {
         return {
           project_id: walletConfig.api.blockfrost.project_id
         };
-      default:
-        console.error(`Symbol ${symbol} not found.`);
     }
+
+    return {};
   },
   getUrl: (symbol: string, address: string): string => {
     switch(symbol.toLowerCase()) {
       case Symbol.Ada:
         return `${ApiUrl.BlockFrost}/accounts/${address}`;
+      case Symbol.Btc:
+        return `${ApiUrl.BlockChainInfo}/balance?active=${address}`;
       default:
         console.error(`Symbol ${symbol} not found.`);
     }
@@ -63,6 +69,16 @@ export const WalletUtility: IWalletUtility = {
     }
 
     return null;
+  },
+  handleApiResponse: (symbol: Symbol, address: string, data: any): number => {
+    switch(symbol) {
+      case Symbol.Ada:
+        return data.controlled_amount;
+      case Symbol.Btc:
+        return data[address].final_balance;
+      default:
+        console.error(`Symbol ${symbol} not found.`);
+    }
   },
   mapWallet: (wallet: IWallet, balance: number): IWallet => {
     return {
@@ -79,12 +95,18 @@ export const WalletUtility: IWalletUtility = {
       return [updatedWallet];
     }
 
-    return wallets.map((wallet: IWallet) => {
-      if(wallet.symbol === updatedWallet.symbol) {
-        return updatedWallet;
-      }
+    const match: IWallet | undefined = wallets.find((wallet: IWallet) => wallet.symbol === updatedWallet.symbol);
 
-      return wallet;
-    });
+    if(match) {
+      return wallets.map((wallet: IWallet) => {
+        if(wallet.symbol === updatedWallet.symbol) {
+          return updatedWallet;
+        }
+
+        return wallet;
+      });
+    }
+
+    return [...wallets, updatedWallet];
   }
 }

@@ -1,3 +1,4 @@
 export enum Symbol {
-  Ada = "ada"
+  Ada = "ada",
+  Btc = "btc"
 }

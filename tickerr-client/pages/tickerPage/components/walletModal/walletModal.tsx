@@ -132,6 +132,16 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
         )
       }
     }
+
+    const getPlaceholder = (): string => {
+      const format: string = WalletUtility.getAddressFormat(ticker.symbol);
+
+      if(format !== "") {
+        return `Address should start with: ${format}`;
+      }
+
+      return "Enter address";
+    }
     
     return (
       <Modal id="wallet-modal" status={walletState.status}>
@@ -157,7 +167,7 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
                 <input 
                   type="text"
                   className="pt-sans-font"
-                  placeholder={`Address should start with: ${WalletUtility.getAddressFormat(ticker.symbol)}...`}
+                  placeholder={getPlaceholder()}
                   value={walletState.wallet.address}
                   onChange={(e: any) => dispatch(WalletStateAction.SetAddress, e.target.value)}
                   onKeyDown={handleOnKeyDown}
