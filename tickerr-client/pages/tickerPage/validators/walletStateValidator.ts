@@ -1,4 +1,4 @@
-import { UserUtility } from "../../../utilities/userUtility";
+import { WalletUtility } from "../../../utilities/walletUtility";
 
 import { IWallet } from "../../../../tickerr-models/wallet";
 import { IWalletState } from "../models/walletState";
@@ -13,7 +13,7 @@ interface IWalletStateValidator {
 
 export const WalletStateValidator: IWalletStateValidator = {
   validateWallet: (wallets: IWallet[], walletState: IWalletState, dispatch: (type: WalletStateAction, payload?: any) => void): boolean => {
-    const originalWallet: IWallet | null = UserUtility.getWallet(walletState.wallet.symbol, wallets);
+    const originalWallet: IWallet | null = WalletUtility.getWallet(walletState.wallet.symbol, wallets);
 
     if(originalWallet && originalWallet.address === walletState.wallet.address) {
       return false;

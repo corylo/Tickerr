@@ -24,14 +24,13 @@ import { defaultTickerState } from "./models/tickerState";
 
 import { TickerStateAction } from "./enums/tickerStateAction";
 import { URL } from "../../enums/url";
-import { useFetchWalletBalanceEffect } from "./effects/walletEffects";
 
 interface TickerPageProps {
   
 }
 
 export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) => {
-  const { appState, dispatchToApp } = useContext(AppContext);
+  const { appState } = useContext(AppContext);
   
   const [tickerState, dispatchToTickerState] = useReducer(tickerStateReducer, defaultTickerState());
   
@@ -53,13 +52,9 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   useTickerEffect(urlSymbol, appState, status, dispatch);
 
-  useFetchWalletBalanceEffect(appState, ticker, dispatchToApp);
-
   const chart: ITickerChartPoint[] = ticker ? ticker.chart : [];
 
   const memoizedTickerChart = useMemo(() => <TickerChart ticker={ticker} />, [chart]);
-
-  console.log(appState.user)
 
   const getTickerStats = (): JSX.Element => {
     if(ticker) {

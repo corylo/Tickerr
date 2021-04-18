@@ -15,8 +15,9 @@ import { TickerStateContext } from "../../contexts/tickerStateContext";
 import { walletStateReducer } from "../../reducers/walletStateReducer";
 
 import { UserService } from "../../../../services/userService";
+import { WalletService } from "../../../../services/walletService";
 
-import { UserUtility } from "../../../../utilities/userUtility";
+import { WalletUtility } from "../../../../utilities/walletUtility";
 
 import { WalletStateValidator } from "../../validators/walletStateValidator";
 
@@ -68,24 +69,62 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
         try {
           dispatch(WalletStateAction.SetStatus, FormStatus.Submitting);
 
-          const updatedWallets: IWallet[] = UserUtility.mapUpdatedWallet(walletState.wallet, user.wallets);
+          const balance: number = await WalletService.fetchBalance(ticker.symbol, walletState.wallet.address);
+
+          const updatedWallets: IWallet[] = WalletUtility.updateWallets(WalletUtility.mapWallet(walletState.wallet, balance), appState.user.wallets);
 
           await UserService.update(user.uid, { wallets: updatedWallets });
 
           dispatchToApp({ type: AppAction.SetUserWallets, payload: updatedWallets });
   
-          dispatch(WalletStateAction.SetStatus, FormStatus.SubmitSuccess);
+          dispatch(WalletStateAction.Added);
         } catch (err) {
-          console.error("submitGameEntry:", err.message);
+          console.error(err);
   
           dispatch(WalletStateAction.SetStatus, FormStatus.SubmitError);
         }
+      }
+    }
+    
+    const removeWallet = async () => {
+      try {
+        dispatch(WalletStateAction.SetStatus, FormStatus.Submitting);
+
+        const updatedWallets: IWallet[] = user.wallets.filter((wallet: IWallet) => wallet.symbol !== ticker.symbol);
+
+        await UserService.update(user.uid, { wallets: updatedWallets });
+
+        dispatchToApp({ type: AppAction.SetUserWallets, payload: updatedWallets });
+
+        dispatch(WalletStateAction.Removed);
+
+        dispatch(WalletStateAction.SetStatus, FormStatus.SubmitSuccess);
+      } catch (err) {
+        console.error(err);
+
+        dispatch(WalletStateAction.SetStatus, FormStatus.SubmitError);
       }
     }
 
     const handleOnKeyDown = (e: any): void => {
       if(e.key === "Enter") {
         saveWallet();
+      }
+    }
+
+    const getRemoveButton = (): JSX.Element => {
+      const wallet: IWallet | null = WalletUtility.getWallet(ticker.symbol, appState.user.wallets);
+    
+      if(wallet) {
+        return (          
+          <Button
+            id="remove-wallet-address-button" 
+            className="submit-button passion-one-font" 
+            handleOnClick={removeWallet}
+          >
+            Remove
+          </Button>
+        )
       }
     }
     
@@ -97,9 +136,9 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
         <ModalBody>
           <Form 
             errors={walletState.errors} 
-            errorMessage="Whoops! Error updating wallet address. Please refresh and try again."
+            errorMessage="Whoops! Error updating wallet address. Please double check that your address is correct."
             status={walletState.status} 
-            successMessage="Success! Wallet updated!"
+            successMessage={walletState.statusMessage || "Success! Wallet updated!"}
           >
             <FormBody>
               <InputWrapper
@@ -111,7 +150,7 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
                 <input 
                   type="text"
                   className="pt-sans-font"
-                  placeholder="Enter address"
+                  placeholder={`Address should start with: ${WalletUtility.getAddressFormat(ticker.symbol)}...`}
                   value={walletState.wallet.address}
                   onChange={(e: any) => dispatch(WalletStateAction.SetAddress, e.target.value)}
                   onKeyDown={handleOnKeyDown}
@@ -126,6 +165,7 @@ export const WalletModal: React.FC<WalletModalProps> = (props: WalletModalProps)
               >
                 Save
               </Button>
+              {getRemoveButton()}
             </FormActions>
           </Form>
         </ModalBody>

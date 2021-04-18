@@ -13,6 +13,13 @@
     cursor: pointer;
   }
 
+  &:not(:disabled):hover,
+  &:not(:disabled):focus {
+    .tooltip {
+      opacity: 1;
+    }
+  }
+  
   &.link {
     display: block;
     text-decoration: none;

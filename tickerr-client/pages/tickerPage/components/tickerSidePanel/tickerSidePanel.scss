@@ -99,24 +99,28 @@
       &.ticker-side-panel-wallet-address {
         .ticker-side-panel-field-value {
           font-size: 1.25em;
-          height: 30px;
-          line-height: 30px;
         }
       }
 
       .ticker-side-panel-field-value {
         color: white;
-        font-size: 2em;
+        font-size: 1.75em;
         font-weight: 400;
+        height: 30px;
+        line-height: 30px;
         max-width: calc(100% - 40px);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        span {
+          color: white;
+        }
       }
 
       .ticker-side-panel-field-label {
         color: gray(220);
-        font-size: 1.25em;
+        font-size: 1em;
         font-weight: 700;
         text-transform: uppercase;
       }

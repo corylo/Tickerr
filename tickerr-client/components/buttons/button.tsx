@@ -1,7 +1,8 @@
 import React from "react";
 import classNames from "classnames";
-
 import { Link } from "react-router-dom";
+
+import { Tooltip, TooltipSide } from "../tooltip/tooltip";
 
 interface ButtonProps {
   children: any;
@@ -9,12 +10,22 @@ interface ButtonProps {
   id?: string;
   url?: string;
   external?: boolean;
+  tooltip?: string;
+  tooltipSide?: TooltipSide;
   handleOnClick?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = (
   props: ButtonProps
 ) => {
+  const getTooltip = (): JSX.Element => {
+    if(props.tooltip) {
+      return (
+        <Tooltip text={props.tooltip} side={props.tooltipSide || TooltipSide.Right} />
+      )
+    }
+  }
+
   if(props.url) {
     if(props.external) {
       return (
@@ -50,6 +61,7 @@ export const Button: React.FC<ButtonProps> = (
         onClick={props.handleOnClick}
       >
         {props.children}
+        {getTooltip()}
       </button>
     );
   }

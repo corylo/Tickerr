@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 
-import { Button } from "../../../../components/buttons/button";
 import { TickerSidePanelField } from "./tickerSidePanelField";
+import { WalletFields } from "../walletFields/walletFields";
 
 import { AppContext } from "../../../../components/app/contexts/appContext";
 import { TickerStateContext } from "../../contexts/tickerStateContext";
@@ -10,12 +10,9 @@ import { TickerStateContext } from "../../contexts/tickerStateContext";
 import { AnalyticsUtility } from "../../../../utilities/analyticsUtility";
 import { CurrencyUtility } from "../../../../utilities/currencyUtility";
 import { SettingsUtility } from "../../../../utilities/settingsUtility";
-import { UserUtility } from "../../../../utilities/userUtility";
 
-import { IWallet } from "../../../../../tickerr-models/wallet";
-
-import { URL } from "../../../../enums/url";
 import { TickerStateAction } from "../../enums/tickerStateAction";
+import { URL } from "../../../../enums/url";
 
 interface TickerSidePanelProps {
   
@@ -35,28 +32,6 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
     dispatch(TickerStateAction.ToggleSidePanel, payload);
 
     AnalyticsUtility.log("ticker_side_panel_toggle", { toggled: payload, ticker });
-  }
-
-  const getWallet = (): JSX.Element => {
-    const wallet: IWallet | null = UserUtility.getWallet(ticker.symbol, appState.user.wallets);
-
-    if(wallet) {
-      return (
-        <TickerSidePanelField 
-          className="ticker-side-panel-wallet-address"
-          value={wallet.address} 
-          label="Wallet Address" 
-          handleOnAction={() => dispatch(TickerStateAction.ToggleWallet, true)}
-        />
-      )
-    }
-
-    return (      
-      <Button id="ticker-add-wallet-button" handleOnClick={() => dispatch(TickerStateAction.ToggleWallet, true)}>
-        <i className="fad fa-plus" />
-        <h1 className="passion-one-font">Add Wallet</h1>
-      </Button>
-    )
   }
 
   return(
@@ -96,9 +71,9 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
             value={`${ticker.change.day.toFixed(2)}%`} 
             label="24H" 
           />
-          {getWallet()}
+          <WalletFields />
         </div>
-    </div>
+      </div>
     </React.Fragment>
   )
 }
