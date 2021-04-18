@@ -48,6 +48,7 @@ export const SearchBarInput: React.FC<SearchBarInputProps> = (props: SearchBarIn
       className="passion-one-font"
       value={query} 
       placeholder={focused ? "Search" : "Hit / to search"}
+      autoComplete="off"
       onChange={(e: any) => dispatch(SearchAction.SetQuery, e.target.value)}
       onKeyDown={handleOnKeyDown}
       onFocus={() => dispatch(SearchAction.SetFocused, true)}
