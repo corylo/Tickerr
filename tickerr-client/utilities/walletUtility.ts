@@ -30,7 +30,8 @@ export const WalletUtility: IWalletUtility = {
   getAvailableWallets: (): string[] => {
     return [
       Symbol.Ada,
-      Symbol.Btc
+      Symbol.Btc,
+      Symbol.Eth
     ]
   },
   getBalance: (symbol: string, balance: number): number => {
@@ -39,6 +40,8 @@ export const WalletUtility: IWalletUtility = {
         return balance / 1000000;
       case Symbol.Btc:
         return balance / 100000000;
+      case Symbol.Eth:
+        return balance / Math.pow(10, 19);
       default:
         console.error(`Symbol ${symbol} not found.`);
     }
@@ -59,6 +62,8 @@ export const WalletUtility: IWalletUtility = {
         return `${ApiUrl.BlockFrost}/accounts/${address}`;
       case Symbol.Btc:
         return `${ApiUrl.BlockChainInfo}/balance?active=${address}`;
+      case Symbol.Eth:
+        return `${ApiUrl.EtherScan}?module=account&action=balance&address=${address}`;
       default:
         console.error(`Symbol ${symbol} not found.`);
     }
@@ -76,6 +81,8 @@ export const WalletUtility: IWalletUtility = {
         return data.controlled_amount;
       case Symbol.Btc:
         return data[address].final_balance;
+      case Symbol.Eth:
+        return data.result;
       default:
         console.error(`Symbol ${symbol} not found.`);
     }
