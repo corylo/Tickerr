@@ -13,7 +13,7 @@ export const WalletStateValidator: IWalletStateValidator = {
   validateAddress: (symbol: string, address: string): boolean => {
     switch(symbol.toLowerCase()) {
       case Symbol.Ada:
-        return symbol.indexOf("stake") === 0;
+        return address.indexOf("stake") === 0;
       default:
         console.error(`Symbol ${symbol} not found.`);
     }
