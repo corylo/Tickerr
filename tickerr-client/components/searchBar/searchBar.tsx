@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React, { useContext, useReducer, useRef } from "react";
+import _sortBy from "lodash.sortby";
 
 import { IconButton } from "../buttons/iconButton";
 import { SearchBarInput } from "./components/searchBarInput/searchBarInput";
@@ -61,7 +62,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
 
   const getResults = (): JSX.Element => {
     if(focused) {
-      const links: JSX.Element[] = results.map((coin: IGeckoCoinSymbolMapItem, i: number) => (
+      const links: JSX.Element[] = _sortBy(results, "name").map((coin: IGeckoCoinSymbolMapItem, i: number) => (
         <SearchLink
           key={coin.symbol} 
           coin={coin}
