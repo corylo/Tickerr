@@ -42,12 +42,24 @@ export const SignInModal: React.FC<SignInModalProps> = (props: SignInModalProps)
       auth.signInWithRedirect(provider);
     }
   
+    const handleSignInWithTwitter = async () => {
+      const provider: firebase.auth.TwitterAuthProvider = new firebase.auth.TwitterAuthProvider();
+  
+      provider.setCustomParameters({ prompt: "select_account" });
+  
+      auth.signInWithRedirect(provider);
+    }
+
     return (
       <Modal id="tickerr-sign-in-modal" priority>
         <ModalTitle text="Sign In" handleOnClose={() => dispatch(AppAction.ToggleSignIn, false)} />
         <ModalBody>
-          <Button id="tickerr-google-sign-in-button" handleOnClick={handleSignInWithGoogle}>
+          <Button id="tickerr-google-sign-in-button" className="tickerr-sign-in-button" handleOnClick={handleSignInWithGoogle}>
             <img src={`${ApiUrl.CDN}/img/brands/google-logo.png`} />
+            <h1 className="passion-one-font">Sign In</h1>
+          </Button>
+          <Button id="tickerr-twitter-sign-in-button" className="tickerr-sign-in-button" handleOnClick={handleSignInWithTwitter}>
+            <img src={`${ApiUrl.CDN}/img/brands/twitter-logo.png`} />
             <h1 className="passion-one-font">Sign In</h1>
           </Button>
           <div id="tickerr-sign-in-disclaimer">

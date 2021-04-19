@@ -28,17 +28,21 @@ export const EmailService: IEmailService = {
     throw new https.HttpsError("internal", `Unable to get [${EmailTemplate[template]}] template.`);
   },
   sendEmail: async (label: string, user: auth.UserRecord, options: IEmailOptions): Promise<void> => {
-    try {
-      const transport: any = EmailUtility.getTransport();
+    if(user.email) {
+      try {
+        const transport: any = EmailUtility.getTransport();
 
-      await transport.verify();
-      await transport.sendMail(options);
+        await transport.verify();
+        await transport.sendMail(options);
 
-      logger.log(`[${label}] email sent to user: ${user.displayName} at: ${user.email}.`);
-    } catch (err) {
-      logger.error(err);
+        logger.log(`[${label}] email sent to user: ${user.displayName} at: ${user.email}.`);
+      } catch (err) {
+        logger.error(err);
 
-      logger.error(`Unable to send [${label}] email to user: ${user.displayName} at: ${user.email}.`);
+        logger.error(`Unable to send [${label}] email to user: ${user.displayName} at: ${user.email}.`);
+      }
+    } else {
+      logger.log(`No email address available for user: ${user.displayName}. Can't send [${label}] email.`);
     }
 
     return;

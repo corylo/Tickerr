@@ -11,7 +11,7 @@ export const UserUtility: IUserUtility = {
   mapUser: (firebaseUser: firebase.User): IUser => {
     return {
       uid: firebaseUser.uid, 
-      email: firebaseUser.email,
+      email: firebaseUser.email || "",
       image: firebaseUser.photoURL,
       name: firebaseUser.displayName,
       settings: defaultUserSettings(),
