@@ -216,6 +216,8 @@
 
 @include phone-or-smaller { 
   #ticker-icon-and-symbol {        
+    z-index: 10;
+
     &.toggled {
       i {
         display: none;
@@ -232,6 +234,7 @@
     top: auto;
     transform: translateY(100%);
     width: calc(100% - 20px);    
+    z-index: 11;
 
     &.toggled {
       bottom: 0px;
