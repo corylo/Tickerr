@@ -6,6 +6,16 @@ export const useScrollToTopEffect = (location: any): void => {
   useEffect(() => window.scrollTo(0, 0), [location.pathname]);
 }
 
+export const useDisableScrollEffect = () => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+};
+
 export const useOnClickAwayEffect = (
   focused: boolean,
   elementIds: string[],

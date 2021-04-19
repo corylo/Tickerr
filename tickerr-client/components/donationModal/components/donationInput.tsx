@@ -40,7 +40,7 @@ export const DonationInput: React.FC<DonationInputProps> = (props: DonationInput
         className="copy-button"
         icon="fad fa-copy"
         tooltip={copied ? "Copied!" : "Copy"}
-        tooltipSide={TooltipSide.Right}
+        tooltipSide={TooltipSide.Left}
         handleOnClick={handleCopyAddress}
       />
     </div>

@@ -26,6 +26,12 @@
       i {
         font-size: 1.25em;
       }
+
+      .tooltip {
+        h1 {
+          background-color: $themeColor;
+        }
+      }
     }
   }
 }

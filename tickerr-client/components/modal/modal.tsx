@@ -4,6 +4,8 @@ import classNames from "classnames";
 
 import { LoadingIcon } from "../loadingIcon/loadingIcon";
 
+import { useDisableScrollEffect } from "../../effects/appEffects";
+
 import { FormStatus } from "../../enums/formStatus";
 import { RequestStatus } from "../../enums/requestStatus";
 
@@ -17,13 +19,15 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
+  useDisableScrollEffect();
+
   const getClasses = (): string => {
     const classes: any = { 
       transparent: props.transparent,
       priority: props.priority
     };
 
-    return classNames("tickerr-modal-wrapper", classes);
+    return classNames("tickerr-modal-wrapper", "scroll-bar", classes);
   }
 
   const getModalContent = (): JSX.Element => {
