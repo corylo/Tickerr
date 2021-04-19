@@ -72,7 +72,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
       ));
 
       return (
-        <div id="tickerr-search-results">
+        <div id="tickerr-search-results" className="scroll-bar">
           {links}
         </div>
       )
