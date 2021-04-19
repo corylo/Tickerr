@@ -1,8 +1,8 @@
 .tickerr-update-banner {
-  background-color: rgba($themeColor, 0.75);
+  background-color: rgba($themeColor, 0.6);
   border-radius: 6px;
   margin: 10px;
-  padding: 15px 10px;
+  padding: 10px;
   position: relative;
   white-space: nowrap;
 
@@ -21,7 +21,7 @@
 
     i {
       color: white;
-      font-size: 2em;
+      font-size: 1.8em;
       height: 40px;
       left: 50%;
       line-height: 40px;
@@ -38,17 +38,17 @@
     width: calc(100% - 40px);
 
     h1 {
-      color: white;
+      color: rgba(white, 0.8);
       white-space: normal;
 
       &.title {
-        font-size: 1.5em;
+        font-size: 1.25em;
         height: 20px;
         line-height: 20px;
       }
 
       &.text {
-        font-size: 1.25em;
+        font-size: 1em;
         font-weight: lighter;
         margin-top: 2px;
       }

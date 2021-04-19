@@ -41,17 +41,19 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   }
 
   const getUpdateBanner = (): JSX.Element => {
-    if(appState.status === AppStatus.SignedOut) {
-      return (
-        <UpdateBanner>
-          <UpdateBannerIcon icon="fad fa-sparkles" />
-          <UpdateBannerBody>
-            <h1 className="title">NEW</h1>
-            <h1 className="text">Sign In to save your settings! More features coming soon!</h1>
-          </UpdateBannerBody>
-        </UpdateBanner>
-      )
-    }
+    const text: string = appState.status === AppStatus.SignedOut
+      ? "Sign in to save wallets for BTC, ETH, and ADA! More coming soon!"
+      : "BTC, ETH, and ADA wallets now available. More coming soon!";
+
+    return (
+      <UpdateBanner>
+        <UpdateBannerIcon icon="fad fa-sparkles" />
+        <UpdateBannerBody>
+          <h1 className="title">NEW</h1>
+          <h1 className="text">{text}</h1>
+        </UpdateBannerBody>
+      </UpdateBanner>
+    )
   }
   
   return(
