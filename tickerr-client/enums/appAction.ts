@@ -14,6 +14,7 @@ export enum AppAction {
   StartSignOutUser = "Start Sign Out User",
   UpdateSettings = "Update Settings",
   ToggleCya = "Toggle Cya",
+  ToggleDonation = "Toggle Donation",
   ToggleMenu = "Toggle Menu",
   ToggleSearch = "Toggle Search",
   ToggleSettings = "Toggle Settings",

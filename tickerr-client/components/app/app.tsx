@@ -7,6 +7,7 @@ import { HomePage } from "../../pages/homePage/homePage";
 import { TickerPage } from "../../pages/tickerPage/tickerPage";
 
 import { CookieAlert } from "../cookieAlert/cookieAlert";
+import { DonationModal } from "../donationModal/donationModal";
 import { Navbar } from "../navbar/navbar";
 import { SettingsModal } from "../settingsModal/settingsModal";
 import { SignInModal } from "../signInModal/signInModal";
@@ -50,6 +51,7 @@ export const App: React.FC<AppProps> = (props: AppProps) => {
         <SettingsModal />
         <UserMenu />
         <CookieAlert />
+        <DonationModal />
         <Switch>
           <Route exact path="/">
             <HomePage />

@@ -134,6 +134,15 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
           cya: action.payload
         }
       }
+    case AppAction.ToggleDonation:
+      return {
+        ...state,
+        toggles: {
+          ...state.toggles,
+          donation: action.payload,
+          menu: false
+        }
+      }
     case AppAction.ToggleMenu:
       return {
         ...state,

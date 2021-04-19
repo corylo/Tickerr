@@ -30,12 +30,16 @@
     width: calc(100% - 20px);
   }
 
+  .tickerr-donation-toggle-button {
+    margin-top: 10px;
+  }
+
   #tickerr-username {
     color: gray(200);
     font-size: 1.25em;
     height: 30px;
     line-height: 30px;
-    padding: 20px;
+    padding: 10px 20px;
     text-align: center;
   }
 }

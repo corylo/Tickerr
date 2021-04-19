@@ -1,0 +1,31 @@
+#tickerr-donation-modal {
+  .donation-input-wrapper {
+    &:nth-of-type(n + 2) {
+      margin-top: 15px;
+    }
+
+    .tickerr-input-wrapper,
+    .icon-button {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .tickerr-input-wrapper {
+      width: calc(100% - 60px);
+
+      .donation-input {
+        input {
+          
+        }
+      }
+    }
+
+    .copy-button {
+      margin-left: 10px;
+
+      i {
+        font-size: 1.25em;
+      }
+    }
+  }
+}
