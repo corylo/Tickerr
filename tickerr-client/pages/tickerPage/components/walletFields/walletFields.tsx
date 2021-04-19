@@ -134,7 +134,7 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
 
     return (      
       <Button id="ticker-add-wallet-button" handleOnClick={handleOnClick}>
-        <i className="fad fa-plus" />
+        <i className="fal fa-plus" />
         <h1 className="passion-one-font">Add Wallet</h1>
       </Button>
     )

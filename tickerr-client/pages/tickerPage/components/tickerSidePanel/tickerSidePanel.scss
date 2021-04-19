@@ -10,11 +10,12 @@
   position: absolute;
   z-index: 11;
 
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
 
     i {
-      background-color: rgba(white, 0.15);
+      background-color: rgba(white, 0.1);
     }
   }
 
@@ -48,10 +49,10 @@
   }
 
   i {
-    background-color: rgba(white, 0.1);
+    background-color: transparent;
     border-radius: 6px;
     color: white;
-    font-size: 1.25em;
+    font-size: 2em;
     height: 50px;
     line-height: 50px;
     margin: 15px;          
@@ -79,10 +80,26 @@
     transform: translateX(0px);
   }
 
+  #ticker-side-panel-minimize-button {
+    background-color: transparent;
+    display: none;
+    width: 100%;
+
+    &:hover {
+      background-color: rgba(white, 0.1);
+    }
+
+    i {
+      font-size: 1.25em;
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+
   #ticker-side-panel-details {
     margin: 20px;
     margin-top: 120px;
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 260px);
     overflow: auto;
 
     .ticker-side-panel-field {
@@ -166,12 +183,13 @@
     }
 
     #ticker-add-wallet-button {
+      background-color: transparent;
       margin-top: 10px;
-      padding: 15px 20px;
+      padding: 10px;
 
       &:hover,
       &:focus {
-        background-color: rgba(white, 0.25);
+        background-color: rgba(white, 0.1);
       }
 
       i, h1 {
@@ -182,6 +200,7 @@
       }
 
       h1 {
+        font-weight: lighter;
         margin-left: 10px;
       }
     }
@@ -196,6 +215,14 @@
 }
 
 @include phone-or-smaller { 
+  #ticker-icon-and-symbol {        
+    &.toggled {
+      i {
+        display: none;
+      }
+    }
+  }
+
   #ticker-side-panel {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -211,6 +238,10 @@
       transform: translateY(0px);
     }
   
+    #ticker-side-panel-minimize-button {
+      display: block;
+    }
+
     #ticker-side-panel-details {      
       margin-top: 20px;
     }

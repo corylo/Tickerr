@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 
+import { IconButton } from "../../../../components/buttons/iconButton";
 import { TickerSidePanelField } from "./tickerSidePanelField";
 import { WalletFields } from "../walletFields/walletFields";
 
@@ -37,6 +38,7 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
     <React.Fragment>
       <button 
         id="ticker-icon-and-symbol" 
+        className={classNames({ toggled: toggles.panel })}
         onClick={handleOnClick}
       >
         <div className="ticker-icon">                
@@ -46,6 +48,11 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
         <i className={toggles.panel ? "fal fa-times" : "far fa-ellipsis-v"} />
       </button>
       <div id="ticker-side-panel" className={classNames({ toggled: toggles.panel })}>
+        <IconButton 
+          id="ticker-side-panel-minimize-button" 
+          icon="fal fa-chevron-down" 
+          handleOnClick={handleOnClick}
+        />
         <div id="ticker-side-panel-details" className="scroll-bar">
           <TickerSidePanelField 
             value={ticker.rank.toString()}
