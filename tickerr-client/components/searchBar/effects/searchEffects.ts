@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import _sortBy from "lodash.sortby";
 
 import { TickerUtility } from "../../../utilities/tickerUtility";
 
@@ -17,7 +18,7 @@ export const useFocusSearchOnToggleEffect = (ref: React.MutableRefObject<HTMLInp
 export const useFilterSearchResultsEffect = (index: number, query: string, dispatch: (type: SearchAction, payload?: any) => void): void => {
   useEffect(() => {
     let results: IGeckoCoinSymbolMapItem[] = query.trim() !== ""
-      ? TickerUtility.filterSearchResults(query)
+      ? _sortBy(TickerUtility.filterSearchResults(query), "name")
       : TickerUtility.getDefaultSearchResults();
 
     dispatch(SearchAction.SetResults, results);
