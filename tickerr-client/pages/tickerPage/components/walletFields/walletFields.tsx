@@ -13,6 +13,7 @@ import { CurrencyUtility } from "../../../../utilities/currencyUtility";
 import { DateUtility } from "../../../../utilities/dateUtility";
 import { WalletUtility } from "../../../../utilities/walletUtility";
 
+import { IUser } from "../../../../../tickerr-models/user";
 import { IWallet } from "../../../../../tickerr-models/wallet";
 
 import { AppAction } from "../../../../enums/appAction";
@@ -59,17 +60,24 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
   const updateBalance = async () => {      
     if(appState.statuses.wallet.is !== RequestStatus.Loading && WalletUtility.updateAvailable(wallet)) {
       try {  
-        dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Loading, message: "" }});
-        
-        const balance: number = await WalletService.fetchBalance(ticker.symbol, wallet.address);
+        const latestUser: IUser = await UserService.get(appState.user.uid),
+          latestWallet: IWallet | null = WalletUtility.getWallet(ticker.symbol, latestUser ? latestUser.wallets : []);
 
-        const updatedWallets: IWallet[] = WalletUtility.updateWallets(WalletUtility.mapWallet(wallet, balance), appState.user.wallets);
+        if(latestWallet && WalletUtility.updateAvailable(latestWallet)) {
+          dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Loading, message: "" }});
+          
+          const balance: number = await WalletService.fetchBalance(ticker.symbol, wallet.address);
 
-        await UserService.update(appState.user.uid, { wallets: updatedWallets });
+          const updatedWallets: IWallet[] = WalletUtility.updateWallets(WalletUtility.mapWallet(wallet, balance), appState.user.wallets);
 
-        dispatchToApp({ type: AppAction.SetUserWallets, payload: updatedWallets });
+          await UserService.update(appState.user.uid, { wallets: updatedWallets });
 
-        dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Success, message: "" } });
+          dispatchToApp({ type: AppAction.SetUserWallets, payload: updatedWallets });
+
+          dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Success, message: "" } });
+        } else {
+          dispatchToApp({ type: AppAction.SetUser, payload: latestUser });
+        }
       } catch (err) {
         console.error(err);
 
