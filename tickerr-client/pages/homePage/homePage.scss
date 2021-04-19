@@ -1,14 +1,8 @@
 #tickerr-home-page {
   .tickerr-page-content {
     margin: auto;
+    margin-top: 70px;
     max-width: 1200px;
-  }
-
-  .nvpn-clickinator {
-    &:nth-of-type(1) {
-      margin-bottom: 10px;
-      margin-top: 70px;
-    }
   }
 
   #tickerr-percent-change-legend-text {
@@ -31,7 +25,7 @@
   }
 
   .tickerr-donation-toggle-button {
-    margin-top: 10px;
+    margin-top: 80px;
   }
 
   #tickerr-username {

@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { Page } from "../page/page";
 
 import { DonationButton } from "../../components/donationButton/donationButton";
-import { NVpnClickinator } from "../../components/clickinator/nVpnClickinator";
 import { TickerLink } from "../../components/tickerLink/tickerLink";
 import { UpdateBanner } from "../../components/updateBanner/updateBanner";
 import { UpdateBannerBody } from "../../components/updateBanner/updateBannerBody";
@@ -58,11 +57,9 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   
   return(
     <Page id="tickerr-home-page" status={status}>  
-      <NVpnClickinator /> 
       {getUpdateBanner()}
       <h1 id="tickerr-percent-change-legend-text" className="passion-one-font">% change based on last <span className="text-highlight">24H</span></h1>
       {getTickerLinks()}  
-      <NVpnClickinator />
       <DonationButton />
       <h1 id="tickerr-username" className="passion-one-font">Made with ❤️ by vvaffleman</h1>
     </Page>
