@@ -60,12 +60,12 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
   const updateBalance = async () => {      
     if(appState.statuses.wallet.is !== RequestStatus.Loading && WalletUtility.updateAvailable(wallet)) {
       try {  
+        dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Loading, message: "" }});
+        
         const latestUser: IUser = await UserService.get(appState.user.uid),
           latestWallet: IWallet | null = WalletUtility.getWallet(ticker.symbol, latestUser ? latestUser.wallets : []);
 
         if(latestWallet && WalletUtility.updateAvailable(latestWallet)) {
-          dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Loading, message: "" }});
-          
           const balance: number = await WalletService.fetchBalance(ticker.symbol, wallet.address);
 
           const updatedWallets: IWallet[] = WalletUtility.updateWallets(WalletUtility.mapWallet(wallet, balance), appState.user.wallets);
@@ -73,11 +73,11 @@ export const WalletFields: React.FC<WalletFieldsProps> = (props: WalletFieldsPro
           await UserService.update(appState.user.uid, { wallets: updatedWallets });
 
           dispatchToApp({ type: AppAction.SetUserWallets, payload: updatedWallets });
-
-          dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Success, message: "" } });
         } else {
           dispatchToApp({ type: AppAction.SetUser, payload: latestUser });
         }
+        
+        dispatchToApp({ type: AppAction.SetWalletStatus, payload: { is: RequestStatus.Success, message: "" } });
       } catch (err) {
         console.error(err);
 
