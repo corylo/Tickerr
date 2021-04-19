@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react";
+
 import { IconButton } from "../../buttons/iconButton";
 import { InputWrapper } from "../../inputWrapper/inputWrapper";
 import { TooltipSide } from "../../tooltip/tooltip";
+
+import { AnalyticsUtility } from "../../../utilities/analyticsUtility";
 
 interface DonationInputProps {  
   address: string;
@@ -17,6 +20,8 @@ export const DonationInput: React.FC<DonationInputProps> = (props: DonationInput
     copyRef.current.select();
     document.execCommand("copy");
     setCopied(true);
+
+    AnalyticsUtility.log("ticker_copy_donation_address", { label: props.label });
   }
 
   return (   
