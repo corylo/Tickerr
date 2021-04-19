@@ -1,4 +1,10 @@
 #tickerr-donation-modal {
+  .tickerr-modal-title {
+    h1 {
+      font-size: 2em;
+    }
+  }
+
   .donation-input-wrapper {
     &:nth-of-type(n + 2) {
       margin-top: 15px;
