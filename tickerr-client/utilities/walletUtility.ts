@@ -31,15 +31,18 @@ export const WalletUtility: IWalletUtility = {
     return [
       Symbol.Ada,
       Symbol.Btc,
-      Symbol.Eth
+      Symbol.Eth,
+      Symbol.Erg
     ]
   },
   getBalance: (symbol: string, balance: number): number => {
     switch(symbol.toLowerCase()) {
       case Symbol.Ada:
-        return balance / 1000000;
+        return balance / Math.pow(10, 6);
       case Symbol.Btc:
-        return balance / 100000000;
+        return balance / Math.pow(10, 8);
+      case Symbol.Erg:
+        return balance / Math.pow(10, 9);
       case Symbol.Eth:
         return balance / Math.pow(10, 19);
       default:
@@ -62,6 +65,8 @@ export const WalletUtility: IWalletUtility = {
         return `${ApiUrl.BlockFrost}/accounts/${address}`;
       case Symbol.Btc:
         return `${ApiUrl.BlockChainInfo}/balance?active=${address}`;
+      case Symbol.Erg:
+        return `${ApiUrl.ErgoExplorer}/api/v0/addresses/${address}`;
       case Symbol.Eth:
         return `${ApiUrl.EtherScan}?module=account&action=balance&address=${address}`;
       default:
@@ -81,6 +86,8 @@ export const WalletUtility: IWalletUtility = {
         return data.controlled_amount;
       case Symbol.Btc:
         return data[address].final_balance;
+      case Symbol.Erg:
+        return data.transactions.confirmedBalance;
       case Symbol.Eth:
         return data.result;
       default:

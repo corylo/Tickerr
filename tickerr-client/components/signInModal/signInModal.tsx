@@ -62,9 +62,9 @@ export const SignInModal: React.FC<SignInModalProps> = (props: SignInModalProps)
             <img src={`${ApiUrl.CDN}/img/brands/twitter-logo.png`} />
             <h1 className="passion-one-font">Sign In</h1>
           </Button>
-          <div id="tickerr-sign-in-disclaimer">
+          {/* <div id="tickerr-sign-in-disclaimer">
             <h1 className="passion-one-font">By signing in you agree to our <a href="https://legal.tickerr.tv/privacy">Privacy Policy</a> and <a href="https://legal.tickerr.tv/terms">Terms & Conditions</a></h1>
-          </div>
+          </div> */}
         </ModalBody>
       </Modal>
     );
