@@ -9,6 +9,7 @@ import { ITicker } from "../../tickerr-models/ticker";
 import { AppStatus } from "../components/app/enums/appStatus";
 import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
+import { TickerUtility } from "../utilities/tickerUtility";
 
 export const useUpdateUrlSymbolEffect = (match: any, dispatch: (type: TickerStateAction, payload?: any) => void): void => {
   useEffect(() => {

@@ -92,9 +92,9 @@ export const UserMenuModal: React.FC<UserMenuModalProps> = (props: UserMenuModal
           <Button className="tickerr-user-menu-item passion-one-font" handleOnClick={() => dispatch(AppAction.ToggleSettings, !toggles.settings)}>
             Settings
           </Button>
-          <Button className="tickerr-user-menu-item passion-one-font" url="https://legal.tickerr.tv" external>
+          {/* <Button className="tickerr-user-menu-item passion-one-font" url="https://legal.tickerr.tv" external>
             Legal
-          </Button>
+          </Button> */}
           <Button className="tickerr-user-menu-item passion-one-font" handleOnClick={() => dispatch(AppAction.ToggleDonation, true)}>
             Donate
           </Button>

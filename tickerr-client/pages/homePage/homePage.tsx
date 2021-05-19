@@ -57,7 +57,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
   
   return(
     <Page id="tickerr-home-page" status={status}>  
-      {getUpdateBanner()}
+      {/* {getUpdateBanner()} */}
       <h1 id="tickerr-percent-change-legend-text" className="passion-one-font">% change based on last <span className="text-highlight">24H</span></h1>
       {getTickerLinks()}  
       <DonationButton />

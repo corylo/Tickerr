@@ -11,6 +11,7 @@ import { Currency } from "../../tickerr-enums/currency";
 import { geckoCoinSymbolMap, IGeckoCoinSymbolMapItem } from "../constants/gecko";
 
 interface ITickerUtility {
+  displayGeckoCoinSymbolMap: (tickers: ITicker[]) => void;
   filterSearchResults: (query: string, limit?: number) => IGeckoCoinSymbolMapItem[];
   getDefaultSearchResults: () => IGeckoCoinSymbolMapItem[];
   getGeckoIDFromSymbol: (symbol: string) => string;
@@ -23,6 +24,16 @@ interface ITickerUtility {
 }
 
 export const TickerUtility: ITickerUtility = {
+  displayGeckoCoinSymbolMap: (tickers: ITicker[]): void => {    
+    const map: IGeckoCoinSymbolMapItem[] = tickers.map((ticker: ITicker) => ({
+      geckoID: ticker.geckoID,
+      image: ticker.icon.split(ApiUrl.GeckoImages)[1],
+      name: ticker.name,
+      symbol: ticker.symbol
+    }));
+
+    console.log(map);
+  },
   filterSearchResults: (query: string, limit?: number): IGeckoCoinSymbolMapItem[] => {
     query = StringUtility.format(query);
 

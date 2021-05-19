@@ -31,7 +31,8 @@ export const CookieAlert: React.FC<CookieAlertProps> = (props: CookieAlertProps)
     }
   }, [accepted]);
 
-  if(appState.status === AppStatus.SignedOut && !accepted) {
+  // if(appState.status === AppStatus.SignedOut && !accepted) {
+  if (false) {
     const handleOnClick = () => {
       localStorage.setItem("accepted-cookie-use", "true");
 
