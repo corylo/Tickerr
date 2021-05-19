@@ -1,5 +1,8 @@
 import { walletConfig } from "../../config/walletConfig";
 
+import { TickerUtility } from "./tickerUtility";
+
+import { ITicker } from "../../tickerr-models/ticker";
 import { IWallet } from "../../tickerr-models/wallet";
 
 import { ApiUrl } from "../enums/url"
@@ -9,9 +12,10 @@ interface IWalletUtility {
   getAddressFormat: (symbol: string) => string;
   getAvailableWallets: () => string[];
   getBalance: (symbol: string, balance: number) => number;
+  getCombinedValue: (wallets: IWallet[], tickers: ITicker[]) => number;
   getHeaders: (symbol: string) => any;
   getUrl: (symbol: string, address: string) => string;
-  getWallet: (symbol: string, wallets: IWallet[]) => IWallet | null;
+  getWallet: (symbol: string, wallets: IWallet[]) => IWallet | null;  
   handleApiResponse: (symbol: string, address: string, data: any) => number;
   mapWallet: (wallet: IWallet, balance: number) => IWallet;
   updateAvailable: (wallet: IWallet) => boolean;
@@ -48,6 +52,15 @@ export const WalletUtility: IWalletUtility = {
       default:
         console.error(`Symbol ${symbol} not found.`);
     }
+  },
+  getCombinedValue: (wallets: IWallet[], tickers: ITicker[]): number => {
+    return wallets.reduce((previous: any, current: IWallet) => {
+      const ticker: ITicker = TickerUtility.getTickerBySymbol(current.symbol, tickers);
+
+      return ticker 
+        ? previous + (ticker.price * current.balance)
+        : previous;
+    }, 0);
   },
   getHeaders: (symbol: string): any => {
     switch(symbol.toLowerCase()) {

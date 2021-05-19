@@ -7,6 +7,7 @@ import { TickerLink } from "../../components/tickerLink/tickerLink";
 import { UpdateBanner } from "../../components/updateBanner/updateBanner";
 import { UpdateBannerBody } from "../../components/updateBanner/updateBannerBody";
 import { UpdateBannerIcon } from "../../components/updateBanner/updateBannerIcon";
+import { WalletSummary } from "../../components/walletSummary/walletSummary";
 
 import { AppContext } from "../../components/app/contexts/appContext";
 
@@ -26,7 +27,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
 
   useUpdatePageTitleEffect("Tickerr");
   
-  const { tickers, status } = useTickersEffect(appState, 60);
+  const { tickers, status } = useTickersEffect(appState, 150);
 
   const getTickerLinks = (): JSX.Element => {
     const links: JSX.Element[] = tickers
@@ -59,6 +60,7 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
     <Page id="tickerr-home-page" status={status}>  
       {/* {getUpdateBanner()} */}
       <h1 id="tickerr-percent-change-legend-text" className="passion-one-font">% change based on last <span className="text-highlight">24H</span></h1>
+      <WalletSummary tickers={tickers} />
       {getTickerLinks()}  
       <DonationButton />
       <h1 id="tickerr-username" className="passion-one-font">Made with ❤️ by vvaffleman</h1>

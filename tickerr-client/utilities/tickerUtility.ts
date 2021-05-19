@@ -18,6 +18,7 @@ interface ITickerUtility {
   getGeckoChartUrl: (geckoID: string, currency: Currency) => string;
   getGeckoTickerUrl: (geckoID: string, currency: Currency) => string;    
   getGeckoTickersUrl: (currency: Currency, limit?: number) => string;   
+  getTickerBySymbol: (symbol: string, tickers: ITicker[]) => ITicker;
   mapTicker: (geckoTicker: IGeckoTicker) => ITicker;
   mapTickers: (geckoTickers: IGeckoTicker[]) => ITicker[];
   mapTickerChart: (points: IGeckoTickerChartPoint) => ITickerChartPoint[];
@@ -59,6 +60,11 @@ export const TickerUtility: ITickerUtility = {
   },
   getGeckoTickersUrl: (currency: Currency, limit?: number): string => {   
     return `${ApiUrl.Gecko}/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
+  },
+  getTickerBySymbol: (symbol: string, tickers: ITicker[]): ITicker => {
+    const ticker: ITicker = tickers.find((ticker: ITicker) => ticker.symbol === symbol);
+
+    return ticker || null;
   },
   mapTicker: (geckoTicker: IGeckoTicker): ITicker => {
     return {
