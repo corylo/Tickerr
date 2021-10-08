@@ -19,7 +19,7 @@ export const ScheduleService: IScheduleService = {
     logger.info(`Checking top ${limit} cryptos for new entries.`);
 
     try {
-      const tickers: ITicker[] = await TickerService.fetchTickers(200);
+      const tickers: ITicker[] = await TickerService.fetchTickers(limit);
 
       const referenceToTickers: firebase.firestore.Query<ITickerReference> = db.collection("tickers")
         .withConverter<ITickerReference>(tickerReferenceConverter);
