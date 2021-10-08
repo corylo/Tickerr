@@ -31,7 +31,7 @@ export const useFilterSearchResultsEffect = (search: ISearch, tickers: ITicker[]
         return filtered;
       }
 
-      return [TickerUtility.mapTickerPlaceholder(query)]
+      return [TickerUtility.mapTickerPlaceholder(query.toLowerCase())]
     }
 
     dispatch(SearchAction.SetResults, filterSearchResults());
