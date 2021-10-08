@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import _sortBy from "lodash.sortby";
 
-import { TickerUtility } from "../../../utilities/tickerUtility";
+import { TickerUtility } from "../../../../tickerr-utilities/tickerUtility";
 
 import { ISearch } from "../models/search";
 import { ITicker } from "../../../../tickerr-models/ticker";
@@ -25,7 +25,13 @@ export const useFilterSearchResultsEffect = (search: ISearch, tickers: ITicker[]
         return tickers.slice(0, 5);
       }
 
-      return _sortBy(TickerUtility.filterSearchResults(query, tickers), "name");
+      const filtered: ITicker[] = _sortBy(TickerUtility.filterSearchResults(query, tickers), "name");
+
+      if(filtered.length > 0) {
+        return filtered;
+      }
+
+      return [TickerUtility.mapTickerPlaceholder(query)]
     }
 
     dispatch(SearchAction.SetResults, filterSearchResults());

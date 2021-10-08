@@ -29,11 +29,25 @@ export const SearchLink: React.FC<SearchLinkProps> = (props: SearchLinkProps) =>
   }
 
   const getIcon = (): JSX.Element => {
-    if(!imageError) {
+    if(props.ticker.id === "" || imageError) {
       return (
         <div className="ticker-icon">                
-          <img src={props.ticker.icon} onError={handleOnError} />
+          <i className="fal fa-coin" />
         </div>
+      )
+    }
+
+    return (
+      <div className="ticker-icon">                
+        <img src={props.ticker.icon} onError={handleOnError} />
+      </div>
+    );
+  }
+
+  const getName = (): JSX.Element => {
+    if(props.ticker.name !== "") {
+      return (
+        <h1 className="ticker-name">{props.ticker.name}</h1>
       )
     }
   }
@@ -45,9 +59,9 @@ export const SearchLink: React.FC<SearchLinkProps> = (props: SearchLinkProps) =>
       className={classes}
     >
       {getIcon()}
-      <h1 className="ticker-name">{props.ticker.name}</h1>
+      {getName()}
       <h1 className="ticker-symbol">{props.ticker.symbol}</h1>
-      <i className="fad fa-caret-right" />
+      <i className="fad fa-caret-right caret" />
     </Link>
   );
 }

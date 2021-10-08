@@ -1,20 +1,21 @@
-import { StringUtility } from "./stringUtility";
+import { StringUtility } from "../tickerr-client/utilities/stringUtility";
 
-import { IGeckoTicker } from "../../tickerr-models/geckoTicker";
-import { IGeckoTickerChartPoint } from "../../tickerr-models/geckoTickerChartPoint";
-import { ITicker } from "../../tickerr-models/ticker";
-import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
+import { IGeckoTicker } from "../tickerr-models/geckoTicker";
+import { IGeckoTickerChartPoint } from "../tickerr-models/geckoTickerChartPoint";
+import { defaultTicker, ITicker } from "../tickerr-models/ticker";
+import { ITickerChartPoint } from "../tickerr-models/tickerChartPoint";
 
-import { ApiURL } from "../enums/apiURL";
-import { Currency } from "../../tickerr-enums/currency";
+import { ApiURL } from "../tickerr-client/enums/apiURL";
+import { Currency } from "../tickerr-enums/currency";
 
 interface ITickerUtility {
   filterSearchResults: (query: string, tickers: ITicker[], limit?: number) => ITicker[];
   getGeckoChartUrl: (geckoID: string, currency: Currency) => string;
   getGeckoTickerUrl: (geckoID: string, currency: Currency) => string;    
-  getGeckoTickersUrl: (currency: Currency, limit?: number) => string;   
+  getGeckoTickersUrl: (currency: Currency, limit?: number, page?: number) => string;   
   getTickerBySymbol: (symbol: string, tickers: ITicker[]) => ITicker;
   mapTicker: (geckoTicker: IGeckoTicker) => ITicker;
+  mapTickerPlaceholder: (query: string) => ITicker;
   mapTickers: (geckoTickers: IGeckoTicker[]) => ITicker[];
   mapTickerChart: (points: IGeckoTickerChartPoint) => ITickerChartPoint[];
 }
@@ -35,8 +36,8 @@ export const TickerUtility: ITickerUtility = {
   getGeckoTickerUrl: (geckoID: string, currency: Currency): string => {
     return `${ApiURL.Gecko}/coins/markets?vs_currency=${currency}&ids=${geckoID}&per_page=1&sparkline=false`;
   },
-  getGeckoTickersUrl: (currency: Currency, limit?: number): string => {   
-    return `${ApiURL.Gecko}/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
+  getGeckoTickersUrl: (currency: Currency, limit?: number, page?: number): string => {   
+    return `${ApiURL.Gecko}/coins/markets?vs_currency=${currency}&page=${page || 1}&per_page=${limit || 100}&sparkline=false`;
   },
   getTickerBySymbol: (symbol: string, tickers: ITicker[]): ITicker => {
     const ticker: ITicker = tickers.find((ticker: ITicker) => ticker.symbol === symbol);
@@ -57,8 +58,14 @@ export const TickerUtility: ITickerUtility = {
       price: geckoTicker.current_price,      
       rank: geckoTicker.market_cap_rank,
       supply: geckoTicker.circulating_supply,
-      symbol: geckoTicker.symbol,      
+      symbol: geckoTicker.symbol.toLowerCase(),      
       volume: geckoTicker.total_volume
+    }
+  },
+  mapTickerPlaceholder: (query: string): ITicker => {
+    return {
+      ...defaultTicker(),
+      symbol: query
     }
   },
   mapTickers: (geckoTickers: IGeckoTicker[]): ITicker[] => {    

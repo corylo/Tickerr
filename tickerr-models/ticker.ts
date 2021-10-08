@@ -15,3 +15,20 @@ export interface ITicker {
   symbol: string;
   volume: number;
 }
+
+export const defaultTicker = (): ITicker => ({
+  id: "",
+  cap: 0,
+  change: {
+    day: 0    
+  },
+  chart: [],
+  geckoID: "",
+  icon: "",
+  name: "",
+  price: 0,
+  rank: 0,
+  supply: 0,
+  symbol: "",
+  volume: 0
+})

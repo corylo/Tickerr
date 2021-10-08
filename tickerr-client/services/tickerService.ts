@@ -5,7 +5,7 @@ import _sortBy from "lodash.sortby";
 
 import { db } from "../firebase";
 
-import { TickerUtility } from "../utilities/tickerUtility";
+import { TickerUtility } from "../../tickerr-utilities/tickerUtility";
 
 import { ITicker } from "../../tickerr-models/ticker";
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";

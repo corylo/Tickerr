@@ -82,7 +82,7 @@
         &.focused {
           background-color: gray(70);
 
-          i {
+          .caret {
             opacity: 1;
             transform: translateX(0px);
           }
@@ -111,11 +111,17 @@
           height: 40px;
           width: 40px;
 
-          img {
+          img, i {
             border-radius: 100px;
             height: 30px;
             margin: 5px;
             width: 30px;
+          }
+
+          i {
+            color: white;
+            line-height: 30px;
+            text-align: center;
           }
         }
 
@@ -134,7 +140,7 @@
           text-transform: uppercase;
         }
 
-        i {
+        .caret {
           color: white;
           font-size: 1.25em;
           height: 40px;
