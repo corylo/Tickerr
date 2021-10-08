@@ -51,6 +51,11 @@
         &.length-of-10 {
           font-size: 18vw;
         }
+
+        &.length-of-11,
+        &.length-of-12 {
+          font-size: 14vw;
+        }
       }
     }
 
@@ -89,6 +94,11 @@
             &.length-of-9,
             &.length-of-10 {
               font-size: 12vw;
+            }
+
+            &.length-of-11,
+            &.length-of-12 {
+              font-size: 8vw;
             }
           }
         }

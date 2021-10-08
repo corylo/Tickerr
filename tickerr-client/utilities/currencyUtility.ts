@@ -33,6 +33,21 @@ export const CurrencyUtility: ICurrencyUtility = {
       return formatter.format(value);
     }
 
+    const split: string[] = value.toString().split(".");
+
+    if(split.length > 1) {
+      const decimals: number = split[1].length;
+
+      const formatter: Intl.NumberFormat = Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: currency.toUpperCase(),
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+
+      return formatter.format(value);
+    }
+
     return value.toString();
   },
   getMaximumFractionDigits: (min: number): number => {
