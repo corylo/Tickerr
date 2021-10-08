@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "tickerr-development-308516"
+    "default": "tickerr-tv-16b62",
+    "dev": "tickerr-tv-development-f272f",
+    "prod": "tickerr-tv-16b62"
   }
 }

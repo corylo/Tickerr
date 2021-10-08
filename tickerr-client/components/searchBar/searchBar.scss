@@ -151,6 +151,24 @@
         }
       }
     }
+
+    .loading-icon-wrapper {
+      align-items: center;
+      display: flex;
+      height: 50px;
+      justify-content: center;
+      left: auto;
+      right: 0px;
+      transform: none;
+      top: 0px;
+      width: 50px;
+
+      .loading-icon {
+        i {
+          font-size: 1.25em;
+        }
+      }
+    }
   }
 }
 

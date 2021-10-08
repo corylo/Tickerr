@@ -9,8 +9,8 @@
     "firebase-deploy": "firebase deploy --only functions",
     "deploy": "npm run clean && npm run firebase-deploy",
     "logs": "firebase functions:log",
-    "set:dev": "firebase use tickerr-development-308516",
-    "set:prod": "firebase use tickerr-tv",
+    "set:dev": "firebase use tickerr-tv-development-f272f",
+    "set:prod": "firebase use tickerr-tv-16b62",
     "projects": "firebase projects:list"
   },
   "engines": {

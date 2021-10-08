@@ -10,12 +10,9 @@ import { Settings } from "../settings/settings";
 
 import { AppContext } from "../app/contexts/appContext";
 
-import { UserService } from "../../services/userService";
-
 import { IUserSettings } from "../../../tickerr-models/userSettings";
 
 import { AppAction } from "../../enums/appAction";
-import { AppStatus } from "../app/enums/appStatus";
 import { RequestStatus } from "../../enums/requestStatus";
 
 interface SettingsModalProps {  
@@ -25,7 +22,7 @@ interface SettingsModalProps {
 export const SettingsModal: React.FC<SettingsModalProps> = (props: SettingsModalProps) => {  
   const { appState, dispatchToApp } = useContext(AppContext);
 
-  const { settings, status, statuses, toggles, user } = appState;
+  const { settings, statuses, toggles } = appState;
 
   const dispatch = (type: AppAction, payload?: any): void => dispatchToApp({ type, payload });
   
@@ -46,11 +43,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = (props: SettingsModal
       try {
         dispatch(AppAction.SetSettingsStatus, { is: RequestStatus.Loading, message: "" });
         
-        if(status === AppStatus.SignedIn) {
-          await UserService.update(user.uid, { settings: unsavedSettings });
-        } else {
-          window.localStorage.setItem("settings", JSON.stringify(unsavedSettings));
-        }
+        window.localStorage.setItem("settings", JSON.stringify(unsavedSettings));
         
         if(unsavedSettings.currency !== appState.settings.currency) {
           location.reload();

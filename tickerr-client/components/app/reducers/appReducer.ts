@@ -1,9 +1,7 @@
 import { IAction } from "../../../models/action";
 import { IAppState } from "../models/appState";
-import { defaultUserSettings } from "../../../../tickerr-models/userSettings";
 
 import { AppAction } from "../../../enums/appAction";
-import { AppStatus } from "../enums/appStatus";
 import { RequestStatus } from "../../../enums/requestStatus";
 
 export const appReducer = (state: IAppState, action: IAction): IAppState => {  
@@ -20,19 +18,20 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         },
         toggles: {
           ...state.toggles,
-          menu: false,
           settings: false
         }
       }
-    case AppAction.Cya:
+    case AppAction.InitSettings:      
       return {
         ...state,
-        settings: defaultUserSettings(),
-        toggles: {
-          ...state.toggles,
-          cya: true
-        },
-        user: null
+        settings: action.payload,
+        statuses: {
+          ...state.statuses,
+          settings: {
+            is: RequestStatus.Idle,
+            message: ""
+          }
+        }
       }
     case AppAction.SetCurrency:
       return {
@@ -50,36 +49,6 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
           font: action.payload
         }
       }
-    case AppAction.InitSettings:      
-      return {
-        ...state,
-        settings: action.payload,
-        statuses: {
-          ...state.statuses,
-          settings: {
-            is: RequestStatus.Idle,
-            message: ""
-          }
-        }
-      }
-    case AppAction.SetStatus:
-      return {
-        ...state,
-        status: action.payload
-      }
-    case AppAction.SetUser:
-      return {
-        ...state,
-        user: action.payload
-      }
-    case AppAction.SetUserWallets:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          wallets: action.payload
-        }
-      }
     case AppAction.SetSettingsStatus:
       return {
         ...state,
@@ -88,67 +57,24 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
           settings: action.payload
         }
       }
-    case AppAction.SetWalletStatus:
+    case AppAction.SetTickersStatus:
       return {
         ...state,
         statuses: {
           ...state.statuses,
-          wallet: action.payload
+          tickers: action.payload
         }
       }
-    case AppAction.SignInUser:
+    case AppAction.FetchedTickers:
       return {
         ...state,
-        settings: action.payload.settings,
-        status: AppStatus.SignedIn,
+        tickers: action.payload,
         statuses: {
           ...state.statuses,
-          settings: {
-            is: RequestStatus.Idle,
+          tickers: {
+            is: RequestStatus.Success,
             message: ""
           }
-        },
-        user: action.payload
-      }
-    case AppAction.SignOutUser:
-      return {
-        ...state,
-        settings: defaultUserSettings(),
-        status: AppStatus.SignedOut,
-        user: null
-      }
-    case AppAction.StartSignOutUser:
-      return {
-        ...state,        
-        status: AppStatus.Loading,
-        toggles: {
-          ...state.toggles,
-          menu: false
-        }
-      }
-    case AppAction.ToggleCya:
-      return {
-        ...state,
-        toggles: {
-          ...state.toggles,
-          cya: action.payload
-        }
-      }
-    case AppAction.ToggleDonation:
-      return {
-        ...state,
-        toggles: {
-          ...state.toggles,
-          donation: action.payload,
-          menu: false
-        }
-      }
-    case AppAction.ToggleMenu:
-      return {
-        ...state,
-        toggles: {
-          ...state.toggles,
-          menu: action.payload
         }
       }
     case AppAction.ToggleSearch:
@@ -156,7 +82,6 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         ...state,
         toggles: {
           ...state.toggles,
-          menu: false,
           search: action.payload
         }
       }
@@ -165,16 +90,7 @@ export const appReducer = (state: IAppState, action: IAction): IAppState => {
         ...state,
         toggles: {
           ...state.toggles,
-          menu: false,
           settings: action.payload
-        }
-      }
-    case AppAction.ToggleSignIn:
-      return {
-        ...state,
-        toggles: {
-          ...state.toggles,
-          signIn: action.payload
         }
       }
     case AppAction.UpdateSettings:

@@ -2,32 +2,31 @@ import React, { useContext } from "react";
 
 import { Page } from "../page/page";
 
-import { DonationButton } from "../../components/donationButton/donationButton";
 import { TickerLink } from "../../components/tickerLink/tickerLink";
-import { UpdateBanner } from "../../components/updateBanner/updateBanner";
-import { UpdateBannerBody } from "../../components/updateBanner/updateBannerBody";
-import { UpdateBannerIcon } from "../../components/updateBanner/updateBannerIcon";
-import { WalletSummary } from "../../components/walletSummary/walletSummary";
 
 import { AppContext } from "../../components/app/contexts/appContext";
 
 import { useUpdatePageTitleEffect } from "../../effects/appEffects";
-import { useTickersEffect } from "../../effects/tickerEffects";
+import { useFetchTickersOnIntervalEffect } from "../../effects/tickerEffects";
 
 import { ITicker } from "../../../tickerr-models/ticker";
 
-import { AppStatus } from "../../components/app/enums/appStatus";
+import { AppAction } from "../../enums/appAction";
 
 interface HomePageProps {
   
 }
 
 export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
-  const { appState } = useContext(AppContext);
+  const { appState, dispatchToApp } = useContext(AppContext);
+
+  const { statuses, tickers } = appState;
+
+  const dispatch = (type: AppAction, payload?: any): void => dispatchToApp({ type, payload });
 
   useUpdatePageTitleEffect("Tickerr");
   
-  const { tickers, status } = useTickersEffect(appState, 150);
+  useFetchTickersOnIntervalEffect(appState, 150, dispatch);
 
   const getTickerLinks = (): JSX.Element => {
     const links: JSX.Element[] = tickers
@@ -40,30 +39,10 @@ export const HomePage: React.FC<HomePageProps> = (props: HomePageProps) => {
     );
   }
 
-  const getUpdateBanner = (): JSX.Element => {
-    const text: string = appState.status === AppStatus.SignedOut
-      ? "Sign in to save wallets for BTC, ETH, and ADA! More coming soon!"
-      : "BTC, ETH, and ADA wallets now available. More coming soon!";
-
-    return (
-      <UpdateBanner>
-        <UpdateBannerIcon icon="fad fa-sparkles" />
-        <UpdateBannerBody>
-          <h1 className="title">NEW</h1>
-          <h1 className="text">{text}</h1>
-        </UpdateBannerBody>
-      </UpdateBanner>
-    )
-  }
-  
   return(
-    <Page id="tickerr-home-page" status={status}>  
-      {/* {getUpdateBanner()} */}
+    <Page id="tickerr-home-page" status={statuses.tickers.is}>  
       <h1 id="tickerr-percent-change-legend-text" className="passion-one-font">% change based on last <span className="text-highlight">24H</span></h1>
-      <WalletSummary tickers={tickers} />
       {getTickerLinks()}  
-      <DonationButton />
-      <h1 id="tickerr-username" className="passion-one-font">Made with ❤️ by vvaffleman</h1>
     </Page>
   )
 }

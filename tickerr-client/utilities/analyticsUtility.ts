@@ -1,3 +1,5 @@
+import { logEvent } from "firebase/analytics";
+
 import { analytics } from "../firebase";
 
 interface IAnalyticsUtility {
@@ -7,9 +9,9 @@ interface IAnalyticsUtility {
 export const AnalyticsUtility: IAnalyticsUtility = {
   log: (event: string, params?: any): void => {
     if(params) {
-      analytics.logEvent(event, params);
+      logEvent(analytics, event, params);
     } else {
-      analytics.logEvent(event);
+      logEvent(analytics, event);
     }
   }
 }

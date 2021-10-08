@@ -17,6 +17,11 @@ export const searchReducer = (state: ISearch, action: IAction): ISearch => {
         ...state,
         index: action.payload
       }
+    case SearchAction.SetStatus:
+      return {
+        ...state,
+        status: action.payload
+      }
     case SearchAction.SetResults:
       return {
         ...state,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import _sortBy from "lodash.sortby";
 
 import { TickerService } from "../services/tickerService";
@@ -6,10 +6,9 @@ import { TickerService } from "../services/tickerService";
 import { IAppState } from "../components/app/models/appState";
 import { ITicker } from "../../tickerr-models/ticker";
 
-import { AppStatus } from "../components/app/enums/appStatus";
+import { AppAction } from "../enums/appAction";
 import { RequestStatus } from "../enums/requestStatus";
 import { TickerStateAction } from "../pages/tickerPage/enums/tickerStateAction";
-import { TickerUtility } from "../utilities/tickerUtility";
 
 export const useUpdateUrlSymbolEffect = (match: any, dispatch: (type: TickerStateAction, payload?: any) => void): void => {
   useEffect(() => {
@@ -25,27 +24,20 @@ export const useUpdateUrlSymbolEffect = (match: any, dispatch: (type: TickerStat
   }, [location.pathname]);
 }
 
-interface IUseTickersEffect {
-  tickers: ITicker[];
-  status: RequestStatus;
-}
-
-export const useTickersEffect = (appState: IAppState, limit: number): IUseTickersEffect => {
-  const [state, setState] = useState<IUseTickersEffect>({ tickers: [], status: RequestStatus.Loading });
-
+export const useFetchTickersOnIntervalEffect = (appState: IAppState, limit: number, dispatch: (type: AppAction, payload?: any) => void): void => {
   const { settings, statuses } = appState;
   
   useEffect(() => {    
-    if(appState.status !== AppStatus.Loading && statuses.settings.is !== RequestStatus.Loading) {
+    if(statuses.settings.is !== RequestStatus.Loading) {
       const fetch = async () => {
         try {
           const tickers: ITicker[] = await TickerService.fetchTickers(settings.currency, limit);
-          
-          setState({ tickers, status: RequestStatus.Success });
+
+          dispatch(AppAction.FetchedTickers, tickers);
         } catch (err) {
           console.error(err);
 
-          setState({ ...state, status: RequestStatus.Error });
+          dispatch(AppAction.SetTickersStatus, { is: RequestStatus.Error, message: "" });
         }
       }
 
@@ -57,12 +49,10 @@ export const useTickersEffect = (appState: IAppState, limit: number): IUseTicker
         clearInterval(interval);
       }
     }
-  }, [appState.status, statuses.settings.is]);
-    
-  return state;
+  }, [statuses.settings.is]);
 }
 
-export const useTickerEffect = (symbol: string, appState: IAppState, status: RequestStatus, dispatch: (type: TickerStateAction, payload?: any) => void): void => {  
+export const useFetchTickerEffect = (symbol: string, appState: IAppState, status: RequestStatus, dispatch: (type: TickerStateAction, payload?: any) => void): void => {  
   const { settings, statuses } = appState;
   
   useEffect(() => {
@@ -74,14 +64,14 @@ export const useTickerEffect = (symbol: string, appState: IAppState, status: Req
   useEffect(() => {
     if(
       symbol !== "" && 
-      appState.status !== AppStatus.Loading && 
       statuses.settings.is !== RequestStatus.Loading
     ) {
       const fetch = async () => {
         try {
-          const ticker: ITicker = await TickerService.fetchTicker(symbol, settings.currency);
+          const geckoID: string = await TickerService.fetchGeckoID(symbol),
+            ticker: ITicker = await TickerService.fetchTicker(geckoID, settings.currency);
           
-          ticker.chart = await TickerService.fetchChart(symbol, settings.currency);
+          ticker.chart = await TickerService.fetchChart(geckoID, settings.currency);
 
           dispatch(TickerStateAction.SetTicker, ticker);
         } catch (err) {
@@ -99,5 +89,5 @@ export const useTickerEffect = (symbol: string, appState: IAppState, status: Req
         clearInterval(interval);
       }
     }
-  }, [symbol, appState.status, statuses.settings.is]);
+  }, [symbol, statuses.settings.is]);
 }

@@ -4,7 +4,7 @@ import { RequestStatus } from "../../../enums/requestStatus";
 
 export interface IAppRequestStatuses {  
   settings: IAppRequestStatus;  
-  wallet: IAppRequestStatus;  
+  tickers: IAppRequestStatus;  
 }
 
 export const defaultAppRequestStatuses = (): IAppRequestStatuses => ({  
@@ -12,8 +12,8 @@ export const defaultAppRequestStatuses = (): IAppRequestStatuses => ({
     is: RequestStatus.Loading,
     message: ""
   },
-  wallet: {
-    is: RequestStatus.Idle,
+  tickers: {
+    is: RequestStatus.Loading,
     message: ""
   }
 });

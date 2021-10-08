@@ -3,7 +3,6 @@ import classNames from "classnames";
 
 import { IconButton } from "../../../../components/buttons/iconButton";
 import { TickerSidePanelField } from "./tickerSidePanelField";
-import { WalletFields } from "../walletFields/walletFields";
 
 import { AppContext } from "../../../../components/app/contexts/appContext";
 import { TickerStateContext } from "../../contexts/tickerStateContext";
@@ -79,7 +78,6 @@ export const TickerSidePanel: React.FC<TickerSidePanelProps> = (props: TickerSid
             value={`${ticker.change.day.toFixed(2)}%`} 
             label="24H" 
           />
-          <WalletFields />
         </div>
       </div>
     </React.Fragment>

@@ -1,22 +1,13 @@
 export enum AppAction {
   CloseSettings = "Close Settings",
-  Cya = "Cya",
+  FetchedTickers = "Fetched Tickers",
   InitSettings = "Init Settings",
   SetCurrency = "Set Currency",
   SetFont = "Set Font",  
   SetSettingsStatus = "Set Settings Status",
-  SetWalletStatus = "Set Wallet Status",
-  SetStatus = "Set Status",
-  SetUser = "Set User",  
-  SetUserWallets = "Set User Wallets",
-  SignInUser = "Sign In User",
-  SignOutUser = "Sign Out User",
-  StartSignOutUser = "Start Sign Out User",
+  SetTickers = "Set Tickers",
+  SetTickersStatus = "Set Tickers Status",
   UpdateSettings = "Update Settings",
-  ToggleCya = "Toggle Cya",
-  ToggleDonation = "Toggle Donation",
-  ToggleMenu = "Toggle Menu",
   ToggleSearch = "Toggle Search",
-  ToggleSettings = "Toggle Settings",
-  ToggleSignIn = "Toggle Sign In"
+  ToggleSettings = "Toggle Settings"
 }

@@ -3,6 +3,7 @@ export enum SearchAction {
   SetFocused = "Set Focused",
   SetIndex = "Set Index",
   SetResults = "Set Results",
+  SetStatus = "Set Status",
   SetQuery = "Set Query",
   Toggle = "Toggle"
 }

@@ -5,16 +5,11 @@ import { IGeckoTickerChartPoint } from "../../tickerr-models/geckoTickerChartPoi
 import { ITicker } from "../../tickerr-models/ticker";
 import { ITickerChartPoint } from "../../tickerr-models/tickerChartPoint";
 
-import { ApiUrl } from "../enums/url";
+import { ApiURL } from "../enums/apiURL";
 import { Currency } from "../../tickerr-enums/currency";
 
-import { geckoCoinSymbolMap, IGeckoCoinSymbolMapItem } from "../constants/gecko";
-
 interface ITickerUtility {
-  displayGeckoCoinSymbolMap: (tickers: ITicker[]) => void;
-  filterSearchResults: (query: string, limit?: number) => IGeckoCoinSymbolMapItem[];
-  getDefaultSearchResults: () => IGeckoCoinSymbolMapItem[];
-  getGeckoIDFromSymbol: (symbol: string) => string;
+  filterSearchResults: (query: string, tickers: ITicker[], limit?: number) => ITicker[];
   getGeckoChartUrl: (geckoID: string, currency: Currency) => string;
   getGeckoTickerUrl: (geckoID: string, currency: Currency) => string;    
   getGeckoTickersUrl: (currency: Currency, limit?: number) => string;   
@@ -25,41 +20,23 @@ interface ITickerUtility {
 }
 
 export const TickerUtility: ITickerUtility = {
-  displayGeckoCoinSymbolMap: (tickers: ITicker[]): void => {    
-    const map: IGeckoCoinSymbolMapItem[] = tickers.map((ticker: ITicker) => ({
-      geckoID: ticker.geckoID,
-      image: ticker.icon.split(ApiUrl.GeckoImages)[1],
-      name: ticker.name,
-      symbol: ticker.symbol
-    }));
-
-    console.log(map);
-  },
-  filterSearchResults: (query: string, limit?: number): IGeckoCoinSymbolMapItem[] => {
+  filterSearchResults: (query: string, tickers: ITicker[], limit?: number): ITicker[] => {
     query = StringUtility.format(query);
 
-    return geckoCoinSymbolMap.filter((coin: IGeckoCoinSymbolMapItem) => (
-        StringUtility.format(coin.symbol).indexOf(query) >= 0 ||
-        StringUtility.format(coin.name).indexOf(query) >= 0
+    return tickers.filter((ticker: ITicker) => (
+        StringUtility.format(ticker.symbol).indexOf(query) >= 0 ||
+        StringUtility.format(ticker.name).indexOf(query) >= 0
       ))
       .slice(0, limit || 10);
   },
-  getDefaultSearchResults: (): IGeckoCoinSymbolMapItem[] => {
-    return geckoCoinSymbolMap.slice(0, 5);
-  },
-  getGeckoIDFromSymbol: (symbol: string): string => {
-    const item: IGeckoCoinSymbolMapItem = geckoCoinSymbolMap.find((item: IGeckoCoinSymbolMapItem) => item.symbol === symbol);
-
-    return item ? item.geckoID : "";
-  },
   getGeckoChartUrl: (geckoID: string, currency: Currency): string => {
-    return `${ApiUrl.Gecko}/coins/${geckoID}/market_chart?vs_currency=${currency}&days=1`;
+    return `${ApiURL.Gecko}/coins/${geckoID}/market_chart?vs_currency=${currency}&days=1`;
   },
   getGeckoTickerUrl: (geckoID: string, currency: Currency): string => {
-    return `${ApiUrl.Gecko}/coins/markets?vs_currency=${currency}&ids=${geckoID}&per_page=1&sparkline=false`;
+    return `${ApiURL.Gecko}/coins/markets?vs_currency=${currency}&ids=${geckoID}&per_page=1&sparkline=false`;
   },
   getGeckoTickersUrl: (currency: Currency, limit?: number): string => {   
-    return `${ApiUrl.Gecko}/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
+    return `${ApiURL.Gecko}/coins/markets?vs_currency=${currency}&per_page=${limit || 100}&sparkline=false`;
   },
   getTickerBySymbol: (symbol: string, tickers: ITicker[]): ITicker => {
     const ticker: ITicker = tickers.find((ticker: ITicker) => ticker.symbol === symbol);

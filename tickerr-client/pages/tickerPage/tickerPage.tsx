@@ -7,7 +7,6 @@ import { Page } from "../page/page";
 import { TickerChart } from "./components/tickerChart/tickerChart";
 import { TickerPrice } from "../../components/tickerPrice/tickerPrice";
 import { TickerSidePanel } from "./components/tickerSidePanel/tickerSidePanel";
-import { WalletModal } from "./components/walletModal/walletModal";
 
 import { tickerStateReducer } from "./reducers/tickerStateReducer";
 
@@ -15,7 +14,7 @@ import { AppContext } from "../../components/app/contexts/appContext";
 import { TickerStateContext } from "./contexts/tickerStateContext";
 
 import { useUpdatePageTitleEffect } from "../../effects/appEffects";
-import { useTickerEffect, useUpdateUrlSymbolEffect } from "../../effects/tickerEffects";
+import { useFetchTickerEffect, useUpdateUrlSymbolEffect } from "../../effects/tickerEffects";
 
 import { CurrencyUtility } from "../../utilities/currencyUtility";
 
@@ -49,7 +48,7 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
 
   useUpdateUrlSymbolEffect(useRouteMatch(), dispatch);
 
-  useTickerEffect(urlSymbol, appState, status, dispatch);
+  useFetchTickerEffect(urlSymbol, appState, status, dispatch);
 
   const chart: ITickerChartPoint[] = ticker ? ticker.chart : [];
 
@@ -79,7 +78,6 @@ export const TickerPage: React.FC<TickerPageProps> = (props: TickerPageProps) =>
     <TickerStateContext.Provider value={{ tickerState, dispatchToTickerState }}>
       <Page id="tickerr-ticker-page" status={status} errorMessage={errorMessage} backToHome>      
         {getTickerStats()}    
-        <WalletModal />    
       </Page>
     </TickerStateContext.Provider>
   )

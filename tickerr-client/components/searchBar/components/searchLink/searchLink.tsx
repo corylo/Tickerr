@@ -4,15 +4,14 @@ import classNames from "classnames";
 
 import { SettingsUtility } from "../../../../utilities/settingsUtility";
 
-import { ApiUrl } from "../../../../enums/url";
 import { Font } from "../../../../../tickerr-enums/font";
 
-import { IGeckoCoinSymbolMapItem } from "../../../../constants/gecko";
+import { ITicker } from "../../../../../tickerr-models/ticker";
 
 interface SearchLinkProps {  
-  coin: IGeckoCoinSymbolMapItem;
   focused: boolean;
   font: Font;
+  ticker: ITicker;
   clear: () => void;
 }
 
@@ -33,7 +32,7 @@ export const SearchLink: React.FC<SearchLinkProps> = (props: SearchLinkProps) =>
     if(!imageError) {
       return (
         <div className="ticker-icon">                
-          <img src={`${ApiUrl.GeckoImages}${props.coin.image}`} onError={handleOnError} />
+          <img src={props.ticker.icon} onError={handleOnError} />
         </div>
       )
     }
@@ -41,13 +40,13 @@ export const SearchLink: React.FC<SearchLinkProps> = (props: SearchLinkProps) =>
 
   return (
     <Link 
-      to={`/${props.coin.symbol}`}
+      to={`/${props.ticker.symbol}`}
       onClick={props.clear}
       className={classes}
     >
       {getIcon()}
-      <h1 className="ticker-name">{props.coin.name}</h1>
-      <h1 className="ticker-symbol">{props.coin.symbol}</h1>
+      <h1 className="ticker-name">{props.ticker.name}</h1>
+      <h1 className="ticker-symbol">{props.ticker.symbol}</h1>
       <i className="fad fa-caret-right" />
     </Link>
   );

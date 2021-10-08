@@ -1,7 +1,6 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/analytics";
-import "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { Analytics, getAnalytics } from "@firebase/analytics";
+import { Firestore, getFirestore } from "@firebase/firestore";
 
 import { tickerrDevelopmentAppConfig, tickerrProductionAppConfig } from "../config/firebaseConfig";
 
@@ -13,8 +12,7 @@ const getConfig = (): any => {
   return tickerrDevelopmentAppConfig;
 };
 
-firebase.initializeApp(getConfig());
+initializeApp(getConfig());
 
-export const db: firebase.firestore.Firestore = firebase.firestore();
-export const analytics: firebase.analytics.Analytics = firebase.analytics();
-export const auth: firebase.auth.Auth = firebase.auth();
+export const analytics: Analytics = getAnalytics();
+export const db: Firestore = getFirestore();

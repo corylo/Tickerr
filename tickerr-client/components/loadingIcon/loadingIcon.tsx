@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ApiUrl } from "../../enums/url";
+import { ApiURL } from "../../enums/apiURL";
 
 interface LoadingIconProps {
   poweredBy?: boolean;
@@ -14,7 +14,7 @@ export const LoadingIcon: React.FC<LoadingIconProps> = (
       return(
         <h1 className="powered-by passion-one-font">
           <span>Powered By</span>
-          <img src={`${ApiUrl.CDN}/img/brands/coin-gecko-logo.png`} />
+          <img src={`${ApiURL.CDN}/img/brands/coin-gecko-logo.png`} />
           <span>Coin Gecko</span>
         </h1>
       )

@@ -6,7 +6,6 @@ import { LoadingIcon } from "../loadingIcon/loadingIcon";
 
 import { useDisableScrollEffect } from "../../effects/appEffects";
 
-import { FormStatus } from "../../enums/formStatus";
 import { RequestStatus } from "../../enums/requestStatus";
 
 interface ModalProps {
@@ -14,7 +13,7 @@ interface ModalProps {
   children: any;
   transparent?: boolean;  
   priority?: boolean;
-  status?: RequestStatus | FormStatus;
+  status?: RequestStatus;
   handleOnClose?: () => void;
 }
 
@@ -31,7 +30,7 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
   }
 
   const getModalContent = (): JSX.Element => {
-    if(props.status === RequestStatus.Loading || props.status === FormStatus.Submitting) {
+    if(props.status === RequestStatus.Loading) {
       return (
         <LoadingIcon />
       )
